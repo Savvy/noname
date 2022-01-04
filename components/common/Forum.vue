@@ -1,7 +1,7 @@
 <template>
     <div class="forum">
         <div class="header">
-            <div class="header-title">Official Forums</div>
+            <nuxt-link :to="'#official-forums-' + id" :id="'official-forums-' + id" class="header-title">Official Forums</nuxt-link>
             <i class="bi bi-chevron-down" @click="hide = !hide "></i>
         </div>
         <div class="body w-100" :class="{ collapse: hide }">
@@ -18,6 +18,10 @@ export default {
         hidden: {
             type: Boolean,
             default: false
+        },
+        id: {
+            type: Number,
+            required: false,
         }
     },
     data() {
@@ -30,13 +34,14 @@ export default {
 
 <style scoped>
 .forum {
-    margin: 15px 0;
+    margin-bottom: 15px;
     border-radius: 5px;
     overflow: hidden;
 }
 .header {
     position: relative;
     padding: 15px 25px;
+    font-size: 20px;
     background-color: var(--header-color);
 }
 
@@ -58,7 +63,7 @@ i {
     background-color: var(--body-color);
     height: 100%;
     max-height: 10000px;
-    transition: max-height 0.55s ease-in-out;
+    transition: max-height 0.85s ease-in-out;
 }
 
 .collapse {
