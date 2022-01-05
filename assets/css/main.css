@@ -138,6 +138,12 @@ h6 {
     user-select: none;
     cursor: pointer;
     text-decoration: none;
+    transition: opacity 0.25s ease-in-out;
+}
+
+.brand:hover {
+    text-decoration: none;
+    opacity: 0.8;
 }
 
 .btn {

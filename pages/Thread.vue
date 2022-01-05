@@ -7,7 +7,7 @@
                     <div class="header-description">Thread in <nuxt-link to="/category">News & Announcements</nuxt-link> started by <nuxt-link to="/profile">Cyber</nuxt-link>, <span class="time">Today at 2:58 PM</span></div>
                 </div>
                 <div class="right d-flex flex-row">
-                    <div class="btn btn-primary">Share <i class="bi bi-caret-down-fill"></i></div>
+                    <div class="btn">Share <i class="bi bi-caret-down-fill"></i></div>
                 </div>
             </div>
             <div class="sub-header d-flex w-100" v-if="showPagination">
@@ -18,9 +18,8 @@
                 </div>
             </div>
             <div class="body w-100">
-                <CommonPost avatar="https://i.imgur.com/rzuOBa8.png" name="Cyber" role="Admin" :threadAuthor=true />
-                <CommonPost avatar="https://i.imgur.com/dhAaUje.jpg" name="Meiyo" role="Moderator" />
-                <CommonPost avatar="https://i.imgur.com/45vM6qK.jpg" name="Random" />
+                <!-- <CommonPost avatar="https://i.imgur.com/rzuOBa8.png" name="Cyber" role="Admin" :threadAuthor=true postIndex=1 /> -->
+                <CommonPost v-for="(post, index) in mockPosts" :key=index :post=post :index=index />
             </div>
             <client-only>
                 <CommonRichEditor />
@@ -31,6 +30,27 @@
 
 <script>
 export default {
+    data() {
+        return {
+            mockPosts: [
+                {
+                    avatar: 'https://i.imgur.com/rzuOBa8.png',
+                    author: 'Cyber',
+                    role: 'Admin'
+                },
+                {
+                    avatar: 'https://i.imgur.com/dhAaUje.jpg',
+                    author: 'Meiyo',
+                    role: 'Moderator'
+                },
+                {
+                    avatar: 'https://i.imgur.com/45vM6qK.jpg',
+                    author: 'Random',
+                    role: 'Member'
+                }
+            ]
+        }
+    },
     computed: {
         showPagination() {
             return true;

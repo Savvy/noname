@@ -1,16 +1,16 @@
 <template>
     <div class="post d-flex w-100">
         <div class="post-author d-flex align-center flex-column">
-            <CommonAvatar :src="avatar" borderRadius="100px" height="95px" width="95px" :pointer=true />
-            <div class="author"><nuxt-link to="/profile">{{ name }}</nuxt-link></div>
+            <CommonAvatar :src="post.avatar" borderRadius="100px" height="95px" width="95px" :pointer=true />
+            <div class="author"><nuxt-link to="/profile">{{ post.author }}</nuxt-link></div>
             <div class="badges">
-                <div class="badge">{{ role }}</div>
+                <div class="badge">{{ post.role }}</div>
             </div>
         </div>
         <div class="post-content w-auto">
             <div class="post-header d-flex flex-row justify-between">
                 <span class="time">Today at 2:58 PM</span>
-                <nuxt-link to="#post-1" id="post-1" class="post-num">#1</nuxt-link>
+                <nuxt-link :to='`#post-${index}`' :id='`post-${index}`' class="post-num">#{{ index }}</nuxt-link>
             </div>
             <div class="post-body">
                 <p>
@@ -25,7 +25,11 @@
 <script>
 export default {
     props: {
-        avatar: {
+        post: {
+            type: Object,
+            required: true
+        },
+        /* avatar: {
             type: String,
             required: true,
         },
@@ -42,6 +46,11 @@ export default {
             type: Boolean,
             required: false,
             default: false,
+        }, */
+        index: {
+            type: Number,
+            required: true,
+            default: 999
         }
     }
 }
