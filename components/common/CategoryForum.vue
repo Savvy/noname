@@ -2,7 +2,7 @@
     <div class="forum">
         <div class="header d-flex justify-between align-center w-100">
             <div class="left">
-                <div class="header-title">Home / News & Announcements</div>
+                <div class="header-title">Home <span>/</span> News & Announcements</div>
                 <div class="header-description">The latest news and announcements regarding the community.</div>
             </div>
             <div class="right d-flex flex-row">
@@ -42,6 +42,11 @@ export default {
 .header .header-title {
     font-weight: 500;
     font-size: 20px;
+    color: var(--light-text);
+}
+
+.header .header-title span {
+    font-size: 17px;
 }
 
 .header .header-description {

@@ -5,7 +5,7 @@
                 <CommonAvatar src="https://i.imgur.com/45vM6qK.jpg" borderRadius="100px" height="50px" width="50px" :pointer=true />
             </div>
             <div class="thread-meta d-flex flex-column">
-                <nuxt-link to="/" class="thread-title">Update Log #39</nuxt-link>
+                <nuxt-link to="/thread" class="thread-title">Update Log #39</nuxt-link>
                 <div class="thread-creator d-flex align-center">
                     <nuxt-link to="/">Chroma</nuxt-link>
                     <span class="sep"></span>
@@ -31,8 +31,9 @@
             <!-- <div class="recent-border"></div> -->
             <div class="recent-info d-flex flex-column justify-end">
                 <nuxt-link to="/" class="user">Chroma</nuxt-link>
-                <nuxt-link to="/#asdas" class="time">Jan 2, 2020 @ 10:43 PM</nuxt-link>
+                <nuxt-link to="/#asdas" class="time">Jan 2, 2020 at 10:43 PM</nuxt-link>
             </div>
+            <CommonAvatar src="https://i.imgur.com/45vM6qK.jpg" borderRadius="100px" height="30px" width="30px" :pointer=true />
         </div>
     </div>
 </template>
