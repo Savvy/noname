@@ -29,7 +29,7 @@ export default {
     height: 100%;
     width: 100%;
     background-color: var(--primary-color);
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

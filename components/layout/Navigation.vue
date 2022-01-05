@@ -2,10 +2,7 @@
     <nav class="w-100">
         <div class="navigation container d-flex justify-between align-center">
             <nuxt-link to="/" class="brand">NoName</nuxt-link>
-            <div class="input-group w-auto">
-                <i class="bi bi-search"></i>
-                <input type="search" class="w-100 h-100">
-            </div>
+            <CommonSearch />
             <div class="user-nav d-flex flex-row align-center">
                 <div class="alerts d-flex flex-row">
                     <div class="nav-btn"><i class="bi bi-bell"></i></div>
@@ -72,11 +69,5 @@ nav, .navigation {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-.input-group input {
-    min-height: 35px;
-    height: 100%;
-    border-radius: 100px;
 }
 </style>

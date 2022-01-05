@@ -19,7 +19,7 @@
             </div>
             <div class="body w-100">
                 <!-- <CommonPost avatar="https://i.imgur.com/rzuOBa8.png" name="Cyber" role="Admin" :threadAuthor=true postIndex=1 /> -->
-                <CommonPost v-for="(post, index) in mockPosts" :key=index :post=post :index=index />
+                <CommonPost v-for="(post, index) in mockPosts" :key=index :post=post :index='(index + 1)' />
             </div>
             <client-only>
                 <CommonRichEditor />
@@ -63,7 +63,7 @@ export default {
 .header {
     position: relative;
     padding: 15px 25px;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     background-color: var(--header-color);
     color: var(--primary-color);
 }

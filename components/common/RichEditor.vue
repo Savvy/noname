@@ -107,7 +107,7 @@ export default {
 }
 .editor {
     background-color: var(--body-color);
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     overflow: hidden;
 }
 .editor-nav {
@@ -126,15 +126,17 @@ export default {
     cursor: pointer;
     line-height: 22px;
     font-size: 14px;
+    border-radius: var(--border-radius);
 }
 
 .editor-nav .btn-group button {
+    border-radius: 0;
     background-color: transparent;
 }
 
 .btn-group {
     display: flex;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     overflow: hidden;
     background-color: var(--bg-light-10);
 }

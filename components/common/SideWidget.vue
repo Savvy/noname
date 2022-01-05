@@ -19,7 +19,7 @@
 <style scoped>
 .widget {
     width: 100%;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     overflow: hidden;
 }
 

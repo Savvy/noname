@@ -3,6 +3,8 @@
         <LayoutNavigation />
         <Nuxt />
         <LayoutFooter />
+        <!-- <div class="modal-overlay"></div>
+        <LayoutLoginModal /> -->
     </div>
 </template>
 
@@ -13,5 +15,4 @@ export default {
 
 
 <style scoped>
-
 </style>

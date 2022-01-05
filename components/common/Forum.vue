@@ -35,7 +35,7 @@ export default {
 <style scoped>
 .forum {
     margin-bottom: 15px;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     overflow: hidden;
 }
 .header {
