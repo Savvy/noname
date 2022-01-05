@@ -31,8 +31,11 @@ export default {
 <style scoped>
 nav {
     background-color: var(--bg-dark-color);
-    min-height: 60px;
     margin-bottom: 30px;
+}
+
+nav, .navigation {
+    min-height: 60px;
 }
 
 .navigation {
