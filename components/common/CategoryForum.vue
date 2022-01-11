@@ -10,6 +10,13 @@
                 <div class="btn btn-primary">Log in to post</div>
             </div>
         </div>
+        <div class="sub-header d-flex w-100" v-if="showPagination">
+            <div class="pagination">
+                <div class="btn btn-default btn-prev"><i class="bi bi-chevron-double-left"></i></div>
+                <div class="btn btn-default btn-page">1</div>
+                <div class="btn btn-default btn-next"><i class="bi bi-chevron-double-right"></i></div>
+            </div>
+        </div>
         <div class="body w-100">
             <CommonThread v-for="index in 10" :key="index" />
         </div>
@@ -18,10 +25,20 @@
 
 <script>
 export default {
+    data() {
+        return {
+            showPagination: true
+        }
+    }
 }
 </script>
 
 <style scoped>
+
+.sub-header {
+    margin: 10px 0;
+}
+
 .forum {
     margin-bottom: 15px;
     border-radius: var(--border-radius);
@@ -33,6 +50,7 @@ export default {
     padding: 15px 25px;
     background-color: var(--header-color);
     color: var(--primary-color);
+    border-radius: var(--border-radius);
 }
 
 .header .right {
@@ -59,6 +77,7 @@ export default {
     background-color: var(--body-color);
     /* padding: 15px 25px; */
     /* padding: 0 25px; */
+    border-radius: var(--border-radius);
 }
 
 .thread:nth-child(even) {
