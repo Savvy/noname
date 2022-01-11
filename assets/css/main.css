@@ -42,6 +42,9 @@ body {
     --body-color: #302D52;
     --header-color: #1B1831;
     --primary-gradient: linear-gradient(to right, #654EA3, #B06AB3);
+    --facebook-color: #0080FB;
+    --twitter-color: #1DA1F2;
+    --discord-color: #7289DA;
 }
 
 a {
@@ -148,6 +151,17 @@ h6 {
     opacity: 0.8;
 }
 
+.top-gradient {
+    background-image: linear-gradient(to right, #654EA3, #B06AB3);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    width: 100%;
+    height: 5px;
+}
+
+.dropdown {
+    position: relative;
+}
+
 .btn {
     background-color: var(--bg-light-10);
     border: none;
@@ -202,6 +216,22 @@ h6 {
     opacity: 0;
     transition: opacity 0.25s ease-in-out;
     border-radius: var(--border-radius);
+}
+
+.btn.facebook {
+    background-color: var(--facebook-color);
+}
+
+.btn.twitter {
+    background-color:  var(--twitter-color);
+}
+
+.btn.discord {
+    background-color: var(--discord-color);
+}
+
+.btn.facebook:hover, .btn.twitter:hover, .btn.discord:hover {
+    opacity: 0.85;
 }
 
 .input-group {

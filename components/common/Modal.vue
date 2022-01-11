@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="title"><slot name="modal-title">Modal Title</slot></h1>
-                <div class="btn btn-close">×</div>
+                <div class="btn btn-close" @click="$emit(`close-modal-${name}`)">×</div>
             </div>
             <div class="modal-body">
                 <slot name="modal-body">Default modal content</slot>
@@ -12,6 +12,17 @@
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    props: {
+        name: {
+            type: String,
+            required: true
+        }
+    }
+}
+</script>
 
 <style scoped>
 .modal-dialog {
@@ -38,7 +49,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--bg-dark-color);;
+    background-color: var(--bg-dark-color);
 }
 
 .modal-header .title {
@@ -48,6 +59,7 @@
 .modal-body {
     padding: 15px;
     max-height: 60vh;
+    height: 100%;
     overflow-y: auto;
     color: var(--light-text);
 }
