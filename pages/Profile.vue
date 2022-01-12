@@ -187,7 +187,7 @@ export default {
     height: 300px;
     width: 100%;
     position: relative;
-    margin-bottom: 120px;
+    margin-bottom: 80px;
 }
 
 .profile-banner {
@@ -197,6 +197,7 @@ export default {
     background-position: center;
     background-repeat: no-repeat;
     border-radius: var(--border-radius);
+    overflow: hidden;
 }
 
 .profile-header .avatar {

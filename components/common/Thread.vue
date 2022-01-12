@@ -91,4 +91,11 @@ span.time {
     font-size: 0.85rem;
     text-align: right;
 }
+
+@media (max-width: 900px) {
+    .thread-stats {
+        display: none;
+    }
+}
+
 </style>

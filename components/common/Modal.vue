@@ -34,6 +34,13 @@ export default {
     transform: translateX(-50%);
 }
 
+@media (max-width: 900px) {
+    .modal-dialog {
+        max-width: 80vw;
+        width: 100%;
+    }
+}
+
 .modal-content {
     background-color: var(--bg-color);
     border-radius: var(--border-radius);
