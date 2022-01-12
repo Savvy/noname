@@ -1,8 +1,8 @@
 <template>
     <div class="input-group w-auto">
         <i class="bi bi-search"></i>
-        <input type="search" class="w-100 h-100">
-        <!-- <div class="results-container">
+        <input type="search" class="w-100 h-100" v-model="searchQuery">
+        <div class="results-container" v-if="showResults">
             <div class="d-flex flex-row justify-between align-center">
                 <h1>Search Results</h1>
                 <div class="btn">View all</div>
@@ -23,9 +23,25 @@
                 <div class="result-body">
                 </div>
             </div>
-        </div> -->
+        </div>
     </div>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            searchQuery: '',
+            searchResults: []
+        }
+    },
+    computed: {
+        showResults() {
+            return this.searchQuery.length > 0 || this.searchResults.length > 0
+        }
+    }
+}
+</script>
 
 <style scoped>
 .input-group {
