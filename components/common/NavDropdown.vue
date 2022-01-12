@@ -2,12 +2,14 @@
 <div class="dropdown-menu">
     <div class="top-gradient"></div>
     <slot name="data-empty"><div class="data-empty">No information to display.</div></slot>
-    <div class="dropdown-footer">
-        <div class="btns d-flex flex-row">
-            <div class="btn btn-default">View All</div>
-            <div class="btn btn-default">New Conversation</div>
+    <slot name="dropdown-footer">
+        <div class="dropdown-footer">
+            <div class="btns d-flex flex-row">
+                <div class="btn btn-default">Show All</div>
+                <div class="btn btn-default">Another Button</div>
+            </div>
         </div>
-    </div>
+    </slot>
 </div>
 </template>
 
@@ -26,6 +28,7 @@
     color: var(--primary-color);
     font-weight: 300;
     cursor: initial;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 .data-empty {

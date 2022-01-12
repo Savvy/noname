@@ -5,21 +5,36 @@
             <CommonSearch />
             <div class="user-nav d-flex flex-row align-center">
                 <div class="alerts d-flex flex-row">
-                    <div class="nav-btn dropdown">
+                    <div class="nav-btn dropdown" @click="toggleAlerts">
                         <i class="bi bi-bell"></i>
-                        <!-- <CommonNavDropdown>
+                        <CommonNavDropdown v-if="showAlerts">
                             <template v-slot:data-empty>
                                 <div class="data-empty">No recent alerts</div>
                             </template>
-                        </CommonNavDropdown> -->
+                            <template v-slot:dropdown-footer>
+                                <div class="dropdown-footer">
+                                    <div class="btns">
+                                        <div class="btn btn-default">Show All</div>
+                                    </div>
+                                </div>
+                            </template>
+                        </CommonNavDropdown>
                     </div>
-                    <div class="nav-btn dropdown">
+                    <div class="nav-btn dropdown" @click="toggleConversations">
                         <i class="bi bi-envelope"></i>
-                        <!-- <CommonNavDropdown>
+                        <CommonNavDropdown v-if="showConversations" @click.prevent>
                             <template v-slot:data-empty>
                                 <div class="data-empty">No new conversations</div>
                             </template>
-                        </CommonNavDropdown> -->
+                            <template v-slot:dropdown-footer>
+                                <div class="dropdown-footer">
+                                    <div class="btns d-flex flex-row">
+                                        <div class="btn btn-default">Show All</div>
+                                        <div class="btn btn-default">New Conversation</div>
+                                    </div>
+                                </div>
+                            </template>
+                        </CommonNavDropdown>
                     </div>
                 </div>
                 <div class="user" v-if="user">
@@ -35,14 +50,29 @@
 </template>
 
 <script>
+import { mixin as clickaway } from 'vue-clickaway';
 import Avatar from '@/components/common/Avatar';
 export default {
+    mixins: [ clickaway ],
     components: {
         Avatar
     },
     data() {
         return {
-            user: false
+            user: false,
+            showAlerts: false,
+            showConversations: false,
+        }
+    },
+    methods: {
+        toggleAlerts() {
+            this.showConversations = false;
+            this.showAlerts = !this.showAlerts;
+        },
+        toggleConversations() {
+            console.log('test')
+            this.showAlerts = false;
+            this.showConversations = !this.showConversations;
         }
     }
 }
