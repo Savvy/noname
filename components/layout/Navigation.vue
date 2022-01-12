@@ -4,7 +4,7 @@
             <nuxt-link to="/" class="brand">NoName</nuxt-link>
             <CommonSearch />
             <div class="user-nav d-flex flex-row align-center">
-                <div class="alerts d-flex flex-row">
+                <div class="alerts d-flex flex-row" v-if="user">
                     <div class="nav-btn dropdown" @click="toggleAlerts">
                         <i class="bi bi-bell"></i>
                         <CommonNavDropdown v-if="showAlerts">

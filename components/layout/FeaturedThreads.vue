@@ -15,6 +15,12 @@
     gap: 25px;
 }
 
+@media (max-width: 900px) {
+    .threads {
+        flex-wrap: wrap;
+    }
+}
+
 #featured-threads > h1 {
     font-size: 1.65rem;
     margin-bottom: 10px;

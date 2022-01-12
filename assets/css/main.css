@@ -92,12 +92,23 @@ h6 {
     /* background-color: crimson; */
 }
 
+@media (max-width: 900px) {
+    .page-container {
+        flex-direction: column;
+    }
+    .page-sidebar {
+        flex-wrap: wrap;
+        flex-direction: row;
+        width: 100%;
+    }
+}
+
 .w-100 {
     width: 100%;
 }
 
 .w-auto {
-    flex: 1 0 auto;
+    flex: 1;
 }
 
 .h-100 {

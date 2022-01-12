@@ -43,6 +43,12 @@ export default {
     transform: scale(0.95);
 }
 
+@media (max-width: 900px) {
+    .thread {
+        width: calc(50% - 13px);
+    }
+}
+
 .title {
     text-align: center;
     background-color: var(--bg-dark-50);

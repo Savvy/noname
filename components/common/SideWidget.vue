@@ -34,5 +34,12 @@
 .widget-body {
     background-color: var(--body-color);
     padding: 15px 25px;
+    height: 100%;
+}
+
+@media (max-width: 900px) {
+    .widget {
+        width: calc(50% - 8px);
+    }
 }
 </style>

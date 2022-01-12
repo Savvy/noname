@@ -8,6 +8,7 @@
 
 <style scoped>
 footer {
+    margin-top: 25px;
     background-color: var(--bg-dark-color);
 }
 

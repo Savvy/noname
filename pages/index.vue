@@ -32,7 +32,7 @@ export default {
 </script>
 
 <style scoped>
-.header {;
+.header {
   margin: 40px 0 20px 0;
 }
 
