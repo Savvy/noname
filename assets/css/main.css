@@ -45,6 +45,7 @@ body {
     --facebook-color: #0080FB;
     --twitter-color: #1DA1F2;
     --discord-color: #7289DA;
+    --tab-active-color: #23203E;
 }
 
 a {
@@ -125,6 +126,10 @@ h6 {
 
 .align-end {
     align-items: flex-end;
+}
+
+.align-self-end {
+    align-self: flex-end;
 }
 
 .justify-end {
@@ -282,11 +287,24 @@ span.sep {
     border-radius: 0 5px 5px 0;
 }
 
+span.time {
+    color: var(--primary-color);
+}
+
+.badges {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
 .badge {
     font-size: 12px;
     background-color: var(--primary-color);
     padding: 8px 16px;
     border-radius: 100px;
+    color: var(--light-text);
+    user-select: none;
+    cursor: pointer;
 }
 
 .modal-overlay {

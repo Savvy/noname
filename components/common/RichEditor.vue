@@ -70,7 +70,7 @@
             </div>
             <editor-content :editor="editor" />
         </div>
-        <div id="submit" class="btn btn-primary">Post Reply</div>
+        <div id="submit" class="btn btn-primary">{{ btnText }}</div>
     </div>
 </template>
 
@@ -80,6 +80,13 @@ import StarterKit from '@tiptap/starter-kit';
 export default {
     components: {
         EditorContent,
+    },
+    props: {
+        btnText: {
+            type: String,
+            required: true,
+            default: 'Default Value'
+        }
     },
     data() {
         return {

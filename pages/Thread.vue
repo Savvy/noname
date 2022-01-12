@@ -22,7 +22,7 @@
                 <CommonPost v-for="(post, index) in mockPosts" :key=index :post=post :index='(index + 1)' />
             </div>
             <client-only>
-                <CommonRichEditor />
+                <CommonRichEditor btn-text="Post Reply" />
             </client-only>
         </div>
     </div>
