@@ -39,7 +39,13 @@
                         v-for="(tab) in tabs" :key="tab.id">{{ tab.name }}</div>
                     </div>
                     <div class="tab-body">
-                        <div class="tab-content" v-if="activeTab === 'wall-posts'">
+                        <div class="tab-content" v-if="activeTab === 'latest-activity'">
+                            User has had no activity recently.
+                        </div>
+                        <div class="tab-content" v-else-if="activeTab === 'info'">
+                            No information to display.
+                        </div>
+                        <div class="tab-content" v-else-if="activeTab === 'wall-posts'">
                             <div class="new-post d-flex flex-row">
                                 <CommonAvatar src="https://i.imgur.com/rzuOBa8.pngg" borderRadius="5px" height="70px" width="70px" :pointer=false />
                                 <client-only>
@@ -47,7 +53,7 @@
                                 </client-only>
                             </div>
                             <div class="posts">
-                                <div class="post">
+                                <div class="post" v-for="(index) in 2" :key="index">
                                     <CommonAvatar src="https://i.imgur.com/rzuOBa8.png" borderRadius="5px" height="70px" width="70px" :pointer=false />
                                     <div class="post-body">
                                         <div class="post-author">
@@ -101,8 +107,17 @@ export default {
 </script>
 
 <style scoped>
+.posts {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .post {
     gap: 15px;
+    background-color: var(--bg-dark-10);
+    border-radius: var(--border-radius);
+    padding: 10px;
 }
 
 .post, .post-body {
@@ -181,6 +196,10 @@ export default {
     position: relative;
     background-color: var(--bg-light-5);
     padding: 15px;
+}
+
+.tab-content {
+    color: var(--light-text);
 }
 
 .profile-header {

@@ -4,7 +4,7 @@
         <Nuxt />
         <LayoutFooter />
         <transition name="fade">
-            <div class="modal-overlay" v-if="loginModal" @click="loginModal = !loginModal"></div>
+            <div class="modal-overlay" v-if="loginModal" @click="loginModal = false"></div>
         </transition>
         <transition name="slide-fade">
             <LayoutLoginModal v-show="loginModal" v-on:close-modal-login="loginModal = !loginModal"/>
