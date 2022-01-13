@@ -39,6 +39,9 @@ body {
     --bg-dark-50: rgba(0, 0, 0, 0.5);
     --primary-color: #7A78A3;
     --secondary-color: #4E4B84;
+    --danger-color: rgba(238, 82, 83,1.0);
+    --danger-mid-color: rgba(238, 82, 83, 0.3);
+    --danger-low-color: rgba(238, 82, 83, 0.1);
     --body-color: #302D52;
     --header-color: #1B1831;
     --primary-gradient: linear-gradient(to right, #654EA3, #B06AB3);
@@ -279,6 +282,20 @@ input {
     font-size: 18px;
 }
 
+.input-default {
+    height: 45px;
+    border: 1px solid var(--secondary-color);
+    background-color: transparent;
+    color: var(--primary-color);
+    padding: 15px 0 15px 15px;
+    border-radius: var(--border-radius);
+    width: 100%;
+}
+
+.input-default::placeholder {
+    font-weight: 100;
+}
+
 span.sep {
     display: inline-block;
     background-color: var(--light-text);
@@ -338,6 +355,14 @@ span.time {
     z-index: 5;
     top: 0;
     left: 0;
+}
+
+.header {
+    position: relative;
+    padding: 15px 25px;
+    border-radius: var(--border-radius);
+    background-color: var(--header-color);
+    color: var(--primary-color);
 }
 
 .ProseMirror {

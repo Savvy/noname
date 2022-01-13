@@ -60,13 +60,6 @@ export default {
 </script>
 
 <style scoped>
-.header {
-    position: relative;
-    padding: 15px 25px;
-    border-radius: var(--border-radius);
-    background-color: var(--header-color);
-    color: var(--primary-color);
-}
 
 .header .right {
     gap: 10px;

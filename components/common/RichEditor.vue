@@ -82,6 +82,10 @@ export default {
         EditorContent,
     },
     props: {
+        defaultContent: {
+            type: String,
+            required: false
+        },
         btnText: {
             type: String,
             required: true,
@@ -95,7 +99,7 @@ export default {
     },
     mounted() {
         this.editor = new Editor({
-            content: '',
+            content: this.defaultContent || '',
             extensions: [
                 StarterKit
             ]

@@ -2,7 +2,7 @@
   <div id="home">
     <div class="container">
       <LayoutFeaturedThreads />
-      <div class="header d-flex flex-row justify-between align-center">
+      <div class="home-header d-flex flex-row justify-between align-center">
         <h1>Forum</h1>
         <div class="header-btns d-flex flex-row align-center">
           <div class="btn btn-primary"><i class="bi bi-eye"></i> New Posts</div>
@@ -32,7 +32,7 @@ export default {
 </script>
 
 <style scoped>
-.header {
+.home-header {
   margin: 40px 0 20px 0;
 }
 

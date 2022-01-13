@@ -4,8 +4,8 @@
         <template v-slot:modal-body>
             <form ref="loginForm" class="login-form d-flex flex-column align-center" @submit="login">
                 <div class="input-group d-flex flex-column justify-center align-center w-100">
-                    <input type="email" v-model="user.email" name="Email Address" placeholder="Email Address" class="login-input">
-                    <input type="password" v-model="user.password" name="Password" placeholder="Password" class="login-input">
+                    <input type="email" v-model="user.email" name="Email Address" placeholder="Email Address" class="input-default">
+                    <input type="password" v-model="user.password" name="Password" placeholder="Password" class="input-default">
                     <nuxt-link to="/forgot-password" class="forgot-pass">Forgot Password?</nuxt-link>
                 </div>
                 <button type="submit" class="btn btn-primary">Log in</button>
@@ -50,20 +50,6 @@ form {
 .input-group {
     gap: 20px;
     max-width: 80%;
-}
-
-.login-input {
-    height: 45px;
-    border: 1px solid var(--secondary-color);
-    background-color: transparent;
-    color: var(--primary-color);
-    padding: 15px 0 15px 15px;
-    border-radius: var(--border-radius);
-    width: 100%;
-}
-
-.login-input::placeholder {
-    font-weight: 100;
 }
 
 .forgot-pass {

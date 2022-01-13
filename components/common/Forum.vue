@@ -4,21 +4,25 @@
             <nuxt-link :to="'#official-forums-' + id" :id="'official-forums-' + id" class="header-title">Official Forums</nuxt-link>
             <i class="bi bi-chevron-down" @click="hide = !hide "></i>
         </div>
-        <div class="body w-100" :class="{ collapse: hide }">
-            <CommonCategory />
-            <CommonCategory />
-            <CommonCategory />
-        </div>
+        <collapse-transition>
+            <div class="body w-100" v-if="!hide">
+                <CommonCategory />
+                <CommonCategory />
+                <CommonCategory />
+            </div>
+        </collapse-transition>
     </div>
 </template>
 
 <script>
+import { CollapseTransition } from "@ivanv/vue-collapse-transition"
 export default {
+    components: { CollapseTransition },
     props: {
-        hidden: {
+        /* hidden: {
             type: Boolean,
             default: false
-        },
+        }, */
         id: {
             type: Number,
             required: false,

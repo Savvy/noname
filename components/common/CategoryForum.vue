@@ -45,14 +45,6 @@ export default {
     overflow: hidden;
 }
 
-.header {
-    position: relative;
-    padding: 15px 25px;
-    background-color: var(--header-color);
-    color: var(--primary-color);
-    border-radius: var(--border-radius);
-}
-
 .header .right {
     gap: 10px;
 }
