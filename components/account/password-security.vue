@@ -1,5 +1,5 @@
 <template>
-    <div class="account-details">
+    <div class="password-security">
         <div class="title">Password & Security</div>
         <form>
             <div class="input-group align-center">

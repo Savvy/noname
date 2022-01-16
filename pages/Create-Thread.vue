@@ -41,6 +41,12 @@ export default {
     margin-bottom: 30px;
 }
 
+.header .header-title {
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--light-text);
+}
+
 .input-group {
     margin-bottom: 10px;
     max-width: 100%;

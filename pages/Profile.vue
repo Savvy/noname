@@ -2,7 +2,13 @@
     <div id="profile">
         <div class="container">
             <div class="profile-header">
-                <div class="profile-banner d-flex align-end" style="background-image: url('https://i.imgur.com/wfEx9HF.jpg');">
+                <div class="profile-banner d-flex align-end" style="background-image: url('https://i.imgur.com/TTyvRvy.png');">
+                    <div class="profile-socials">
+                        <a href="https://twitter.com/" target="_blank"><i class="bi bi-twitter"></i></a>
+                        <a href="https://facebook.com/" target="_blank"><i class="bi bi-facebook"></i></a>
+                        <a href="https://instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+                        <a href="https://malcom.sh/" target="_blank"><i class="bi bi-link-45deg"></i></a>
+                    </div>
                     <div class="profile-stats d-flex justify-between align-center">
                         <div class="left">
                             <div class="user-name">Cyber</div>
@@ -273,5 +279,30 @@ export default {
 }
 .new-post .editor-container {
     flex: 1;
+}
+
+.profile-socials {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #fff;
+    border-radius: var(--border-radius);
+    background-color: var(--bg-dark-50);
+    padding: 5px 10px;
+    display: flex;
+    gap: 8px;
+}
+
+.profile-socials a > i.bi-link-45deg {
+    font-size: 18px;
+}
+
+.profile-socials a > i {
+    display: block;
+    transition: transform 0.25s ease-in-out;
+}
+
+.profile-socials a:hover > i {
+    transform: translateY(-3px);
 }
 </style>
