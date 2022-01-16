@@ -2,10 +2,10 @@
     <div id="featured-threads">
         <h1>Community Updates</h1>
         <div class="threads d-flex flex-row justify-center align-center">
-            <CommonThreadGrid image="https://i.imgur.com/dbGyGuS.png" />
-            <CommonThreadGrid image="https://i.imgur.com/dbGyGuS.png" />
-            <CommonThreadGrid image="https://i.imgur.com/dbGyGuS.png" />
-            <CommonThreadGrid image="https://i.imgur.com/dbGyGuS.png" />
+            <nuxt-link to="/thread"><CommonThreadGrid image="https://i.imgur.com/dbGyGuS.png" /></nuxt-link>
+            <nuxt-link to="/thread"><CommonThreadGrid image="https://i.imgur.com/dbGyGuS.png" /></nuxt-link>
+            <nuxt-link to="/thread"><CommonThreadGrid image="https://i.imgur.com/dbGyGuS.png" /></nuxt-link>
+            <nuxt-link to="/thread"><CommonThreadGrid image="https://i.imgur.com/dbGyGuS.png" /></nuxt-link>
         </div>
     </div>
 </template>
@@ -19,6 +19,10 @@
     .threads {
         flex-wrap: wrap;
     }
+}
+
+.threads > a {
+    flex: 1;
 }
 
 #featured-threads > h1 {

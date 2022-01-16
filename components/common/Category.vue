@@ -6,11 +6,13 @@
             <div class="category-meta">Topics: <span>481</span> Posts: <span>1028</span></div>
         </div>
         <div class="recent-thread d-flex flex-row">
-            <CommonAvatar src="https://i.imgur.com/45vM6qK.jpg" borderRadius="100px" height="40px" width="40px" :pointer=true />
+            <nuxt-link to="/profile">
+                <CommonAvatar src="https://i.imgur.com/45vM6qK.jpg" borderRadius="100px" height="40px" width="40px" :pointer=true />
+            </nuxt-link>
             <div class="thread-info d-flex flex-column">
-                <nuxt-link to="/" class="thread-title">New API Changes</nuxt-link>
+                <nuxt-link to="/thread" class="thread-title">New API Changes</nuxt-link>
                 <div class="thread-meta">
-                    <nuxt-link to="/">Chroma</nuxt-link>
+                    <nuxt-link to="/profile">Chroma</nuxt-link>
                     <span class="sep"></span>
                     <span class="time">3 days ago</span>
                 </div>

@@ -19,7 +19,8 @@
             <div class="input-group disclaimer">
                 <span>Avatar:</span>
                 <div class="change-avatar">
-                    <CommonAvatar src="https://i.imgur.com/rzuOBa8.png" borderRadius="5px" height="80px" width="80px" :pointer=true @click.native="showAvatarModal" />
+                    <CommonAvatar src="https://i.imgur.com/rzuOBa8.png" borderRadius="5px" height="80px" width="80px" :pointer=true @click.native="$refs.changeAvatar.click()" />
+                    <input type="file" ref="changeAvatar" style="display: none" accept=".gif,.jpeg,.jpg,.png">
                     <span>Click the image to change your avatar.</span>
                 </div>
             </div>
@@ -54,10 +55,11 @@
 
 <script>
 export default {
-    methods: {
-        showAvatarModal() {
-            console.log('soon.')
+    data() {
+        return {
         }
+    },
+    methods: {
     }
 }
 </script>
@@ -106,5 +108,13 @@ label {
 button[type='submit'] {
     font-size: 16px;
     min-width: 120px;
+}
+
+.avatar {
+    transition: filter 0.25s ease-in-out;
+}
+
+.avatar:hover {
+    filter: grayscale(1);
 }
 </style>

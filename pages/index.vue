@@ -6,7 +6,7 @@
         <h1>Forum</h1>
         <div class="header-btns d-flex flex-row align-center">
           <div class="btn btn-primary"><i class="bi bi-eye"></i> New Posts</div>
-          <div class="btn btn-default"><i class="bi bi-pencil-square"></i> Post Thread</div>
+          <nuxt-link to="/create-thread" class="btn btn-default"><i class="bi bi-pencil-square"></i> Post Thread</nuxt-link>
         </div>
       </div>
       <div class="page-container">

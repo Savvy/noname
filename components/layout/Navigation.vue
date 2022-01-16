@@ -59,7 +59,7 @@ export default {
     },
     data() {
         return {
-            user: true,
+            user: false,
             showAlerts: false,
             showConversations: false,
         }
