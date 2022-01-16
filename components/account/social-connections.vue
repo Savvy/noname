@@ -1,6 +1,6 @@
 <template>
     <div class="account-details">
-        <div class="title">Password & Security</div>
+        <div class="title">Social Connections</div>
 
         <!--
             - Discord

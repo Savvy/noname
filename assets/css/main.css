@@ -142,6 +142,10 @@ h6 {
     align-items: flex-end;
 }
 
+.align-self-center {
+    align-self: center;
+}
+
 .align-self-end {
     align-self: flex-end;
 }
@@ -179,6 +183,10 @@ h6 {
 
 .dropdown {
     position: relative;
+}
+
+button, .btn {
+    font-family: var(--primary-font);
 }
 
 .btn {

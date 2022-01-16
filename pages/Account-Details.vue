@@ -19,21 +19,53 @@
                             Account Settings
                         </div>
                         <div class="sidenav-links">
-                            <div class="sidenav-btn active">Account Details</div>
-                            <div class="sidenav-btn">Password & Security</div>
-                            <div class="sidenav-btn">Privacy</div>
-                            <div class="sidenav-btn">Social Connections</div>
+                            <div class="sidenav-btn" v-for="(tab, index) in tabs" :key="index" :class="{ active: activeTab === tab.name }" @click="activeTab = tab.name">{{ tab.display }}</div>
+                            <!-- <div class="sidenav-btn active" :class="{ active: selectedTab === 'account-details'}">Account Details</div>
+                            <div class="sidenav-btn" :class="{ active: selectedTab === 'password-security'}">Password & Security</div>
+                            <div class="sidenav-btn" :class="{ active: selectedTab === 'privacy'}">Privacy</div>
+                            <div class="sidenav-btn" :class="{ active: selectedTab === 'social-connections'}">Social Connections</div> -->
                             <div class="sidenav-btn danger">Log out</div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="body">
-                <AccountDetails/>
+                <AccountDetails v-if="activeTab === 'account-details'"/>
+                <AccountPasswordSecurity v-else-if="activeTab === 'password-security'"/>
+                <AccountPrivacy v-else-if="activeTab === 'privacy'"/>
+                <AccountSocialConnections v-else-if="activeTab === 'social-connections'"/>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            activeTab: 'account-details',
+            tabs: [
+                {
+                    name: 'account-details',
+                    display: 'Account Details'
+                },
+                {
+                    name: 'password-security',
+                    display: 'Password & Security'
+                },
+                {
+                    name: 'privacy',
+                    display: 'Privacy'
+                },
+                {
+                    name: 'social-connections',
+                    display: 'Social Connections'
+                }
+            ]
+        }
+    }
+}
+</script>
 
 <style scoped>
 

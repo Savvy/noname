@@ -26,7 +26,7 @@
             <div class="input-group">
                 <span>Gender:</span>
                 <div class="input-group-radio">
-                    <input type="radio" name="gender" id="male" value="male">
+                    <input type="radio" name="gender" id="male" value="male" checked>
                     <label for="male">Male</label>
                     <input type="radio" name="gender" id="female" value="female">
                     <label for="female">Female</label>
@@ -40,6 +40,7 @@
                     <CommonRichEditor btn-text="Post" />
                 </client-only>
             </div>
+            <button type="submit" class="btn btn-primary align-self-center">Save</button>
         </form>
         <!--
             - Username,
@@ -99,5 +100,10 @@ form {
 
 label {
     margin-right: 20px;
+}
+
+button[type='submit'] {
+    font-size: 16px;
+    min-width: 120px;
 }
 </style>
