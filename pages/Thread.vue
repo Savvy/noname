@@ -30,6 +30,11 @@
 
 <script>
 export default {
+    head() {
+        return {
+            title: 'Threads'
+        }
+    },
     data() {
         return {
             mockPosts: [

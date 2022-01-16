@@ -27,6 +27,11 @@
 
 <script>
 export default {
+  head() {
+    return {
+        title: 'Home'
+    }
+  },
   name: 'Home',
 }
 </script>

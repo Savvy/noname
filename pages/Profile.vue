@@ -85,6 +85,11 @@
 
 <script>
 export default {
+    head() {
+        return {
+            title: 'Profile'
+        }
+    },
     data() {
         return {
             activeTab: 'wall-posts',

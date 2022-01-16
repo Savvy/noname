@@ -21,6 +21,11 @@
 
 <script>
 export default {
+    head() {
+        return {
+            title: 'New Thread'
+        }
+     },
     data() {
         return {
             thread: {
