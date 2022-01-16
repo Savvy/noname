@@ -2,7 +2,7 @@
     <CommonModal name="register" v-on:close-modal-register="$emit('close-modal-register')">
         <template v-slot:modal-title>Register</template>
         <template v-slot:modal-body>
-            <form ref="loginForm" class="login-form d-flex flex-column align-center" @submit="login">
+            <form ref="registerForm" class="register-form d-flex flex-column align-center" @submit="register">
                 <div class="input-group d-flex flex-column justify-center align-center w-100">
                     <input type="text" v-model="user.username" name="username" placeholder="Username" class="input-default">
                     <input type="email" v-model="user.email" name="email_address" placeholder="Email Address" class="input-default">
@@ -13,7 +13,7 @@
                 <button type="submit" class="btn btn-primary">Create Account</button>
             </form>
             <div class="or"><span>OR</span></div>
-            <div class="social-login">
+            <div class="social-register">
                 <div class="social-header">Register an account with:</div>
                 <div class="btns d-flex flex-row justify-center w-100">
                     <div class="btn facebook"><i class="bi bi-facebook"></i> Facebook</div>
@@ -39,7 +39,7 @@ export default {
     },
     methods: {
         register() {
-            this.$refs.loginForm.reset();
+            this.$refs.registerForm.reset();
         }
     }
 }
@@ -100,7 +100,7 @@ form {
     margin-bottom: 20px;
 }
 
-.login-form button {
+.register-form button {
     align-self: center;
     min-width: 45%;
     min-height: 45px;
@@ -109,7 +109,7 @@ form {
     font-family: var(--primary-font);
 }
 
-.social-login .btns {
+.social-register .btns {
     gap: 15px;
     margin-bottom: 15px;
 }
