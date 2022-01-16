@@ -9,3 +9,11 @@
         -->
     </div>
 </template>
+
+<style scoped>
+.title {
+    font-weight: 500;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+</style>

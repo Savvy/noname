@@ -19,11 +19,9 @@
                             Account Settings
                         </div>
                         <div class="sidenav-links">
-                            <div class="sidenav-btn" v-for="(tab, index) in tabs" :key="index" :class="{ active: activeTab === tab.name }" @click="activeTab = tab.name">{{ tab.display }}</div>
-                            <!-- <div class="sidenav-btn active" :class="{ active: selectedTab === 'account-details'}">Account Details</div>
-                            <div class="sidenav-btn" :class="{ active: selectedTab === 'password-security'}">Password & Security</div>
-                            <div class="sidenav-btn" :class="{ active: selectedTab === 'privacy'}">Privacy</div>
-                            <div class="sidenav-btn" :class="{ active: selectedTab === 'social-connections'}">Social Connections</div> -->
+                            <div class="sidenav-btn" v-for="(tab, index) in tabs" :key="index" 
+                            :class="{ active: activeTab === tab.name }" 
+                            @click="activeTab = tab.name">{{ tab.display }}</div>
                             <div class="sidenav-btn danger">Log out</div>
                         </div>
                     </div>
@@ -41,6 +39,11 @@
 
 <script>
 export default {
+    head() {
+        return {
+            title: 'Account Details'
+        }
+    },
     data() {
         return {
             activeTab: 'account-details',

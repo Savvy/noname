@@ -58,4 +58,10 @@ export default {
 .slide-fade-enter, .slide-fade-leave-to {
     opacity: 0;
 }
+
+#default {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
 </style>

@@ -63,6 +63,7 @@ export default {
 </script>
 
 <style scoped>
+
 .title {
     font-weight: 500;
     font-size: 1.2rem;

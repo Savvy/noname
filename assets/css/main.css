@@ -17,6 +17,11 @@ body {
     line-height: 1.15;
 }
 
+#__nuxt, #__layout {
+    height: 100%;
+    width: 100%;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -45,6 +50,8 @@ body {
     --body-color: #302D52;
     --header-color: #1B1831;
     --primary-gradient: linear-gradient(to right, #654EA3, #B06AB3);
+    --twitch-color: #6441A4;
+    --youtube-color: #FF0000;
     --facebook-color: #0080FB;
     --twitter-color: #1DA1F2;
     --discord-color: #7289DA;
