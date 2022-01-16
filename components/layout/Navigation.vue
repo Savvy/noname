@@ -42,7 +42,7 @@
                 </div>
                 <div class="login-btns d-flex flex-row" v-else>
                     <div class="btn" @click="$emit('show-login')">Log in</div>
-                    <div class="btn btn-primary">Register</div>
+                    <div class="btn btn-primary" @click="$emit('show-register')">Register</div>
                 </div>
             </div>
         </div>

@@ -1,13 +1,16 @@
 <template>
     <div id="default">
-        <LayoutNavigation v-on:show-login="loginModal = !loginModal" />
+        <LayoutNavigation v-on:show-login="loginModal = !loginModal" v-on:show-register="registerModal = !registerModal" />
         <Nuxt />
         <LayoutFooter />
         <transition name="fade">
-            <div class="modal-overlay" v-if="loginModal" @click="loginModal = false"></div>
+            <div class="modal-overlay" v-if="loginModal || registerModal" @click="closeModals"></div>
         </transition>
         <transition name="slide-fade">
             <LayoutLoginModal v-show="loginModal" v-on:close-modal-login="loginModal = !loginModal"/>
+        </transition>
+        <transition name="slide-fade">
+            <LayoutRegisterModal v-show="registerModal" v-on:close-modal-register="registerModal = !registerModal"/>
         </transition>
     </div>
 </template>
@@ -17,9 +20,14 @@ export default {
     data() {
         return {
             loginModal: false,
+            registerModal: false,
         }
     },
     methods: {
+        closeModals() {
+            this.loginModal = false;
+            this.registerModal = false;
+        }
     }
 }
 </script>
@@ -45,7 +53,7 @@ export default {
     transition: all .3s ease;
 }
 .slide-fade-leave-active {
-    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    transition: all .58s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 .slide-fade-enter, .slide-fade-leave-to {
     opacity: 0;
