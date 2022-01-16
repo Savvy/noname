@@ -299,8 +299,9 @@ input {
 
 .input-default {
     height: 45px;
-    border: 1px solid var(--secondary-color);
-    background-color: transparent;
+    /* border: 1px solid var(--secondary-color);
+    background-color: transparent; */
+    background-color: var(--body-color);
     color: var(--primary-color);
     padding: 15px 0 15px 15px;
     border-radius: var(--border-radius);

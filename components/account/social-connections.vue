@@ -71,11 +71,18 @@
 }
 
 .connection > i {
-    font-size: 32px;
+    margin-bottom: 8px;
+    font-size: 38px;
+    transition: transform 0.8s ease-in-out;
+}
+
+.connection:hover > i {
+    transform: rotateY(360deg);
 }
 
 .connection > .btn {
     margin-top: 20px;
+    padding: 12px 16px;
 }
 
 .connection > .btn-default:hover {

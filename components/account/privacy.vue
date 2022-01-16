@@ -4,7 +4,7 @@
 
         <!--
             - Current Status.
-            - Allow users to start conversations, excluding certain roles.
+            - Allow users to start conversations, excluding certain (eg. staff) roles.
             - Allow users to post on your wall.
         -->
     </div>
