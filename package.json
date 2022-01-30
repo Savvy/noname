@@ -1,8 +1,15 @@
 {
-  "name": "NoName",
+  "name": "noname-frontend",
   "version": "1.0.0",
+  "description": "Nodejs forums frontend for NoName written in NuxtJS",
+  "author": "Savvy",
+  "license": "ISC",
   "engines": {
     "node": "16.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Savvy/noname.git"
   },
   "private": true,
   "scripts": {
