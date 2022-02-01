@@ -11,7 +11,7 @@
                     </div>
                     <div class="profile-stats d-flex justify-between align-center">
                         <div class="left">
-                            <div class="user-name">Cyber</div>
+                            <div class="user-name">{{ user.username }}</div>
                             <div class="badges">
                                 <div class="badge">Admin</div>
                             </div>

@@ -59,7 +59,6 @@ export default {
     },
     data() {
         return {
-            user: false,
             showAlerts: false,
             showConversations: false,
         }
@@ -74,6 +73,11 @@ export default {
             this.showAlerts = false;
             this.showConversations = !this.showConversations;
         }
+    },
+    computed: {
+        /* user() {
+            return this.$store.state.auth.isAuthenticated
+        } */
     }
 }
 </script>

@@ -4,10 +4,10 @@
         <template v-slot:modal-body>
             <form ref="registerForm" class="register-form d-flex flex-column align-center" @submit="register">
                 <div class="input-group d-flex flex-column justify-center align-center w-100">
-                    <input type="text" v-model="user.username" name="username" placeholder="Username" class="input-default">
-                    <input type="email" v-model="user.email" name="email_address" placeholder="Email Address" class="input-default">
-                    <input type="password" v-model="user.password" name="password" placeholder="Password" class="input-default">
-                    <input type="password" v-model="user.confirmPass" name="confirm_password" placeholder="Confirm Password" class="input-default">
+                    <input type="text" v-model="credentials.username" name="username" placeholder="Username" class="input-default">
+                    <input type="email" v-model="credentials.email" name="email_address" placeholder="Email Address" class="input-default">
+                    <input type="password" v-model="credentials.password" name="password" placeholder="Password" class="input-default">
+                    <input type="password" v-model="credentials.confirmPass" name="confirm_password" placeholder="Confirm Password" class="input-default">
                     <nuxt-link to="/login" class="forgot-pass">Already have an account?</nuxt-link>
                 </div>
                 <button type="submit" class="btn btn-primary">Create Account</button>
@@ -29,7 +29,7 @@
 export default {
     data() {
         return {
-            user: {
+            credentials: {
                 username: null,
                 email: null,
                 password: null,

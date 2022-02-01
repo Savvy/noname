@@ -6,11 +6,29 @@
                <div class="stat">Threads: <span>8,847</span></div>
                <div class="stat">Posts: <span>10,495</span></div>
                <div class="stat">Members: <span>498</span></div>
-               <div class="stat">Newest Member: <nuxt-link to="/">Chroma</nuxt-link></div>
+               <div class="stat">Newest Member: <nuxt-link to="/profile">{{ latestMember ? latestMember.username : 'Loading...' }}</nuxt-link></div>
            </div>
         </template>
     </CommonSideWidget>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            latestMember: null,
+            threadCount: 0,
+            postCount: 0,
+            memberCount: 0,
+            newestMember: 0,
+        }
+    },
+    async fetch() {
+        let { data } = await this.$axios.get('/user/recent');
+        this.latestMember = data.user;
+    }
+}
+</script>
 
 <style scoped>
 .stats {

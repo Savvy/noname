@@ -65,7 +65,7 @@ export default {
 
 .modal-body {
     padding: 15px;
-    max-height: 60vh;
+    max-height: 80vh;
     height: 100%;
     overflow-y: auto;
     color: var(--light-text);

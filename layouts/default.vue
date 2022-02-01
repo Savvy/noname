@@ -16,6 +16,9 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import User from '@/mixins/User';
+Vue.mixin(User);
 export default {
     data() {
         return {
