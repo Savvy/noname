@@ -11,7 +11,7 @@
                     </div>
                     <div class="profile-stats d-flex justify-between align-center">
                         <div class="left">
-                            <div class="user-name">{{ user.username }}</div>
+                            <div class="user-name">{{ profile.username }}</div>
                             <div class="badges">
                                 <div class="badge">Admin</div>
                             </div>
@@ -98,6 +98,7 @@ export default {
     },
     data() {
         return {
+            profile: null,
             activeTab: 'wall-posts',
             tabs: [
             {
@@ -113,6 +114,15 @@ export default {
                 name: 'Information'
             }]
         }
+    },
+    async asyncData({ params, store, $axios }) {
+        if (store.state.auth.user && params.profile === store.state.auth.user.username) {
+            return { profile: {...store.state.auth.user}
+            }
+        }
+        const { data } = await $axios.get(`/user/find/${params.profile}`);
+        console.log(data);
+        return { profile: data.user };
     }
 }
 </script>
