@@ -38,7 +38,9 @@
                     </div>
                 </div>
                 <div class="user" v-if="user">
-                    <Avatar src="https://i.imgur.com/45vM6qK.jpg" borderRadius="100px" height="40px" width="40px" :pointer=true :shrinkOnHover=true />
+                    <Avatar src="https://i.imgur.com/45vM6qK.jpg" borderRadius="100px" height="40px" 
+                    width="40px" :pointer=true :shrinkOnHover=true 
+                    @click.native="logout" />
                 </div>
                 <div class="login-btns d-flex flex-row" v-else>
                     <div class="btn" @click="$emit('show-login')">Log in</div>
@@ -72,13 +74,21 @@ export default {
             console.log('test')
             this.showAlerts = false;
             this.showConversations = !this.showConversations;
-        }
+        },
+        async logout() {
+            try {
+                await this.$store.dispatch('auth/logout');
+                this.$router.push('/login');
+            } catch(error) {
+                console.log(error);
+            }
+        },
     },
     computed: {
         /* user() {
             return this.$store.state.auth.isAuthenticated
         } */
-    }
+    },
 }
 </script>
 

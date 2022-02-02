@@ -48,6 +48,12 @@ export const actions = {
       commit('SET_MESSAGE', error.response.data.error);
     });
   },
+  logout({ commit }) {
+    return this.$axios.get('/auth/logout')
+    .then(() => {
+      commit('SET_USER', null);
+    });
+  },
 };
 
 export const getters = {};
