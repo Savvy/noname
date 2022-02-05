@@ -36,6 +36,7 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    '@nuxtjs/google-analytics'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -61,5 +62,15 @@ export default {
 
   router: {
     middleware: ['auth']
-  }
+  },
+
+  // https://google-analytics.nuxtjs.org/setup
+  googleAnalytics: {
+    id: process.env.GOOGLE_ANALYTICS_ID, // Use as fallback if no runtime config is provided
+  },
+  publicRuntimeConfig: {
+    googleAnalytics: {
+      id: process.env.GOOGLE_ANALYTICS_ID
+    }
+  },
 }
