@@ -6,7 +6,7 @@
                <div class="stat">Threads: <span>{{ stats.threadCount }}</span></div>
                <div class="stat">Posts: <span>{{ stats.postCount }}</span></div>
                <div class="stat">Members: <span>{{ stats.memberCount }}</span></div>
-               <!-- <div class="stat">Newest Member: <nuxt-link :to='"/profile/" + stats.latestUser.username'>{{ stats.latestUser.username }}</nuxt-link></div> -->
+               <div class="stat">Newest Member: <nuxt-link :to='"/profile/" + stats.latestName'>{{ stats.latestName }}</nuxt-link></div>
            </div>
         </template>
     </CommonSideWidget>
@@ -19,33 +19,28 @@ export default {
     data() {
         return {
             stats: {},
-            /* latestMember: null,
-            threadCount: 0,
-            postCount: 0,
-            memberCount: 0, */
         }
     },
     async mounted() {
         let {data} = await this.$axios.get('/module/statistics');
-        delete data.success;
-        this.$store.dispatch('widget/setData', { name: 'stats', data });
-        this.stats = data;
-        console.log(this.stats)
-        /* this.latestMember = data.latestUser;
-        this.threadCount = data.threadCount;
-        this.postCount = data.postCount;
-        this.memberCount = data.memberCount; */
+        /* this.$store.dispatch('widget/setData', { name: 'stats', data }); */
+        this.stats = {
+            threadCount: data.threadCount,
+            postCount: data.postCount,
+            memberCount: data.memberCount,
+            latestName: data.latestUser.username,
+            latestId: data.latestUser._id
+        };
     },
     computed: {
-        ...mapGetters({
+        /* ...mapGetters({
             getData: "widget/getData"
-        }),
+        }), */
     },
     methods: {
-        widget() {
-            console.log(this.getData('stats'));
+        /* widget() {
             return this.getData('stats');
-        }
+        } */
     }
 }
 </script>
