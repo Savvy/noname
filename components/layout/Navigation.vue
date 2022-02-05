@@ -2,49 +2,51 @@
     <nav class="w-100">
         <div class="navigation container d-flex justify-between align-center">
             <nuxt-link to="/" class="brand">NoName</nuxt-link>
-            <CommonSearch />
-            <div class="user-nav d-flex flex-row align-center">
-                <div class="alerts d-flex flex-row" v-if="user">
-                    <div class="nav-btn dropdown" @click="toggleAlerts">
-                        <i class="bi bi-bell"></i>
-                        <CommonNavDropdown v-if="showAlerts">
-                            <template v-slot:data-empty>
-                                <div class="data-empty">No recent alerts</div>
-                            </template>
-                            <template v-slot:dropdown-footer>
-                                <div class="dropdown-footer">
-                                    <div class="btns">
-                                        <div class="btn btn-default">Show All</div>
+            <div class="nav">
+                <CommonSearch />
+                <div class="user-nav d-flex flex-row align-center">
+                    <div class="alerts d-flex flex-row" v-if="user">
+                        <div class="nav-btn dropdown" @click="toggleAlerts">
+                            <i class="bi bi-bell"></i>
+                            <CommonNavDropdown v-if="showAlerts">
+                                <template v-slot:data-empty>
+                                    <div class="data-empty">No recent alerts</div>
+                                </template>
+                                <template v-slot:dropdown-footer>
+                                    <div class="dropdown-footer">
+                                        <div class="btns">
+                                            <div class="btn btn-default">Show All</div>
+                                        </div>
                                     </div>
-                                </div>
-                            </template>
-                        </CommonNavDropdown>
-                    </div>
-                    <div class="nav-btn dropdown" @click="toggleConversations">
-                        <i class="bi bi-envelope"></i>
-                        <CommonNavDropdown v-if="showConversations" @click.prevent>
-                            <template v-slot:data-empty>
-                                <div class="data-empty">No new conversations</div>
-                            </template>
-                            <template v-slot:dropdown-footer>
-                                <div class="dropdown-footer">
-                                    <div class="btns d-flex flex-row">
-                                        <div class="btn btn-default">Show All</div>
-                                        <div class="btn btn-default">New Conversation</div>
+                                </template>
+                            </CommonNavDropdown>
+                        </div>
+                        <div class="nav-btn dropdown" @click="toggleConversations">
+                            <i class="bi bi-envelope"></i>
+                            <CommonNavDropdown v-if="showConversations" @click.prevent>
+                                <template v-slot:data-empty>
+                                    <div class="data-empty">No new conversations</div>
+                                </template>
+                                <template v-slot:dropdown-footer>
+                                    <div class="dropdown-footer">
+                                        <div class="btns d-flex flex-row">
+                                            <div class="btn btn-default">Show All</div>
+                                            <div class="btn btn-default">New Conversation</div>
+                                        </div>
                                     </div>
-                                </div>
-                            </template>
-                        </CommonNavDropdown>
+                                </template>
+                            </CommonNavDropdown>
+                        </div>
                     </div>
-                </div>
-                <div class="user" v-if="user">
-                    <Avatar src="https://i.imgur.com/45vM6qK.jpg" borderRadius="100px" height="40px" 
-                    width="40px" :pointer=true :shrinkOnHover=true 
-                    @click.native="logout" />
-                </div>
-                <div class="login-btns d-flex flex-row" v-else>
-                    <div class="btn" @click="$emit('show-login')">Log in</div>
-                    <div class="btn btn-primary" @click="$emit('show-register')">Register</div>
+                    <div class="user" v-if="user">
+                        <Avatar src="https://i.imgur.com/45vM6qK.jpg" borderRadius="100px" height="40px" 
+                        width="40px" :pointer=true :shrinkOnHover=true 
+                        @click.native="logout" />
+                    </div>
+                    <div class="login-btns d-flex flex-row" v-else>
+                        <div class="btn" @click="$emit('show-login')">Log in</div>
+                        <div class="btn btn-primary" @click="$emit('show-register')">Register</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -104,6 +106,13 @@ nav, .navigation {
 
 .navigation {
     gap: 80px;
+    position: relative;
+}
+
+.nav {
+    display: flex;
+    width: 100%;
+    gap: 80px;
 }
 
 .user-nav {
@@ -140,5 +149,19 @@ nav, .navigation {
 
 .login-btns {
     gap: 12px;
+}
+
+@media screen and (max-width: 720px) {
+    /* .nav {
+        position: absolute;
+        inset: 120px;
+    } */
+    .nav {
+        justify-content: flex-end;
+    }
+
+    .login-btns .btn {
+        font-size: 14px;
+    }
 }
 </style>

@@ -1,7 +1,9 @@
 <template>
-    <div class="thread d-flex align-end" :style="styleBinding">
-        <div class="title w-100">New API Changes</div>
-    </div>
+    <nuxt-link to="/thread" class="thread-container">
+        <div class="thread d-flex align-end" :style="styleBinding">
+            <div class="title w-100">New API Changes</div>
+        </div>
+    </nuxt-link>
 </template>
 
 <script>
@@ -43,9 +45,12 @@ export default {
     transform: scale(0.95);
 }
 
-@media (max-width: 900px) {
-    .thread {
-        width: calc(50% - 13px);
+.thread-container {
+    flex: 1 0 auto;
+}
+@media screen and (max-width: 720px) {
+    .thread-container {
+        width: 100%;
     }
 }
 

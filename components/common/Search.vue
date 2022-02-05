@@ -1,5 +1,5 @@
 <template>
-    <div class="input-group w-auto">
+    <div class="search input-group w-auto">
         <i class="bi bi-search"></i>
         <input type="search" class="w-100 h-100" v-model="searchQuery">
         <div class="results-container" v-if="showResults">
@@ -93,5 +93,11 @@ export default {
     flex-wrap: wrap;
     flex-direction: row;
     gap: 5px;
+}
+
+@media screen and (max-width: 720px) {
+    .search {
+        display: none;
+    }
 }
 </style>

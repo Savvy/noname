@@ -1,30 +1,32 @@
 <template>
-  <div class="category d-flex align-center">
+  <div class="category-container d-flex align-center">
     <div class="icon"><i class="bi bi-megaphone"></i></div>
-    <div class="category-info w-auto">
-      <nuxt-link to="/category" class="category-title"
-        >News & Announcements</nuxt-link
-      >
-      <div class="category-meta">
-        Topics: <span>481</span> Posts: <span>1028</span>
+    <div class="category">
+      <div class="category-info w-auto">
+        <nuxt-link to="/category" class="category-title"
+          >News & Announcements</nuxt-link
+        >
+        <div class="category-meta">
+          Topics: <span>481</span> Posts: <span>1028</span>
+        </div>
       </div>
-    </div>
-    <div class="recent-thread d-flex flex-row">
-      <nuxt-link to="/profile">
-        <CommonAvatar
-          src="https://i.imgur.com/45vM6qK.jpg"
-          borderRadius="100px"
-          height="40px"
-          width="40px"
-          :pointer="true"
-        />
-      </nuxt-link>
-      <div class="thread-info d-flex flex-column">
-        <nuxt-link to="/thread" class="thread-title">New API Changes</nuxt-link>
-        <div class="thread-meta">
-          <nuxt-link to="/profile">Chroma</nuxt-link>
-          <span class="sep"></span>
-          <span class="time">3 days ago</span>
+      <div class="recent-thread d-flex flex-row">
+        <nuxt-link to="/profile">
+          <CommonAvatar
+            src="https://i.imgur.com/45vM6qK.jpg"
+            borderRadius="100px"
+            height="40px"
+            width="40px"
+            :pointer="true"
+          />
+        </nuxt-link>
+        <div class="thread-info d-flex flex-column">
+          <nuxt-link to="/thread" class="thread-title">New API Changes</nuxt-link>
+          <div class="thread-meta">
+            <nuxt-link to="/profile">Chroma</nuxt-link>
+            <span class="sep"></span>
+            <span class="time">3 days ago</span>
+          </div>
         </div>
       </div>
     </div>
@@ -32,11 +34,11 @@
 </template>
 
 <style scoped>
-.category {
+.category-container {
   padding: 15px 20px;
 }
 
-.category > .icon {
+.category-container > .icon {
   margin-right: 15px;
   font-size: 32px;
 }
@@ -90,5 +92,34 @@
 .thread-meta > .time {
   color: var(--primary-color);
   font-weight: 300;
+}
+
+.category {
+  display: flex;
+  flex: 1 0 auto;
+}
+
+@media screen and (max-width: 720px) {
+  .category-container {
+    padding: 10px 20px;
+  }
+
+  .category {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .category-meta {
+    display: none;
+  }
+
+  .recent-thread > .thread-info {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .recent-thread > a {
+    display: none;
+  }
 }
 </style>
