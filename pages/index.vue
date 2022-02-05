@@ -12,7 +12,7 @@
       <div class="page-container">
         <div class="page-body">
           <div class="categories-view">
-            <CommonForum v-for="index in 3" :id="index" :key="index" />
+            <CommonForum v-for="category in $store.state.categories.data" :key="category.slug" :category="category" />
           </div>
         </div>
         <div class="page-sidebar">

@@ -31,6 +31,9 @@ export default {
             this.loginModal = false;
             this.registerModal = false;
         }
+    },
+    created() {
+        this.$store.dispatch('categories/populate')
     }
 }
 </script>

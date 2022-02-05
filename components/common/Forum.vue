@@ -1,14 +1,12 @@
 <template>
     <div class="forum">
         <div class="header">
-            <nuxt-link :to="'#official-forums-' + id" :id="'official-forums-' + id" class="header-title">Official Forums</nuxt-link>
+            <nuxt-link :to="'#' + category.slug" :id="category.slug" class="header-title">{{ category.name }}</nuxt-link>
             <i class="bi bi-chevron-down" @click="hide = !hide "></i>
         </div>
         <collapse-transition>
             <div class="body w-100" v-if="!hide">
-                <CommonCategory />
-                <CommonCategory />
-                <CommonCategory />
+                <CommonCategory v-for="forum in category.forums" :key="forum.slug" />
             </div>
         </collapse-transition>
     </div>
@@ -23,9 +21,9 @@ export default {
             type: Boolean,
             default: false
         }, */
-        id: {
-            type: Number,
-            required: false,
+        category: {
+            type: Object,
+            required: true,
         }
     },
     data() {
