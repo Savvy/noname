@@ -100,10 +100,6 @@
 }
 
 @media screen and (max-width: 720px) {
-  .category-container {
-    padding: 10px 20px;
-  }
-
   .category {
     flex-direction: column;
     gap: 5px;
@@ -111,11 +107,6 @@
 
   .category-meta {
     display: none;
-  }
-
-  .recent-thread > .thread-info {
-    flex-direction: row;
-    gap: 10px;
   }
 
   .recent-thread > a {
