@@ -121,7 +121,6 @@ export default {
             }
         }
         const { data } = await $axios.get(`/user/find/${params.profile}`);
-        console.log(data);
         return { profile: data.user };
     }
 }

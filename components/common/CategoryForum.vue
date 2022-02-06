@@ -2,7 +2,7 @@
     <div class="forum">
         <div class="header d-flex justify-between align-center w-100">
             <div class="left">
-                <div class="header-title">Home <span>/</span> News & Announcements</div>
+                <div class="header-title">Home <span>/</span> {{ forum.name }}</div>
                 <div class="header-description">The latest news and announcements regarding the community.</div>
             </div>
             <div class="right d-flex flex-row">
@@ -25,6 +25,12 @@
 
 <script>
 export default {
+    props: {
+        forum: {
+            type: Object,
+            required: true,
+        }
+    },
     data() {
         return {
             showPagination: true

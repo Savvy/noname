@@ -3,9 +3,7 @@
     <div class="icon"><i class="bi bi-megaphone"></i></div>
     <div class="category">
       <div class="category-info w-auto">
-        <nuxt-link to="/category" class="category-title"
-          >News & Announcements</nuxt-link
-        >
+        <nuxt-link :to="'/forum/' + forum.slug" class="category-title">{{ forum.name }}</nuxt-link>
         <div class="category-meta">
           Topics: <span>481</span> Posts: <span>1028</span>
         </div>
@@ -32,6 +30,17 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    forum: {
+      type: Object,
+      required: true,
+    }
+  }
+}
+</script>
 
 <style scoped>
 .category-container {
