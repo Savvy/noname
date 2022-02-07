@@ -21,6 +21,7 @@
 
 <script>
 export default {
+    middleware: 'authRequired',
     head() {
         return {
             title: 'New Thread'

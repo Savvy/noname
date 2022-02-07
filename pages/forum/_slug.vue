@@ -1,7 +1,27 @@
 <template>
     <div id="category">
         <div class="container">
-            <CommonCategoryForum :forum="forum" />
+            <div class="forum">
+                <div class="header d-flex justify-between align-center w-100">
+                    <div class="left d-flex align-center">
+                        <div class="header-title">Home <span>/</span> {{ forum.name }}</div>
+                        <div class="header-description">{{ forum.description }}</div>
+                    </div>
+                    <div class="right d-flex flex-row">
+                        <div class="btn">Sort By <i class="bi bi-caret-down-fill"></i></div>
+                        <nuxt-link :to="`/forum/${getSlug}/create-thread`" class="btn btn-primary" v-if="user">New Post</nuxt-link>
+                        <nuxt-link to="/login" class="btn btn-primary" v-else>Log in to post</nuxt-link>
+                    </div>
+                </div>
+                <div class="sub-header d-flex w-100" v-if="showPagination">
+                    <div class="pagination">
+                        <div class="btn btn-default btn-prev"><i class="bi bi-chevron-double-left"></i></div>
+                        <div class="btn btn-default btn-page">1</div>
+                        <div class="btn btn-default btn-next"><i class="bi bi-chevron-double-right"></i></div>
+                    </div>
+                </div>
+                <CommonCategoryForum :forum="forum" />
+            </div>
         </div>
     </div>
 </template>
@@ -13,13 +33,52 @@ export default {
             title: 'Category'
         }
     },
-    data(){ 
+    data() {
         return {
+            showPagination: true
         }
     },
     async asyncData({ $axios, route }) {
         let { data } = await $axios.get(`/forum/${route.params.slug}`);
         return { forum: data.result };
+    },
+    computed: {
+        getSlug() {
+            console.log(this.$route);
+            return this.$route.params.slug;
+        }
     }
 }
 </script>
+
+<style scoped>
+.sub-header {
+    margin: 10px 0;
+}
+
+.forum {
+    margin-bottom: 15px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.header .right {
+    gap: 10px;
+}
+
+.header .header-title {
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--light-text);
+}
+
+.header .header-title span {
+    font-size: 17px;
+}
+
+.header .header-description {
+    margin-top: 5px;
+    font-size: 14px;
+    opacity: 0.75;
+}
+</style>

@@ -60,7 +60,12 @@ export default {
         showPagination() {
             return true;
         }
-    }
+    },
+    /* async asyncData({ $axios, route }) {
+        let { data } = await $axios.get(`/thread/${route.params.slug}`);
+        console.log(data)
+        return { thread: data.result };
+    } */
 }
 </script>
 

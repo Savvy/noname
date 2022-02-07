@@ -3,7 +3,7 @@
     <div class="icon"><i class="bi bi-megaphone"></i></div>
     <div class="category">
       <div class="category-info w-auto">
-        <nuxt-link :to="'/forum/' + forum.slug" class="category-title">{{ forum.name }}</nuxt-link>
+        <nuxt-link :to="`/forum/${forum.slug}`" class="category-title">{{ forum.name }}</nuxt-link>
         <div class="category-meta">
           Topics: <span>481</span> Posts: <span>1028</span>
         </div>
@@ -34,6 +34,10 @@
 <script>
 export default {
   props: {
+    category: {
+      type: String,
+      required: true,
+    },
     forum: {
       type: Object,
       required: true,
