@@ -44,6 +44,7 @@ body {
     --bg-dark-50: rgba(0, 0, 0, 0.5);
     --primary-color: #7A78A3;
     --secondary-color: #4E4B84;
+    --success-color: #27ae60;
     --danger-color: rgba(238, 82, 83,1.0);
     --danger-mid-color: rgba(238, 82, 83, 0.3);
     --danger-low-color: rgba(238, 82, 83, 0.1);

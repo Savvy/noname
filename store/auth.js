@@ -1,21 +1,31 @@
 export const state = () => ({
   user: null,
-  flash_message: '',
+  error_message: '',
+  success_message: '',
 });
 
 export const mutations = {
   SET_USER(state, user) {
     state.user = user;
   },
-  SET_MESSAGE(state, message) {
-    state.flash_message = message;
+  SET_ERROR(state, message) {
+    state.error_message = message;
   },
-  CLEAR_MESSAGE(state) {
-    state.flash_message = '';
+  CLEAR_ERROR(state) {
+    state.error_message = '';
+  },
+  SET_SUCCESS(state, message) {
+    state.error_message = message;
+  },
+  CLEAR_SUCCESS(state) {
+    state.error_message = '';
   }
 };
 
 export const actions = {
+  setError({ commit }, error) {
+    commit('SET_MESSAGE', error);
+  },
   setUser({ commit }, user) {
     return new Promise((res, reject) => {
       try {
@@ -30,7 +40,7 @@ export const actions = {
     let data = { email, password };
 
     if (!email || !password) {
-      commit('SET_MESSAGE', 'missing_credentials');
+      commit('SET_ERROR', 'missing_credentials');
       return false;
     }
 
@@ -40,12 +50,34 @@ export const actions = {
     }).then(({success, message, user}) => {
       if (success) {
         commit('SET_USER', user);
+        commit('SET_SUCCESS', message);
         return true;
       }
-      commit('SET_MESSAGE', message);
+      commit('SET_ERROR', message);
       return false;
     }).catch((error) => {
-      commit('SET_MESSAGE', error.response.data.error);
+      commit('SET_ERROR', error.response.data.error);
+    });
+  },
+  register({ commit}, credentials) {
+    if (!credentials.username || !credentials.email || !credentials.password || !credentials.confirmPass) {
+      commit('SET_ERROR', 'missing_credentials');
+      return false;
+    }
+    if (credentials.password != credentials.confirmPass) {
+      commit('SET_ERROR', 'mismatch_passwords');
+      return false;
+    }
+    delete credentials.confirmPass;
+    return this.$axios.post('/auth/register', credentials).then((res) => {
+      return res.data;
+    }).then(({success, message}) => {
+      if (success) {
+        commit('SET_SUCCESS', message);
+        return true;
+      }
+    }).catch((error) => {
+      commit('SET_ERROR', error.response.data.message);
     });
   },
   logout({ commit }) {

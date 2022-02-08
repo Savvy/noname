@@ -2,19 +2,22 @@
     <div id="login">
         <div class="container">
             <div class="content">
-                <h1 class="title">Login</h1>
-                <div class="alert-message">{{ $store.state.auth.flash_message }}</div>
-                <form ref="loginForm" class="login-form d-flex flex-column align-center" @submit.prevent="login">
+                <h1 class="title">Register</h1>
+                <div class="alert-message success" v-if="$store.state.auth.error_message">{{ $store.state.auth.error_message }}</div>
+                <div class="alert-message error" v-else-if="$store.state.auth.success_message">{{ $store.state.auth.success_message }}</div>
+                <form ref="registerForm" class="login-form d-flex flex-column align-center" @submit.prevent="register">
                     <div class="input-group d-flex flex-column justify-center align-center w-100">
-                        <input type="email" v-model="credentials.email" name="Email Address" placeholder="Email Address" class="input-default">
-                        <input type="password" v-model="credentials.password" name="Password" placeholder="Password" class="input-default">
-                        <nuxt-link to="/forgot-password" class="forgot-pass">Forgot Password?</nuxt-link>
+                        <input type="text" v-model="credentials.username" name="username" placeholder="Username" class="input-default">
+                        <input type="email" v-model="credentials.email" name="email_address" placeholder="Email Address" class="input-default">
+                        <input type="password" v-model="credentials.password" name="password" placeholder="Password" class="input-default">
+                        <input type="password" v-model="credentials.confirmPass" name="confirm_password" placeholder="Confirm Password" class="input-default">
+                        <nuxt-link to="/login" class="forgot-pass">Already have an account?</nuxt-link>
                     </div>
-                    <button type="submit" class="btn btn-primary">Log in</button>
+                    <button type="submit" class="btn btn-primary">Create Account</button>
                 </form>
                 <div class="or"><span>OR</span></div>
                 <div class="social-login">
-                    <div class="social-header">Log in with:</div>
+                    <div class="social-header">Register an account with:</div>
                     <div class="btns d-flex flex-row justify-center w-100">
                         <div class="btn facebook"><i class="bi bi-facebook"></i> Facebook</div>
                         <div class="btn twitter"><i class="bi bi-twitter"></i> Twitter</div>
@@ -28,23 +31,31 @@
 
 <script>
 export default {
-    middleware: 'guestOnly',
     data() {
         return {
             credentials: {
+                username: null,
                 email: null,
-                password: null
-            }
+                password: null,
+                confirmPass: null
+            },
         }
     },
     methods: {
-        login() {
-            const credentials = this.credentials;
-            this.$store.dispatch('auth/login', credentials).then((res) => {
+        register() {
+            const credentials =  { ...this.credentials };
+            /* if (!credentials.username || !credentials.email || !credentials.password || !credentials.confirmPass) {
+                    this.$store.dispatch('auth/setError', 'missing_credentials');
+                    return;
+            }
+            if (credentials.password != credentials.confirmPass) {
+                this.$store.dispatch('auth/setError', 'mismatch_passwords');
+                return;
+            } */
+            this.$store.dispatch('auth/register', credentials).then((res) => {
                 if (res) {
-                    this.$refs.loginForm.reset();
+                    this.$refs.registerForm.reset();
                     this.$emit('close-modal-login');
-                    /* this.$router.push('/'); */
                 }
             });
         }
@@ -75,8 +86,15 @@ form {
 
 .alert-message {
     text-align: center;
-    color: var(--danger-color);
     margin: 5px 0;
+}
+
+.alert-message.success {
+    color: var(--success-color);
+}
+
+.alert-message.error {
+    color: var(--danger-color);
 }
 .input-group {
     gap: 20px;
