@@ -31,6 +31,11 @@
 
 <script>
 export default {
+    head() {
+        return {
+            title: 'Register'
+        }
+    },
     data() {
         return {
             credentials: {
@@ -43,16 +48,7 @@ export default {
     },
     methods: {
         register() {
-            const credentials =  { ...this.credentials };
-            /* if (!credentials.username || !credentials.email || !credentials.password || !credentials.confirmPass) {
-                    this.$store.dispatch('auth/setError', 'missing_credentials');
-                    return;
-            }
-            if (credentials.password != credentials.confirmPass) {
-                this.$store.dispatch('auth/setError', 'mismatch_passwords');
-                return;
-            } */
-            this.$store.dispatch('auth/register', credentials).then((res) => {
+            this.$store.dispatch('auth/register', { ...this.credentials }).then((res) => {
                 if (res) {
                     this.$refs.registerForm.reset();
                     this.$emit('close-modal-login');

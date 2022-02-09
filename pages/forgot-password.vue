@@ -2,25 +2,14 @@
     <div id="login">
         <div class="container">
             <div class="content">
-                <h1 class="title">Login</h1>
+                <h1 class="title">Forgot Your Password?</h1>
                 <div class="alert-message">{{ $store.state.auth.flash_message }}</div>
-                <form ref="loginForm" class="login-form d-flex flex-column align-center" @submit.prevent="login">
+                <form ref="resetForm" class="login-form d-flex flex-column align-center" @submit.prevent="reset">
                     <div class="input-group d-flex flex-column justify-center align-center w-100">
                         <input type="email" v-model="credentials.email" name="Email Address" placeholder="Email Address" class="input-default">
-                        <input type="password" v-model="credentials.password" name="Password" placeholder="Password" class="input-default">
-                        <nuxt-link to="/forgot-password" class="forgot-pass">Forgot Password?</nuxt-link>
                     </div>
-                    <button type="submit" class="btn btn-primary">Log in</button>
+                    <button type="submit" class="btn btn-primary">Send Email</button>
                 </form>
-                <div class="or"><span>OR</span></div>
-                <div class="social-login">
-                    <div class="social-header">Log in with:</div>
-                    <div class="btns d-flex flex-row justify-center w-100">
-                        <div class="btn facebook"><i class="bi bi-facebook"></i> Facebook</div>
-                        <div class="btn twitter"><i class="bi bi-twitter"></i> Twitter</div>
-                        <div class="btn discord"><i class="bi bi-discord"></i> Discord</div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -30,23 +19,22 @@
 export default {
     head() {
         return {
-            title: 'Login'
+            title: 'Forgot Password'
         }
     },
     middleware: 'guestOnly',
     data() {
         return {
             credentials: {
-                email: null,
-                password: null
+                email: null
             }
         }
     },
     methods: {
-        login() {
-            this.$store.dispatch('auth/login', this.credentials).then((res) => {
+        reset() {
+            this.$store.dispatch('auth/resetPassword', this.credentials).then((res) => {
                 if (res) {
-                    this.$refs.loginForm.reset();
+                    this.$refs.resetForm.reset();
                     this.$emit('close-modal-login');
                     /* this.$router.push('/'); */
                 }
@@ -75,6 +63,7 @@ export default {
 
 form {
     padding-top: 15px;
+    gap: 20px;
 }
 
 .alert-message {
