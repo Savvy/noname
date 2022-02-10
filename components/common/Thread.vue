@@ -7,16 +7,11 @@
                 </nuxt-link>
             </div>
             <div class="thread-meta d-flex flex-column">
-                <nuxt-link to="/thread" class="thread-title">{{ thread ? thread.title : 'Update Log #39' }}</nuxt-link>
+                <nuxt-link :to="`/threads/${thread.threadId}`" class="thread-title">{{ thread.title }}</nuxt-link>
                 <div class="thread-creator d-flex align-center" v-if="thread">
                     <nuxt-link :to="'/profile/' + thread.user.username">{{ thread.user.username }}</nuxt-link>
                     <span class="sep"></span>
                     <span class="time"><time-ago refresh :long=true :datetime="thread.createdAt"/></span>
-                </div>
-                <div class="thread-creator d-flex align-center" v-else>
-                    <nuxt-link to="/profile">Chroma</nuxt-link>
-                    <span class="sep"></span>
-                    <span class="time">3 days ago</span>
                 </div>
             </div>
         </div>
@@ -37,18 +32,8 @@
         <div class="thread-recent d-flex align-center justify-end" v-if="recent_post">
             <!-- <div class="recent-border"></div> -->
             <div class="recent-info d-flex flex-column justify-end">
-                <nuxt-link :to="'/profile/' + recent_post.username" class="user">{{ recent_post.username }}</nuxt-link>
-                <nuxt-link :to="'/profile/' + recent_post.username" class="time"><time-ago refresh :long=true :datetime="recent_post.updatedAt"/></nuxt-link>
-            </div>
-            <nuxt-link to="/profile">
-                <CommonAvatar src="https://i.imgur.com/45vM6qK.jpg" borderRadius="100px" height="30px" width="30px" :pointer=true />
-            </nuxt-link>
-        </div>
-        <div class="thread-recent d-flex align-center justify-end" v-else-if="thread">
-            <!-- <div class="recent-border"></div> -->
-            <div class="recent-info d-flex flex-column justify-end">
-                <nuxt-link :to="'/profile/' + thread.user.username" class="user">{{ thread.user.username }}</nuxt-link>
-                <nuxt-link :to="'/profile/' + thread.user.username" class="time"><time-ago refresh :long=true :datetime="thread.updatedAt"/></nuxt-link>
+                <nuxt-link :to="`/profile/${recent_post.username}`" class="user">{{ recent_post.username }}</nuxt-link>
+                <nuxt-link :to="`/profile/${recent_post.username}`" class="time"><time-ago refresh :long=true :datetime="recent_post.updatedAt"/></nuxt-link>
             </div>
             <nuxt-link to="/profile">
                 <CommonAvatar src="https://i.imgur.com/45vM6qK.jpg" borderRadius="100px" height="30px" width="30px" :pointer=true />
@@ -62,7 +47,7 @@ export default {
     props: ['thread', 'recent_thread', 'recent_post'],
     computed: {
         recentUser() {
-            return this.recent_thread.user;
+            return this.recent_post ? this.recent_post.user : this.thread.user;
         }
     }
 }
