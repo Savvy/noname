@@ -3,8 +3,10 @@
         <div class="thread">
             <div class="header d-flex justify-between align-center w-100">
                 <div class="left">
-                    <div class="header-title">Update Log #39</div>
-                    <div class="header-description">Thread in <nuxt-link to="/category">News & Announcements</nuxt-link> started by <nuxt-link to="/profile">Cyber</nuxt-link>, <span class="time">Today at 2:58 PM</span></div>
+                    <div class="header-title">{{ thread.title }}</div>
+                    <div class="header-description">Thread in <nuxt-link to="/category">News & Announcements</nuxt-link> started by 
+                    <nuxt-link :to="`/profile/${thread.user.username}`">{{ thread.user.username }}</nuxt-link>, 
+                    <span class="time"><time-ago refresh :long=true :datetime="thread.updatedAt"/></span></div>
                 </div>
                 <div class="right d-flex flex-row">
                     <div class="btn">Share <i class="bi bi-caret-down-fill"></i></div>
@@ -34,6 +36,14 @@ export default {
         return {
             title: 'Threads'
         }
+    },
+    async asyncData({ $axios, route, redirect }) {
+        if (!route.params.id) {
+            redirect('/404')
+        }
+        let { data } = await $axios.get(`/thread/${route.params.id}`);
+        console.log(data);
+        return { thread: data.result };
     },
     data() {
         return {

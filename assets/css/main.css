@@ -333,7 +333,8 @@ span.sep {
     margin-right: 0;
 }
 
-span.time {
+span.time, span.time .v-timeago {
+    font-family: var(--primary-font);
     color: var(--primary-color);
 }
 
