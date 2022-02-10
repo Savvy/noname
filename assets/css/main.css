@@ -398,6 +398,19 @@ span.time, span.time .v-timeago {
     opacity: 0;
 }
 
+.alert-message {
+    text-align: center;
+    margin: 5px 0;
+}
+
+.alert-message.success {
+    color: var(--success-color);
+}
+
+.alert-message.error {
+    color: var(--danger-color);
+}
+
 @media screen and (max-width: 720px) {
     .brand {
         font-size: 24px;

@@ -3,7 +3,8 @@
         <div class="container">
             <div class="content">
                 <h1 class="title">Login</h1>
-                <div class="alert-message">{{ $store.state.auth.flash_message }}</div>
+                <div class="alert-message error" v-if="$store.state.auth.error_message">{{ $store.state.auth.error_message }}</div>
+                <div class="alert-message success" v-else-if="$store.state.auth.success_message">{{ $store.state.auth.success_message }}</div>
                 <form ref="loginForm" class="login-form d-flex flex-column align-center" @submit.prevent="login">
                     <div class="input-group d-flex flex-column justify-center align-center w-100">
                         <input type="email" v-model="credentials.email" name="Email Address" placeholder="Email Address" class="input-default">
@@ -77,11 +78,6 @@ form {
     padding-top: 15px;
 }
 
-.alert-message {
-    text-align: center;
-    color: var(--danger-color);
-    margin: 5px 0;
-}
 .input-group {
     gap: 20px;
     max-width: 80%;

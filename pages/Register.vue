@@ -3,8 +3,8 @@
         <div class="container">
             <div class="content">
                 <h1 class="title">Register</h1>
-                <div class="alert-message success" v-if="$store.state.auth.error_message">{{ $store.state.auth.error_message }}</div>
-                <div class="alert-message error" v-else-if="$store.state.auth.success_message">{{ $store.state.auth.success_message }}</div>
+                <div class="alert-message error" v-if="$store.state.auth.error_message">{{ $store.state.auth.error_message }}</div>
+                <div class="alert-message success" v-else-if="$store.state.auth.success_message">{{ $store.state.auth.success_message }}</div>
                 <form ref="registerForm" class="login-form d-flex flex-column align-center" @submit.prevent="register">
                     <div class="input-group d-flex flex-column justify-center align-center w-100">
                         <input type="text" v-model="credentials.username" name="username" placeholder="Username" class="input-default">
@@ -80,18 +80,6 @@ form {
     padding-top: 15px;
 }
 
-.alert-message {
-    text-align: center;
-    margin: 5px 0;
-}
-
-.alert-message.success {
-    color: var(--success-color);
-}
-
-.alert-message.error {
-    color: var(--danger-color);
-}
 .input-group {
     gap: 20px;
     max-width: 80%;

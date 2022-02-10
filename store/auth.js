@@ -51,6 +51,11 @@ export const actions = {
       if (success) {
         commit('SET_USER', user);
         commit('SET_SUCCESS', message);
+        setTimeout(() => {
+          this.$router.push('/');
+          commit('CLEAR_SUCCESS');
+          commit('CLEAR_ERROR');
+        }, 1000);
         return true;
       }
       commit('SET_ERROR', message);

@@ -2,6 +2,8 @@
     <CommonModal name="register" v-on:close-modal-register="$emit('close-modal-register')">
         <template v-slot:modal-title>Register</template>
         <template v-slot:modal-body>
+            <div class="alert-message error" v-if="$store.state.auth.error_message">{{ $store.state.auth.error_message }}</div>
+            <div class="alert-message success" v-else-if="$store.state.auth.success_message">{{ $store.state.auth.success_message }}</div>
             <form ref="registerForm" class="register-form d-flex flex-column align-center" @submit="register">
                 <div class="input-group d-flex flex-column justify-center align-center w-100">
                     <input type="text" v-model="credentials.username" name="username" placeholder="Username" class="input-default">
