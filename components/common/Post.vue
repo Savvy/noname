@@ -1,21 +1,18 @@
 <template>
     <div class="post d-flex w-100">
         <div class="post-author d-flex align-center flex-column">
-            <CommonAvatar :src="post.avatar" borderRadius="100px" height="95px" width="95px" :pointer=true />
-            <div class="author"><nuxt-link to="/profile">{{ post.author }}</nuxt-link></div>
+            <CommonAvatar src="https://i.imgur.com/rzuOBa8.png" borderRadius="100px" height="95px" width="95px" :pointer=true />
+            <div class="author"><nuxt-link :to="`/profile/${post.user.username}`">{{ post.user.username }}</nuxt-link></div>
             <div class="badges">
-                <div class="badge">{{ post.role }}</div>
+                <div class="badge">Admin</div>
             </div>
         </div>
         <div class="post-content w-auto">
             <div class="post-header d-flex flex-row justify-between">
-                <span class="time">Today at 2:58 PM</span>
+                <span class="time"><time-ago refresh :long=true :datetime="post.updatedAt" /></span>
                 <nuxt-link :to='`#post-${index}`' :id='`post-${index}`' class="post-num">#{{ index }}</nuxt-link>
             </div>
-            <div class="post-body">
-                <p>
-                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut varius elementum nunc, sed laoreet turpis. Vestibulum sed metus nec risus suscipit dapibus. Mauris cursus augue quis lacus vulputate pharetra. In ornare efficitur massa vel molestie. Donec eget laoreet arcu. Aenean feugiat libero id massa ultricies dignissim. Curabitur tempor elit lacus, vitae dignissim turpis dapibus nec. Suspendisse potenti. Mauris efficitur congue tellus nec egestas. Aliquam feugiat velit et porta mattis. Aliquam non quam sed erat commodo dictum id non urna. Integer vitae elit commodo, feugiat augue eget, faucibus orci. Pellentesque commodo, eros vel fermentum blandit, eros sem dignissim urna, sit amet vulputate tellus massa dictum odio. Curabitur eget facilisis ligula. Nunc leo leo, posuere in libero non, ornare porttitor ipsum. Vivamus malesuada vel nisi non commodo.
-                </p>
+            <div class="post-body" v-html="post.content">
             </div>
             <div class="post-footer d-flex flex-row justify-between"></div>
         </div>

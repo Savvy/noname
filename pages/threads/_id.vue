@@ -4,7 +4,7 @@
             <div class="header d-flex justify-between align-center w-100">
                 <div class="left">
                     <div class="header-title">{{ thread.title }}</div>
-                    <div class="header-description">Thread in <nuxt-link to="/category">News & Announcements</nuxt-link> started by 
+                    <div class="header-description">Thread in <nuxt-link to="/category">{{ thread.forum.name }}</nuxt-link> started by 
                     <nuxt-link :to="`/profile/${thread.user.username}`">{{ thread.user.username }}</nuxt-link>, 
                     <span class="time"><time-ago refresh :long=true :datetime="thread.updatedAt"/></span></div>
                 </div>
@@ -21,10 +21,11 @@
             </div>
             <div class="body w-100">
                 <!-- <CommonPost avatar="https://i.imgur.com/rzuOBa8.png" name="Cyber" role="Admin" :threadAuthor=true postIndex=1 /> -->
-                <CommonPost v-for="(post, index) in mockPosts" :key=index :post=post :index='(index + 1)' />
+                <CommonPost :post='post' :index='thread.threadId' />
             </div>
             <client-only>
-                <CommonRichEditor btn-text="Post Reply" />
+                <CommonRichEditor />
+                <div id="submit" class="btn btn-primary" @click="post">Post Reply</div>
             </client-only>
         </div>
     </div>
@@ -67,10 +68,20 @@ export default {
         }
     },
     computed: {
+        post() {
+            return { 
+                user: this.thread.user,
+                title: this.thread.title,
+                content: this.thread.content,
+                updatedAt: this.thread.updatedAt 
+            }
+        },
         showPagination() {
             return true;
         }
     },
+    methods: {
+    }
     /* async asyncData({ $axios, route }) {
         let { data } = await $axios.get(`/thread/${route.params.slug}`);
         console.log(data)
@@ -103,5 +114,13 @@ export default {
 
 .sub-header {
     margin: 10px 0;
+}
+
+.editor-container {
+    margin-bottom: 10px;
+}
+
+#submit {
+    float: right;
 }
 </style>
