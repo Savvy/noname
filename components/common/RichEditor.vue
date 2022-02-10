@@ -70,7 +70,6 @@
             </div>
             <editor-content :editor="editor" />
         </div>
-        <div id="submit" class="btn btn-primary">{{ btnText }}</div>
     </div>
 </template>
 
@@ -82,15 +81,10 @@ export default {
         EditorContent,
     },
     props: {
-        defaultContent: {
+        value: {
+            default: '',
             type: String,
-            required: false
         },
-        btnText: {
-            type: String,
-            required: true,
-            default: 'Default Value'
-        }
     },
     data() {
         return {
@@ -99,14 +93,28 @@ export default {
     },
     mounted() {
         this.editor = new Editor({
-            content: this.defaultContent || '',
+            content: this.value,
             extensions: [
                 StarterKit
-            ]
+            ],
+            onUpdate: () => {
+                this.$emit('input', this.editor.getHTML())
+            }
         });
     },
     beforeDestroy() {
         this.editor.destroy();
+    },
+    watch: {
+        value(value) {
+            const isSame = this.editor.getHTML() === value;
+
+            if (isSame) {
+                return;
+            }
+
+            this.editor.commands.setContent(value, false)
+        }
     }
 }
 </script>

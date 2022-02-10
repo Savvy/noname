@@ -7,7 +7,7 @@
                 <div class="input-group d-flex flex-column justify-center align-center w-100">
                     <input type="email" v-model="credentials.email" name="Email Address" placeholder="Email Address" class="input-default">
                     <input type="password" v-model="credentials.password" name="Password" placeholder="Password" class="input-default">
-                    <nuxt-link to="/forgot-password" class="forgot-pass">Forgot Password?</nuxt-link>
+                    <div class="forgot-pass" @click="closeModal">Forgot Password?</div>
                 </div>
                 <button type="submit" class="btn btn-primary">Log in</button>
             </form>
@@ -35,6 +35,10 @@ export default {
         }
     },
     methods: {
+        closeModal() {
+            this.$emit('close-modal-login');
+            this.$router.push('/forgot-password')
+        },
         login() {
             const credentials = this.credentials;
             this.$store.dispatch('auth/login', credentials).then((res) => {
@@ -70,6 +74,11 @@ form {
     margin: -8px 0 25px 0;
     font-size: 14px;
     color: var(--primary-color);
+    cursor: pointer;
+}
+
+.forgot-pass:hover {
+    text-decoration: underline;
 }
 
 .or {

@@ -111,7 +111,7 @@ form {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: var(--bg-color);
-    z-index: 50;
+    z-index: 1;
     padding: 5px 50px;
 }
 

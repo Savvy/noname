@@ -44,7 +44,6 @@ export default {
     },
     computed: {
         getSlug() {
-            console.log(this.$route);
             return this.$route.params.slug;
         }
     }

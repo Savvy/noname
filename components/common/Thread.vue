@@ -34,21 +34,21 @@
                 Views
             </div>
         </div>
-        <div class="thread-recent d-flex align-center justify-end" v-if="recent_thread">
+        <div class="thread-recent d-flex align-center justify-end" v-if="recent_post">
             <!-- <div class="recent-border"></div> -->
             <div class="recent-info d-flex flex-column justify-end">
-                <nuxt-link :to="'/profile/' + recentUser.username" class="user">{{ recentUser.username }}</nuxt-link>
-                <nuxt-link :to="'/profile/' + recentUser.username" class="time"><time-ago refresh :long=true :datetime="recent_thread.updatedAt"/></nuxt-link>
+                <nuxt-link :to="'/profile/' + recent_post.username" class="user">{{ recent_post.username }}</nuxt-link>
+                <nuxt-link :to="'/profile/' + recent_post.username" class="time"><time-ago refresh :long=true :datetime="recent_post.updatedAt"/></nuxt-link>
             </div>
             <nuxt-link to="/profile">
                 <CommonAvatar src="https://i.imgur.com/45vM6qK.jpg" borderRadius="100px" height="30px" width="30px" :pointer=true />
             </nuxt-link>
         </div>
-        <div class="thread-recent d-flex align-center justify-end" v-else>
+        <div class="thread-recent d-flex align-center justify-end" v-else-if="thread">
             <!-- <div class="recent-border"></div> -->
             <div class="recent-info d-flex flex-column justify-end">
-                <nuxt-link to="/profile" class="user">Chroma</nuxt-link>
-                <nuxt-link to="/#asdas" class="time">Jan 2, 2020 at 10:43 PM</nuxt-link>
+                <nuxt-link :to="'/profile/' + thread.user.username" class="user">{{ thread.user.username }}</nuxt-link>
+                <nuxt-link :to="'/profile/' + thread.user.username" class="time"><time-ago refresh :long=true :datetime="thread.updatedAt"/></nuxt-link>
             </div>
             <nuxt-link to="/profile">
                 <CommonAvatar src="https://i.imgur.com/45vM6qK.jpg" borderRadius="100px" height="30px" width="30px" :pointer=true />
@@ -59,7 +59,7 @@
 
 <script>
 export default {
-    props: ['thread', 'recent_thread' ],
+    props: ['thread', 'recent_thread', 'recent_post'],
     computed: {
         recentUser() {
             return this.recent_thread.user;

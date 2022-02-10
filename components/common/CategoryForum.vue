@@ -1,7 +1,6 @@
 <template>
     <div class="body w-100" v-if="forum">
-        <CommonThread v-for="thread in forum.threads" :thread="thread" :recent_thread="forum.recent_thread" :key="thread.slug" />
-        <CommonThread v-for="index in 10" :key="index" />
+        <CommonThread v-for="thread in forum.threads" :thread="thread" :recent_post="thread.posts[0]" :recent_thread="forum.recent_thread" :key="thread.slug" />
     </div>
 </template>
 

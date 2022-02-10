@@ -4,7 +4,7 @@
             <div class="header d-flex justify-between align-center w-100">
                 <div class="left">
                     <div class="header-title">Create Thread</div>
-                    <div class="header-description">Thread in <nuxt-link to="/category">News & Announcements</nuxt-link></div>
+                    <div class="header-description">Thread in <nuxt-link to="/category">{{ forum.name }}</nuxt-link></div>
                 </div>
                 <div class="right d-flex flex-row">
                 </div>
@@ -13,7 +13,8 @@
                 <input type="text" v-model="thread.title" name="thread-title" placeholder="Thread title..." class="input-default">
             </div>
             <client-only>
-                <CommonRichEditor btn-text="Create Thread" />
+                <CommonRichEditor v-model="thread.content" />
+                <div id="submit" class="btn btn-primary" @click="create">Create Thread</div>
             </client-only>
         </div>
     </div>
@@ -26,12 +27,34 @@ export default {
         return {
             title: 'New Thread'
         }
-     },
+    },
     data() {
         return {
             thread: {
                 title: '',
+                content: '',
             }
+        }
+    },
+    async asyncData({ $axios, route, redirect }) {
+        try {
+            let { data } = await $axios.get(`/forum/${route.params.slug}`);
+            return { forum: data.result };
+        } catch (error) {
+            if (error.response.data.message === 'forum_not_found') {
+                redirect('/404');
+                return;
+            }
+        }
+    },
+    methods: {
+        create() {
+            let data = { forum: this.forum._id, ...this.thread };
+            this.$axios.post('/thread', data).then((res) => res.data)
+            .then((data) => {
+                console.log(data);
+                // TODO: If success redirect to new thread.
+            });
         }
     }
 }
@@ -52,5 +75,9 @@ export default {
     margin-bottom: 10px;
     max-width: 100%;
     width: 100%;
+}
+
+.btn.btn-primary#submit {
+    float: right;
 }
 </style>
