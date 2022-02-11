@@ -4,7 +4,7 @@
             <div class="header d-flex justify-between align-center w-100">
                 <div class="left">
                     <div class="header-title">{{ thread.title }}</div>
-                    <div class="header-description">Thread in <nuxt-link to="/category">{{ thread.forum.name }}</nuxt-link> started by 
+                    <div class="header-description">Thread in <nuxt-link :to="`/forum/${thread.forum.slug}`">{{ thread.forum.name }}</nuxt-link> started by 
                     <nuxt-link :to="`/profile/${thread.user.username}`">{{ thread.user.username }}</nuxt-link>, 
                     <span class="time"><time-ago refresh :long=true :datetime="thread.updatedAt"/></span></div>
                 </div>
@@ -43,7 +43,6 @@ export default {
             redirect('/404')
         }
         let { data } = await $axios.get(`/thread/${route.params.id}`);
-        console.log(data);
         return { thread: data.result };
     },
     data() {
