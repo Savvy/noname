@@ -15,7 +15,7 @@ export const mutations = {
     state.error_message = '';
   },
   SET_SUCCESS(state, message) {
-    state.error_message = message;
+    state.success_message = message;
   },
   CLEAR_SUCCESS(state) {
     state.error_message = '';

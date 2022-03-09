@@ -49,7 +49,6 @@ export default {
                 if (res) {
                     this.$refs.loginForm.reset();
                     this.$emit('close-modal-login');
-                    /* this.$router.push('/'); */
                 }
             });
         }
