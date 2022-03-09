@@ -19,11 +19,12 @@
           />
         </nuxt-link>
         <div class="thread-info d-flex flex-column">
-          <nuxt-link to="/thread" class="thread-title">New API Changes</nuxt-link>
+          <nuxt-link :to="'/threads/' + forum.recent_thread.threadId" class="thread-title">{{ forum.recent_thread.title }}</nuxt-link>
           <div class="thread-meta">
-            <nuxt-link to="/profile">Chroma</nuxt-link>
+            <nuxt-link :to="'/profile/' + forum.recent_thread.user.username">{{ forum.recent_thread.user.username }}</nuxt-link>
             <span class="sep"></span>
-            <span class="time">3 days ago</span>
+            <!-- <span class="time">3 days ago</span> -->
+            <span class="time"><time-ago refresh :long=true :datetime="forum.recent_thread.updatedAt"/></span>
           </div>
         </div>
       </div>

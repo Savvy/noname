@@ -30,6 +30,7 @@ export default {
     },
     data() {
         return {
+            creation_success: false,
             thread: {
                 title: '',
                 content: '',
@@ -49,10 +50,16 @@ export default {
     },
     methods: {
         create() {
+            if (this.creation_success) return;
             let data = { forum: this.forum._id, ...this.thread };
             this.$axios.post('/thread', data).then((res) => res.data)
             .then((data) => {
-                console.log(data);
+                this.creation_success = data.success;
+                if (!data.success) {
+                    console.log(data);
+                    return;
+                }
+                this.$router.push(`/threads/${data.thread}`);
                 // TODO: If success redirect to new thread.
             });
         }
