@@ -2,7 +2,7 @@
     <div class="forum">
         <div class="header">
             <nuxt-link :to="'#' + category.slug" :id="category.slug" class="header-title">{{ category.name }}</nuxt-link>
-            <i class="bi bi-chevron-down" @click="hide = !hide "></i>
+            <i class="bi bi-chevron-down" :class="{'hidden': hide,  }" @click="hide = !hide "></i>
         </div>
         <collapse-transition>
             <div class="body w-100" v-if="!hide">
@@ -59,6 +59,11 @@ i {
     color: var(--primary-color);
     font-size: 18px;
     cursor: pointer;
+    transition: transform 0.25s ease-in-out;
+}
+
+i.hidden {
+    transform: translateY(-50%) rotateZ(-90deg);
 }
 
 .body {
