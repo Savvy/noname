@@ -2,6 +2,7 @@
 <div class="dropdown-menu">
     <div class="top-gradient"></div>
     <slot name="data-empty"><div class="data-empty">No information to display.</div></slot>
+    <slot name="dropdown-menu"></slot>
     <slot name="dropdown-footer">
         <div class="dropdown-footer">
             <div class="btns d-flex flex-row">

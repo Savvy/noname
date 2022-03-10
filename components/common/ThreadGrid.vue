@@ -1,5 +1,5 @@
 <template>
-    <nuxt-link to="/thread" class="thread-container">
+    <nuxt-link to="/threads/1" class="thread-container">
         <div class="thread d-flex align-end" :style="styleBinding">
             <div class="title w-100">New API Changes</div>
         </div>
@@ -32,6 +32,7 @@ export default {
     width: 100%;
     background-color: var(--primary-color);
     border-radius: var(--border-radius);
+    overflow: hidden;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
