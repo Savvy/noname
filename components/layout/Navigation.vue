@@ -46,19 +46,8 @@
                         <Avatar src="https://i.imgur.com/45vM6qK.jpg" borderRadius="100px" height="40px"
                         width="40px" :pointer=true :shrinkOnHover=true 
                         @click.native="toggleUser" />
-                        <CommonUserMenu v-if="showUser" v-on-clickaway="closeUser">
-                                <template v-slot:dropdown-menu>
-                                    <div class="data-empty">No new conversations</div>
-                                </template>
-                                <template v-slot:dropdown-footer>
-                                    <div class="dropdown-footer">
-                                        <div class="btns d-flex flex-row">
-                                            <div class="btn btn-default">Show All</div>
-                                            <div class="btn btn-default">New Conversation</div>
-                                        </div>
-                                    </div>
-                                </template>
-                            </CommonUserMenu>
+                        <CommonUserMenu v-if="showUser" v-on-clickaway="closeUser"
+                        v-on:close-user-menu="closeUser" />
                     </div>
                     <div class="login-btns d-flex flex-row" v-else>
                         <div class="btn" @click="$emit('show-login')">Log in</div>

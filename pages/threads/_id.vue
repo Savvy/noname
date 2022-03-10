@@ -21,7 +21,7 @@
             </div>
             <div class="body w-100">
                 <!-- <CommonPost avatar="https://i.imgur.com/rzuOBa8.png" name="Cyber" role="Admin" :threadAuthor=true postIndex=1 /> -->
-                <CommonPost :post='post' :index='thread.threadId' />
+                <CommonPost :post='post' :index='1' />
             </div>
             <client-only>
                 <CommonRichEditor />

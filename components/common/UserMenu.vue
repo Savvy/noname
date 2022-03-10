@@ -12,13 +12,13 @@
         </div>
     </div>
     <ul>
-        <li>
-            <nuxt-link to="/">Profile</nuxt-link>
+        <li @click="$emit(`close-user-menu`)">
+            <nuxt-link :to="'/profile/' + user.username">Profile</nuxt-link>
         </li>
-        <li>
-            <nuxt-link to="/">Account Details</nuxt-link>
+        <li @click="$emit(`close-user-menu`)">
+            <nuxt-link to="/account-details">Account Details</nuxt-link>
         </li>
-        <li>
+        <li @click="$emit(`close-user-menu`)">
             <a @click="logout">Logout</a>
         </li>
     </ul>
@@ -57,6 +57,7 @@ export default {
     font-weight: 300;
     cursor: initial;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    user-select: none;
 }
 
 .btns {
@@ -107,7 +108,6 @@ ul > li {
     width: 100%;
     height: 100%;
     padding: 12px 15px 12px 12px;
-    user-select: none;
 }
 
 ul > li {
