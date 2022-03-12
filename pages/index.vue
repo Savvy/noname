@@ -43,4 +43,8 @@ export default {
 .header-btns {
   gap: 10px;
 }
+
+h1 {
+  font-size: 1.65rem;
+}
 </style>
