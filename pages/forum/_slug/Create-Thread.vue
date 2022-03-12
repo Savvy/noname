@@ -14,7 +14,7 @@
             </div>
             <client-only>
                 <CommonRichEditor v-model="thread.content" />
-                <div id="submit" class="btn btn-primary" @click="create">Create Thread</div>
+                <div id="submit" class="btn btn-primary" @click="createThread">Create Thread</div>
             </client-only>
         </div>
     </div>
@@ -49,8 +49,8 @@ export default {
         }
     },
     methods: {
-        create() {
-            if (this.creation_success) return;
+        createThread() {
+            if (this.creation_success || this.thread.content === '') return;
             let data = { forum: this.forum._id, ...this.thread };
             this.$axios.post('/thread', data).then((res) => res.data)
             .then((data) => {

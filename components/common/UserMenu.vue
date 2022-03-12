@@ -107,7 +107,6 @@ ul {
 ul > li {
     width: 100%;
     height: 100%;
-    padding: 12px 15px 12px 12px;
 }
 
 ul > li {
@@ -130,11 +129,15 @@ ul > li:hover {
 
 ul > li > a {
     transition: padding-left 0.15s ease-in-out;
+    padding: 12px 15px 12px 12px;
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 ul > li:hover > a {
     display: block;
     text-decoration: none;
-    padding-left: 5px;
+    padding-left: 17px;
 }
 </style>

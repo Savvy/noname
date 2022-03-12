@@ -6,7 +6,7 @@
                     <div class="header-title">{{ thread.title }}</div>
                     <div class="header-description">Thread in <nuxt-link :to="`/forum/${thread.forum.slug}`">{{ thread.forum.name }}</nuxt-link> started by 
                     <nuxt-link :to="`/profile/${thread.user.username}`">{{ thread.user.username }}</nuxt-link>, 
-                    <span class="time"><time-ago refresh :long=true :datetime="thread.updatedAt"/></span></div>
+                    <span class="time"><time-ago refresh :long=true :datetime="thread.createdAt"/></span></div>
                 </div>
                 <div class="right d-flex flex-row">
                     <div class="btn">Share <i class="bi bi-caret-down-fill"></i></div>
@@ -21,11 +21,12 @@
             </div>
             <div class="body w-100">
                 <!-- <CommonPost avatar="https://i.imgur.com/rzuOBa8.png" name="Cyber" role="Admin" :threadAuthor=true postIndex=1 /> -->
-                <CommonPost :post='post' :index='1' />
+                <CommonPost :post='posts' :index='1' />
+                <CommonPost v-for="(post, index) in thread.posts" :key="post.postId" :post='post' :index='(index + 2)' />
             </div>
             <client-only>
-                <CommonRichEditor />
-                <div id="submit" class="btn btn-primary" @click="post">Post Reply</div>
+                <CommonRichEditor v-model="post.content" />
+                <div id="submit" class="btn btn-primary" @click="create">Post Reply</div>
             </client-only>
         </div>
     </div>
@@ -47,6 +48,10 @@ export default {
     },
     data() {
         return {
+            creation_success: false,
+            post: {
+                content: '',
+            },
             mockPosts: [
                 {
                     avatar: 'https://i.imgur.com/rzuOBa8.png',
@@ -67,7 +72,7 @@ export default {
         }
     },
     computed: {
-        post() {
+        posts() {
             return { 
                 user: this.thread.user,
                 title: this.thread.title,
@@ -80,12 +85,20 @@ export default {
         }
     },
     methods: {
+        create() {
+            if (this.creation_success || this.post.content === '') return;
+            let data = { thread: this.thread._id, content: this.post.content };
+            this.$axios.post('/post', data).then((res) => res.data)
+            .then((data) => {
+                this.creation_success = data.success;
+                if (!data.success) {
+                    console.log(data);
+                    return;
+                }
+                this.$router.push(`/threads/${this.thread.threadId}`);
+            });
+        },
     }
-    /* async asyncData({ $axios, route }) {
-        let { data } = await $axios.get(`/thread/${route.params.slug}`);
-        console.log(data)
-        return { thread: data.result };
-    } */
 }
 </script>
 
