@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <div class="thread-stats d-flex">
+        <!-- <div class="thread-stats d-flex">
             <div class="d-flex align-center justify-center flex-column">
                 <span>9</span>
                 Upvotes
@@ -28,7 +28,7 @@
                 <span>49</span>
                 Views
             </div>
-        </div>
+        </div> -->
         <div class="thread-recent d-flex align-center justify-end">
             <!-- <div class="recent-border"></div> -->
             <div class="recent-info d-flex flex-column justify-end">
