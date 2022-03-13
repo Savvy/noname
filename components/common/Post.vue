@@ -26,24 +26,6 @@ export default {
             type: Object,
             required: true
         },
-        /* avatar: {
-            type: String,
-            required: true,
-        },
-        name: {
-            type: String,
-            required: true,
-        },
-        role: {
-            type: String,
-            required: false,
-            default: 'Member'
-        },
-        threadAuthor: {
-            type: Boolean,
-            required: false,
-            default: false,
-        }, */
         index: {
             type: Number,
             required: true,

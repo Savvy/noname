@@ -8,7 +8,7 @@
                         <div class="header-description">{{ forum.description }}</div>
                     </div>
                     <div class="right d-flex flex-row">
-                        <div class="btn">Sort By <i class="bi bi-caret-down-fill"></i></div>
+                        <div class="btn sort">Sort By <i class="bi bi-caret-down-fill"></i></div>
                         <nuxt-link :to="`/forum/${getSlug}/create-thread`" class="btn btn-primary" v-if="user">New Post</nuxt-link>
                         <nuxt-link to="/login" class="btn btn-primary" v-else>Log in to post</nuxt-link>
                     </div>
@@ -79,5 +79,9 @@ export default {
     margin-top: 5px;
     font-size: 14px;
     opacity: 0.75;
+}
+
+.sort.btn i {
+    margin-right: 0;
 }
 </style>

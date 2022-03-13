@@ -29,11 +29,11 @@
                 Views
             </div>
         </div>
-        <div class="thread-recent d-flex align-center justify-end" v-if="recent_post">
+        <div class="thread-recent d-flex align-center justify-end">
             <!-- <div class="recent-border"></div> -->
             <div class="recent-info d-flex flex-column justify-end">
-                <nuxt-link :to="`/profile/${recent_post.username}`" class="user">{{ recent_post.username }}</nuxt-link>
-                <nuxt-link :to="`/profile/${recent_post.username}`" class="time"><time-ago refresh :long=true :datetime="recent_post.updatedAt"/></nuxt-link>
+                <nuxt-link :to="`/profile/${recentUser.username}`" class="user">{{ recentUser.username }}</nuxt-link>
+                <nuxt-link :to="`/profile/${recentUser.username}`" class="time"><time-ago refresh :long=true :datetime="recentPost.updatedAt"/></nuxt-link>
             </div>
             <nuxt-link to="/profile">
                 <CommonAvatar src="https://i.imgur.com/45vM6qK.jpg" borderRadius="100px" height="30px" width="30px" :pointer=true />
@@ -46,6 +46,9 @@
 export default {
     props: ['thread', 'recent_thread', 'recent_post'],
     computed: {
+        recentPost() {
+            return this.recent_post ? this.recent_post : this.thread;
+        },
         recentUser() {
             return this.recent_post ? this.recent_post.user : this.thread.user;
         }
