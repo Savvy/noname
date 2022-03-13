@@ -13,8 +13,6 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-
 export default {
     data() {
         return {
@@ -23,7 +21,6 @@ export default {
     },
     async mounted() {
         let {data} = await this.$axios.get('/module/statistics');
-        /* this.$store.dispatch('widget/setData', { name: 'stats', data }); */
         this.stats = {
             threadCount: data.threadCount,
             postCount: data.postCount,
@@ -32,16 +29,6 @@ export default {
             latestId: data.latestUser._id
         };
     },
-    computed: {
-        /* ...mapGetters({
-            getData: "widget/getData"
-        }), */
-    },
-    methods: {
-        /* widget() {
-            return this.getData('stats');
-        } */
-    }
 }
 </script>
 

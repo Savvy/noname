@@ -19,11 +19,11 @@
                         <div class="right">
                             <div class="stats d-flex flex-row align-center">
                                 <nuxt-link to="/profile" class="stat">
-                                    28
+                                    {{ profile.threadCount }}
                                     <span>Threads</span>
                                 </nuxt-link>
                                 <nuxt-link to="/profile" class="stat">
-                                    102
+                                    {{ profile.postCount }}
                                     <span>Posts</span>
                                 </nuxt-link>
                                 <nuxt-link to="/profile" class="stat">
@@ -54,9 +54,12 @@
                         <div class="tab-content" v-else-if="activeTab === 'wall-posts'">
                             <div class="new-post d-flex flex-row">
                                 <CommonAvatar src="https://i.imgur.com/rzuOBa8.pngg" borderRadius="5px" height="70px" width="70px" :pointer=false />
-                                <client-only>
-                                    <CommonRichEditor btn-text="Post" />
-                                </client-only>
+                                <div class="profile-editor">
+                                    <client-only>
+                                        <CommonRichEditor />
+                                        <div id="submit" class="btn btn-primary" @click="createThread">Post</div>
+                                    </client-only>
+                                </div>
                             </div>
                             <div class="posts">
                                 <div class="post" v-for="(index) in 2" :key="index">
@@ -117,8 +120,7 @@ export default {
     },
     async asyncData({ params, store, $axios }) {
         if (store.state.auth.user && params.profile === store.state.auth.user.username) {
-            return { profile: {...store.state.auth.user}
-            }
+            return { profile: {...store.state.auth.user} }
         }
         const { data } = await $axios.get(`/user/find/${params.profile}`);
         return { profile: data.user };
@@ -176,6 +178,18 @@ export default {
 
 .post-btn:hover {
     text-decoration: underline;
+}
+
+.profile-editor {
+    width: 100%;
+}
+
+.editor-container {
+    margin-bottom: 15px;
+}
+
+.btn.btn-primary#submit {
+    float: right;
 }
 
 .tab-nav {
@@ -285,6 +299,7 @@ export default {
 
 .new-post {
     gap: 15px;
+    margin-bottom: 30px;
 }
 .new-post .editor-container {
     flex: 1;

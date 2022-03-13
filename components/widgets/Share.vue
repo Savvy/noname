@@ -49,7 +49,7 @@ export default {
 }
 
 .icon i {
-    color: var(--body-color);
+    color: var(--primary-color);
     font-size: 16px;
     position: absolute;
     top: 50%;

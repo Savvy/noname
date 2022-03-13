@@ -30,7 +30,6 @@
             </div>
         </div> -->
         <div class="thread-recent d-flex align-center justify-end">
-            <!-- <div class="recent-border"></div> -->
             <div class="recent-info d-flex flex-column justify-end">
                 <nuxt-link :to="`/profile/${recentUser.username}`" class="user">{{ recentUser.username }}</nuxt-link>
                 <nuxt-link :to="`/profile/${recentUser.username}`" class="time"><time-ago refresh :long=true :datetime="recentPost.updatedAt"/></nuxt-link>
