@@ -4,7 +4,7 @@
             <div class="forum">
                 <div class="header d-flex justify-between align-center w-100">
                     <div class="left d-flex align-center">
-                        <div class="header-title">Home <span>/</span> {{ forum.name }}</div>
+                        <div class="header-title"><nuxt-link to="/">Home</nuxt-link> <span>/</span> {{ forum.name }}</div>
                         <div class="header-description">{{ forum.description }}</div>
                     </div>
                     <div class="right d-flex flex-row">

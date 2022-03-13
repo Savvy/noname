@@ -3,15 +3,30 @@
         <template v-slot:widget-header>Share this site</template>
         <template v-slot:widget-body>
            <div class="share-icons d-flex flex-row w-100">
-               <div class="icon"><i class="bi bi-discord"></i></div>
                <div class="icon"><i class="bi bi-twitter"></i></div>
                <div class="icon"><i class="bi bi-facebook"></i></div>
-               <div class="icon"><i class="bi bi-whatsapp"></i></div>
                <div class="icon"><i class="bi bi-envelope"></i></div>
            </div>
         </template>
     </CommonSideWidget>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            twitter: 'https://twitter.com/intent/tweet?text=',
+            facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
+            email: '',
+        }
+    },
+    methods: {
+        openWindow(url, width, height) {
+            
+        }
+    }
+}
+</script>
 
 <style scoped>
 
