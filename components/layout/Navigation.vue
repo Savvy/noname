@@ -1,7 +1,7 @@
 <template>
     <nav class="w-100">
         <div class="navigation container d-flex justify-between align-center">
-            <nuxt-link to="/" class="brand">NoName</nuxt-link>
+            <nuxt-link to="/" class="brand">{{ $config.SITE_NAME }}</nuxt-link>
             <div class="nav">
                 <CommonSearch />
                 <div class="user-nav d-flex flex-row align-center">

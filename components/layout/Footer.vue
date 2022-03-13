@@ -2,7 +2,7 @@
 <div class="footer-container">
     <footer>
         <div class="container">
-            <div class="footer-content"><strong>NoName</strong> created by <a href="#" target="_blank">Creator.</a> &copy; 2022 <strong>NoName</strong>. All Rights Reserved.</div>
+            <div class="footer-content"><strong>{{ $config.SITE_NAME }}</strong> created by <a href="https://malcom.sh" target="_blank">Malcom.</a> &copy; 2022 <strong>{{ $config.SITE_NAME }}</strong>. All Rights Reserved.</div>
         </div>
     </footer>
 </div>

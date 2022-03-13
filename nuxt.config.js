@@ -53,11 +53,7 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   },
-
-  env: {
-    BACK_HOST: process.env.BACK_HOST || 'http://localhost:5000/'
-  },
-
+  
   router: {
     middleware: ['auth']
   },
@@ -67,6 +63,7 @@ export default {
     id: process.env.GOOGLE_ANALYTICS_ID, // Use as fallback if no runtime config is provided
   },
   publicRuntimeConfig: {
+    SITE_NAME: process.env.SITE_NAME || 'NoName',
     googleAnalytics: {
       id: process.env.GOOGLE_ANALYTICS_ID
     }
