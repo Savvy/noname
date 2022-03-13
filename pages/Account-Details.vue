@@ -8,7 +8,7 @@
                             Your Account
                         </div>
                         <div class="sidenav-links">
-                            <nuxt-link class="sidenav-btn" to="/profile">Your Profile</nuxt-link>
+                            <nuxt-link class="sidenav-btn" :to="'/profile/' + user.username">Your Profile</nuxt-link>
                             <div class="sidenav-btn">Alerts</div>
                             <div class="sidenav-btn">Conversations</div>
                             <div class="sidenav-btn">Saved Threads</div>

@@ -21,7 +21,7 @@
             </div>
             <div class="body w-100">
                 <!-- <CommonPost avatar="https://i.imgur.com/rzuOBa8.png" name="Cyber" role="Admin" :threadAuthor=true postIndex=1 /> -->
-                <CommonPost :post='posts' :index='1' />
+                <CommonPost :post='initialPost' :index='1' />
                 <CommonPost v-for="(post, index) in thread.posts" :key="post.postId" :post='post' :index='(index + 2)' />
             </div>
             <client-only>
@@ -52,27 +52,10 @@ export default {
             post: {
                 content: '',
             },
-            mockPosts: [
-                {
-                    avatar: 'https://i.imgur.com/rzuOBa8.png',
-                    author: 'Cyber',
-                    role: 'Admin'
-                },
-                {
-                    avatar: 'https://i.imgur.com/dhAaUje.jpg',
-                    author: 'Meiyo',
-                    role: 'Moderator'
-                },
-                {
-                    avatar: 'https://i.imgur.com/45vM6qK.jpg',
-                    author: 'Random',
-                    role: 'Member'
-                }
-            ]
         }
     },
     computed: {
-        posts() {
+        initialPost() {
             return { 
                 user: this.thread.user,
                 title: this.thread.title,
@@ -85,6 +68,10 @@ export default {
         }
     },
     methods: {
+        async populate() {
+            let { data } = await this.$axios.get(`/thread/${this.$route.params.id}`);
+            this.thread = data.result;
+        },
         create() {
             if (this.creation_success || this.post.content === '') return;
             let data = { thread: this.thread._id, content: this.post.content };
@@ -95,7 +82,8 @@ export default {
                     console.log(data);
                     return;
                 }
-                this.$router.push(`/threads/${this.thread.threadId}`);
+                this.post.content = '';
+                this.populate();
             });
         },
     }

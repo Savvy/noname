@@ -57,7 +57,7 @@
                                 <div class="profile-editor">
                                     <client-only>
                                         <CommonRichEditor />
-                                        <div id="submit" class="btn btn-primary" @click="createThread">Post</div>
+                                        <div id="submit" class="btn btn-primary" @click="post">Post</div>
                                     </client-only>
                                 </div>
                             </div>
@@ -124,6 +124,10 @@ export default {
         }
         const { data } = await $axios.get(`/user/find/${params.profile}`);
         return { profile: data.user };
+    },
+    methods: {
+        post() {
+        }
     }
 }
 </script>
