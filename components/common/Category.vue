@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="recent-thread d-flex flex-row">
-        <nuxt-link to="/profile">
+        <nuxt-link :to="'/profile/' + forum.recent_thread.user.username">
           <CommonAvatar
             src="https://i.imgur.com/45vM6qK.jpg"
             borderRadius="100px"

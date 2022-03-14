@@ -10,10 +10,10 @@
                 <div class="post-footer">
                     <div class="left">
                         <span class="time"><time-ago refresh :long=true :datetime="post.updatedAt" /></span>
-                        <div class="post-btn">Delete Comment</div>
+                        <div class="post-btn" @click="deleteComment">Delete Comment</div>
                     </div>
                     <div class="right">
-                        <div class="post-btn">Like</div>
+                        <div class="post-btn" v-if="post.author.username !== user.username">Like</div>
                         <div class="post-btn">Comment</div>
                     </div>
                 </div>
@@ -27,7 +27,12 @@
 
 <script>
 export default {
-    props: [ 'post' ]
+    props: [ 'post' ],
+    methods: {
+        deleteComment() {
+            this.$axios.delete('/comment', { data: { id: this.post._id} });
+        }
+    }
 }
 </script>
 

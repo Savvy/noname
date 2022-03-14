@@ -76,7 +76,7 @@
 export default {
     head() {
         return {
-            title: 'Profile'
+            title: this.profile.username
         }
     },
     data() {
@@ -119,12 +119,15 @@ export default {
                 content: this.postContent,
             };
             this.$axios.post('/comment', data).then((res) => res.data)
-            .then((data) => {
+            .then(async (data) => {
                 if (!data.success) {
                     console.log(data);
                     return;
                 }
                 this.postContent = '';
+                const res = await this.$axios.get(`/user/find/${this.$route.params.profile}`);
+                this.profile = res.data.user;
+                console.log(profile)
             });
         }
     }
