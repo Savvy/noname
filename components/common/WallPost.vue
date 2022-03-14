@@ -13,7 +13,7 @@
                         <div class="post-btn" @click="deleteComment">Delete Comment</div>
                     </div>
                     <div class="right">
-                        <div class="post-btn" v-if="post.author.username !== user.username">Like</div>
+                        <div class="post-btn" v-if="user && post.author.username !== user.username">Like</div>
                         <div class="post-btn">Comment</div>
                     </div>
                 </div>

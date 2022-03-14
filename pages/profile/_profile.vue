@@ -127,7 +127,6 @@ export default {
                 this.postContent = '';
                 const res = await this.$axios.get(`/user/find/${this.$route.params.profile}`);
                 this.profile = res.data.user;
-                console.log(profile)
             });
         }
     }
