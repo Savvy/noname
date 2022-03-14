@@ -50,7 +50,7 @@ export default {
     },
     methods: {
         createThread() {
-            if (this.creation_success || this.thread.content === '') return;
+            if (this.creation_success || this.thread.content.length < 4) return;
             let data = { forum: this.forum._id, ...this.thread };
             this.$axios.post('/thread', data).then((res) => res.data)
             .then((data) => {

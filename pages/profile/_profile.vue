@@ -52,37 +52,17 @@
                             No information to display.
                         </div>
                         <div class="tab-content" v-else-if="activeTab === 'wall-posts'">
-                            <div class="new-post d-flex flex-row">
+                            <div class="new-post d-flex flex-row" v-if="isAuthenticated">
                                 <CommonAvatar src="https://i.imgur.com/rzuOBa8.pngg" borderRadius="5px" height="70px" width="70px" :pointer=false />
                                 <div class="profile-editor">
                                     <client-only>
-                                        <CommonRichEditor />
+                                        <CommonRichEditor v-model="postContent" />
                                         <div id="submit" class="btn btn-primary" @click="post">Post</div>
                                     </client-only>
                                 </div>
                             </div>
                             <div class="posts">
-                                <div class="post" v-for="(index) in 2" :key="index">
-                                    <CommonAvatar src="https://i.imgur.com/rzuOBa8.png" borderRadius="5px" height="70px" width="70px" :pointer=false />
-                                    <div class="post-body">
-                                        <div class="post-author">
-                                            <nuxt-link to="/profile">Makoto</nuxt-link>
-                                        </div>
-                                        <div class="post-content">
-                                            <p>Welcome to my post...</p>
-                                        </div>
-                                        <div class="post-footer">
-                                            <div class="left">
-                                                <span class="time">Jan 1, 2022</span>
-                                                <div class="post-btn">Delete Comment</div>
-                                            </div>
-                                            <div class="right">
-                                                <div class="post-btn">Upvote</div>
-                                                <div class="post-btn">Comment</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <CommonWallPost v-for="(post, index) in wallPosts" :post=post :key="index" />
                             </div>
                         </div>
                     </div>
@@ -101,7 +81,7 @@ export default {
     },
     data() {
         return {
-            profile: null,
+            postContent: '',
             activeTab: 'wall-posts',
             tabs: [
             {
@@ -125,8 +105,27 @@ export default {
         const { data } = await $axios.get(`/user/find/${params.profile}`);
         return { profile: data.user };
     },
+    computed: {
+        wallPosts() {
+            return this.profile.wallPosts.filter(post => !post.reply);
+        }
+    },
     methods: {
         post() {
+            if (this.postContent.length < 4) return;
+            let data = {
+                user: this.profile._id,
+                author: this.user._id,
+                content: this.postContent,
+            };
+            this.$axios.post('/comment', data).then((res) => res.data)
+            .then((data) => {
+                if (!data.success) {
+                    console.log(data);
+                    return;
+                }
+                this.postContent = '';
+            });
         }
     }
 }
@@ -137,51 +136,6 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 10px;
-}
-
-.post {
-    gap: 15px;
-    background-color: var(--bg-dark-10);
-    border-radius: var(--border-radius);
-    padding: 10px;
-}
-
-.post, .post-body {
-    width: 100%;
-}
-
-.post-content {
-    color: var(--primary-color);
-    margin: 10px 0;
-}
-
-.post-author {
-    font-weight: 600;
-}
-
-.post, .post-footer,
-.post-footer .left,
-.post-footer .right {
-    display: flex;
-}
-
-.post-footer .left,
-.post-footer .right {
-    gap: 10px;
-}
-
-.post-footer {
-    color: var(--light-text);
-    justify-content: space-between;
-    font-size: 12px;
-}
-
-.post-btn {
-    cursor: pointer;
-}
-
-.post-btn:hover {
-    text-decoration: underline;
 }
 
 .profile-editor {

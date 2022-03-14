@@ -73,7 +73,7 @@ export default {
             this.thread = data.result;
         },
         create() {
-            if (this.creation_success || this.post.content === '') return;
+            if (this.creation_success || this.post.content.length < 4) return;
             let data = { thread: this.thread._id, content: this.post.content };
             this.$axios.post('/post', data).then((res) => res.data)
             .then((data) => {
