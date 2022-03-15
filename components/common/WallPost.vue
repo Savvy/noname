@@ -14,11 +14,19 @@
                     </div>
                     <div class="right">
                         <div class="post-btn" v-if="user && post.author.username !== user.username">Like</div>
-                        <div class="post-btn">Comment</div>
+                        <div class="post-btn" @click="commentEnabled = !commentEnabled">Comment</div>
                     </div>
                 </div>
             </div>
         </div>
+        <collapse-transition>
+            <div class="profile-editor" v-if="commentEnabled">
+                <client-only>
+                    <CommonRichEditor v-model="postContent" />
+                    <div id="submit" class="btn btn-primary" @click="postComment">Post</div>
+                </client-only>
+            </div>
+        </collapse-transition>
         <div class="post-replies" v-for="(post, index) in post.children" :key="index">
             <CommonWallPostReply :post=post />
         </div>
@@ -26,11 +34,21 @@
 </template>
 
 <script>
+import { CollapseTransition } from "@ivanv/vue-collapse-transition"
 export default {
+    components: { CollapseTransition },
     props: [ 'post' ],
+    data() {
+        return {
+            commentEnabled: false,
+        }
+    },
     methods: {
         deleteComment() {
             this.$axios.delete('/comment', { data: { id: this.post._id} });
+        },
+        postComment() {
+            console.log('t');
         }
     }
 }
@@ -98,4 +116,9 @@ export default {
 .post-btn:hover {
     text-decoration: underline;
 }
+
+.btn.btn-primary#submit {
+    float: right;
+}
+
 </style>

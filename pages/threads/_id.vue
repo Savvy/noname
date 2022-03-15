@@ -36,7 +36,7 @@
 export default {
     head() {
         return {
-            title: 'Threads'
+            title: this.thread.title
         }
     },
     async asyncData({ $axios, route, redirect }) {

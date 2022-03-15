@@ -1,18 +1,25 @@
 <template>
+    <!--
+            - Username,
+            - Email,
+            - Avatar,
+            - Gender,
+            - About Me,
+      -->
   <div class="account-details">
     <div class="title">Account Details</div>
     <form>
       <div class="input-group align-center">
         <span>Username:</span>
         <div class="default-box">
-          Cyber
+          {{ user.username }}
           <div class="btn btn-default">Change</div>
         </div>
       </div>
       <div class="input-group align-center">
         <span>Email:</span>
         <div class="default-box">
-          user@example.com
+          {{ user.email }}
           <div class="btn btn-default">Change</div>
         </div>
       </div>
@@ -57,13 +64,6 @@
         Save
       </button>
     </form>
-    <!--
-            - Username,
-            - Email,
-            - Avatar,
-            - Gender,
-            - About Me,
-        -->
   </div>
 </template>
 
