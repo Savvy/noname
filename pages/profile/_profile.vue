@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                             <div class="posts">
-                                <CommonWallPost v-for="(post, index) in wallPosts" :post=post :key="index" />
+                                <CommonWallPost v-for="(post, index) in wallPosts" :post=post :key="index" v-on:updateWall="updateWallPosts" />
                             </div>
                         </div>
                     </div>
@@ -111,6 +111,10 @@ export default {
         }
     },
     methods: {
+        async updateWallPosts() {
+            const res = await this.$axios.get(`/user/find/${this.$route.params.profile}`);
+            this.profile = res.data.user;
+        },
         post() {
             if (this.postContent.length < 4) return;
             let data = {
@@ -125,8 +129,7 @@ export default {
                     return;
                 }
                 this.postContent = '';
-                const res = await this.$axios.get(`/user/find/${this.$route.params.profile}`);
-                this.profile = res.data.user;
+                this.updateWallPosts();
             });
         }
     }

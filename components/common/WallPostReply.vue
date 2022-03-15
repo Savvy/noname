@@ -25,6 +25,7 @@ export default {
     methods: {
         deleteComment() {
             this.$axios.delete('/comment', { data: { id: this.post._id} });
+            this.$emit('updateWall');
         }
     }
 }

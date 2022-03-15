@@ -13,7 +13,8 @@
                         <div class="post-btn" @click="deleteComment">Delete Comment</div>
                     </div>
                     <div class="right">
-                        <div class="post-btn" v-if="user && post.author.username !== user.username">Like</div>
+                        <div class="post-btn" v-if="canLike" @click="likeComment"><i class="bi bi-hand-thumbs-up"></i> {{ post.like.includes(user._id) ? 'Unlike' : 'Like' }}</div>
+                        <div class="post-btn" v-else>{{ post.like.length }} Likes</div>
                         <div class="post-btn" @click="commentEnabled = !commentEnabled">Comment</div>
                     </div>
                 </div>
@@ -28,7 +29,7 @@
             </div>
         </collapse-transition>
         <div class="post-replies" v-for="(post, index) in post.children" :key="index">
-            <CommonWallPostReply :post=post />
+            <CommonWallPostReply :post=post  v-on:updateWall="emitUpdate" />
         </div>
     </div>
 </template>
@@ -40,15 +41,48 @@ export default {
     props: [ 'post' ],
     data() {
         return {
+            postContent: '',
             commentEnabled: false,
         }
     },
+    computed: {
+        canLike() {
+            return this.user && this.post.author.username !== this.user.username
+        }
+    },
     methods: {
+        emitUpdate() {
+            this.$emit('updateWall');
+        },
+        likeComment() {
+            this.$axios.post('/comment/like', { id: this.post._id })
+            .then((res) => res.data).then((data) => {
+                console.log(data);
+                this.emitUpdate();
+            });
+        },
         deleteComment() {
             this.$axios.delete('/comment', { data: { id: this.post._id} });
+            this.emitUpdate();
         },
         postComment() {
-            console.log('t');
+            if (this.postContent.length < 4) return;
+            let data = {
+                user: this.post.user._id,
+                author: this.user._id,
+                content: this.postContent,
+                parent: this.post._id
+            };
+            this.$axios.post('/comment', data).then((res) => res.data)
+            .then(async (data) => {
+                if (!data.success) {
+                    console.log(data);
+                    return;
+                }
+                this.postContent = '';
+                this.$emit('updateWall');
+                this.commentEnabled = false;
+            });
         }
     }
 }
