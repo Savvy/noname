@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <div class="user" v-if="user">
-                        <Avatar src="https://i.imgur.com/45vM6qK.jpg" borderRadius="100px" height="40px"
+                        <Avatar :src="user.gravatar" borderRadius="100px" height="40px"
                         width="40px" :pointer=true :shrinkOnHover=true 
                         @click.native="toggleUser" />
                         <CommonUserMenu v-if="showUser" v-on-clickaway="closeUser"
