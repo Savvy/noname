@@ -10,7 +10,7 @@
                 <div class="post-footer">
                     <div class="left">
                         <span class="time"><time-ago refresh :long=true :datetime="post.updatedAt" /></span>
-                        <div class="post-btn" @click="deleteComment">Delete Comment</div>
+                        <div class="post-btn" @click="deleteComment" v-if="isAuthenticated && post.author._id === user._id">Delete Comment</div>
                     </div>
                     <div class="right">
                         <div class="post-btn" v-if="canLike" @click="likeComment"><i class="bi bi-hand-thumbs-up"></i> {{ post.like.includes(user._id) ? 'Unlike' : 'Like' }}</div>
