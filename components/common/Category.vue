@@ -11,7 +11,7 @@
       <div class="recent-thread d-flex flex-row">
         <nuxt-link :to="'/profile/' + forum.recent_thread.user.username">
           <CommonAvatar
-            src="https://i.imgur.com/45vM6qK.jpg"
+            :src="forum.recent_thread.user.details.avatar"
             borderRadius="100px"
             height="40px"
             width="40px"

@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <div class="user" v-if="user">
-                        <Avatar :src="user.gravatar" borderRadius="100px" height="40px"
+                        <CommonAvatar :src="user.details.avatar" borderRadius="100px" height="40px"
                         width="40px" :pointer=true :shrinkOnHover=true 
                         @click.native="toggleUser" />
                         <CommonUserMenu v-if="showUser" v-on-clickaway="closeUser"
@@ -61,12 +61,8 @@
 
 <script>
 import { mixin as clickaway } from 'vue-clickaway';
-import Avatar from '@/components/common/Avatar';
 export default {
     mixins: [ clickaway ],
-    components: {
-        Avatar
-    },
     data() {
         return {
             showAlerts: false,

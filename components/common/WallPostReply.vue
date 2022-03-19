@@ -1,6 +1,6 @@
 <template>
     <div class="post">
-            <CommonAvatar src="https://i.imgur.com/rzuOBa8.png" borderRadius="5px" height="70px" width="70px" :pointer=false />
+            <CommonAvatar :src="post.author.details.avatar" borderRadius="5px" height="70px" width="70px" :pointer=false />
         <div class="post-body">
             <div class="post-author">
                 <nuxt-link :to="`/profile/${post.author.username}`">{{ post.author.username }}</nuxt-link>

@@ -2,7 +2,7 @@
 <div class="dropdown-menu">
     <div class="top-gradient"></div>
     <div class="user-info">
-        <CommonAvatar :src="user.gravatar" 
+        <CommonAvatar :src="user.details.avatar" 
             borderRadius="100px" height="60px"
             width="60px" :pointer=true :shrinkOnHover=false 
         />

@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-                <CommonAvatar :src="profile.gravatar" borderRadius="100px" height="130px" width="130px" :pointer=false />
+                <CommonAvatar :src="profile.details.avatar" borderRadius="100px" height="130px" width="130px" :pointer=false />
             </div>
 
             <div class="profile-content">
@@ -53,7 +53,7 @@
                         </div>
                         <div class="tab-content" v-else-if="activeTab === 'wall-posts'">
                             <div class="new-post d-flex flex-row" v-if="isAuthenticated">
-                                <CommonAvatar :src="user.gravatar" borderRadius="5px" height="70px" width="70px" :pointer=false />
+                                <CommonAvatar :src="user.details.avatar" borderRadius="5px" height="70px" width="70px" :pointer=false />
                                 <div class="profile-editor">
                                     <client-only>
                                         <CommonRichEditor v-model="postContent" />

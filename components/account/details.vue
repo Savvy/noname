@@ -27,7 +27,7 @@
         <span>Avatar:</span>
         <div class="change-avatar">
           <CommonAvatar
-            src="https://i.imgur.com/rzuOBa8.png"
+            :src="user.details.avatar"
             borderRadius="5px"
             height="80px"
             width="80px"

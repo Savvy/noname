@@ -1,7 +1,7 @@
 <template>
     <div class="post d-flex w-100">
         <div class="post-author d-flex align-center flex-column">
-            <CommonAvatar src="https://i.imgur.com/rzuOBa8.png" borderRadius="100px" height="95px" width="95px" :pointer=true />
+            <CommonAvatar :src="post.user.details.avatar" borderRadius="100px" height="95px" width="95px" :pointer=true />
             <div class="author"><nuxt-link :to="`/profile/${post.user.username}`">{{ post.user.username }}</nuxt-link></div>
             <div class="badges">
                 <div class="badge">Admin</div>
