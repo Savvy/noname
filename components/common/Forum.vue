@@ -6,7 +6,7 @@
         </div>
         <collapse-transition>
             <div class="body w-100" v-if="!hide">
-                <CommonCategory v-for="forum in category.forums" :category="category.slug" :forum="forum" :key="forum.slug" />
+                <CommonCategory v-for="(forum, index) in category.forums" :category="category.slug" :forum="forum" :key="forum.slug + '-' + index" />
             </div>
         </collapse-transition>
     </div>

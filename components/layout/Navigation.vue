@@ -4,6 +4,14 @@
             <nuxt-link to="/" class="brand">{{ $config.SITE_NAME }}</nuxt-link>
             <div class="nav">
                 <CommonSearch />
+                <!-- <ul>
+                    <li>
+                        <nuxt-link to="/">Home</nuxt-link>
+                    </li>
+                    <li>
+                        <nuxt-link to="/">Members <i class="bi bi-caret-down-fill"></i></nuxt-link>
+                    </li>
+                </ul> -->
                 <div class="user-nav d-flex flex-row align-center">
                     <div class="alerts d-flex flex-row" v-if="user">
                         <div class="dropdown-container">
@@ -35,7 +43,7 @@
                                     <div class="dropdown-footer">
                                         <div class="btns d-flex flex-row">
                                             <div class="btn btn-default">Show All</div>
-                                            <div class="btn btn-default">New Conversation</div>
+                                            <nuxt-link to="/conversations/new" class="btn btn-default">New Conversation</nuxt-link>
                                         </div>
                                     </div>
                                 </template>
@@ -164,6 +172,25 @@ nav, .navigation {
 
 .login-btns {
     gap: 12px;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1;
+}
+
+ul > li > a {
+    padding: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+ul > li > a > i {
+    font-size: 13px;
 }
 
 @media screen and (max-width: 720px) {

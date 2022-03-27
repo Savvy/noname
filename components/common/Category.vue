@@ -1,14 +1,14 @@
 <template>
   <div class="category-container d-flex align-center">
-    <div class="icon"><i class="bi bi-megaphone"></i></div>
-    <div class="category">
+    <div class="icon"><i :class="forum.icon ? forum.icon : 'bi bi-chat-dots'"></i></div>
+    <div class="category align-center">
       <div class="category-info w-auto">
         <nuxt-link :to="`/forum/${forum.slug}`" class="category-title">{{ forum.name }}</nuxt-link>
-        <div class="category-meta">
+        <!-- <div class="category-meta">
           Topics: <span>481</span> Posts: <span>1028</span>
-        </div>
+        </div> -->
       </div>
-      <div class="recent-thread d-flex flex-row">
+      <div class="recent-thread d-flex flex-row" v-if="forum.recent_thread">
         <nuxt-link :to="'/profile/' + forum.recent_thread.user.username">
           <CommonAvatar
             :src="forum.recent_thread.user.details.avatar"
