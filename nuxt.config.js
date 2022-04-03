@@ -1,8 +1,7 @@
 import axios from 'axios';
 
 export default async () => {
-  const { data } = await axios.get('http://localhost:5000/settings/config');
-  console.log(data);
+  const { data } = await axios.get(process.env.BACK_HOST + '/settings/config');
   return {
     head: {
       titleTemplate: data.result.titleTemplate,
