@@ -31,7 +31,6 @@ export default {
         title: 'Home'
     }
   },
-  name: 'Home',
 }
 </script>
 

@@ -116,7 +116,15 @@ export default {
             this.profile = res.data.user;
         },
         post() {
-            if (this.postContent.length < 4) return;
+            if (this.postContent.length < this.settings.minPostLength) {
+                // TODO: Alert user of minimum post char count
+                return;
+            }
+
+            if (this.postContent.length > this.settings.maxPostLength) {
+                // TODO: Alert user of maximum post char count
+                return;
+            }
             let data = {
                 user: this.profile._id,
                 author: this.user._id,

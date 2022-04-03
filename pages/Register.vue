@@ -48,6 +48,23 @@ export default {
     },
     methods: {
         register() {
+            if (this.credentials.username.length < this.settings.minUsernameLength) {
+                // TODO: Alert user of minimum username length
+                return;
+            }
+            if (this.credentials.username.length > this.settings.maxUsernameLength) {
+                // TODO: Alert user of maximum username length
+                return;
+            }
+
+            if (this.credentials.password.length < this.settings.minPasswordLength) {
+                // TODO: Alert user of minimum password length
+                return;
+            }
+            if (this.credentials.password.length > this.settings.maxPasswordLength) {
+                // TODO: Alert user of maximum password length
+                return;
+            }
             this.$store.dispatch('auth/register', { ...this.credentials }).then((res) => {
                 if (res) {
                     this.$refs.registerForm.reset();

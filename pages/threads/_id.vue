@@ -73,7 +73,16 @@ export default {
             this.thread = data.result;
         },
         create() {
-            if (this.creation_success || this.post.content.length < 4) return;
+            if (this.creation_success) return;
+            if (this.post.content.length < this.settings.minPostLength) {
+                // TODO: Alert user of minimum post char count
+                return;
+            }
+
+            if (this.post.content.length > this.settings.maxPostLength) {
+                // TODO: Alert user of maximum post char count
+                return;
+            }
             let data = { thread: this.thread._id, content: this.post.content };
             this.$axios.post('/post', data).then((res) => res.data)
             .then((data) => {

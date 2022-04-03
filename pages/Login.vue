@@ -45,6 +45,14 @@ export default {
     },
     methods: {
         login() {
+            if (this.credentials.password.length < this.settings.minPasswordLength) {
+                // TODO: Alert user of minimum password length
+                return;
+            }
+            if (this.credentials.password.length > this.settings.maxPasswordLength) {
+                // TODO: Alert user of maximum password length
+                return;
+            }
             this.$store.dispatch('auth/login', this.credentials).then((res) => {
                 if (res) {
                     this.$refs.loginForm.reset();

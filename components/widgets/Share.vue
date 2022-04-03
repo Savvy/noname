@@ -2,11 +2,12 @@
     <CommonSideWidget>
         <template v-slot:widget-header>Share this site</template>
         <template v-slot:widget-body>
-           <div class="share-icons d-flex flex-row w-100">
-               <div class="icon"><i class="bi bi-twitter"></i></div>
-               <div class="icon"><i class="bi bi-facebook"></i></div>
-               <div class="icon"><i class="bi bi-envelope"></i></div>
-           </div>
+            <div class="share-icons d-flex flex-row w-100">
+                <a class="icon" v-for="(social, index) in settings.socials" :key="index" 
+                :href="social.url" :target="social.target ? social.target : ''">
+                    <i :class="social.icon"></i>
+                </a>
+            </div>
         </template>
     </CommonSideWidget>
 </template>

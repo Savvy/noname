@@ -50,7 +50,27 @@ export default {
     },
     methods: {
         createThread() {
-            if (this.creation_success || this.thread.content.length < 4) return;
+            if (this.creation_success) return;
+            if (this.thread.content.length < this.settings.minPostLength) {
+                // TODO: Alert user of minimum post char count
+                return;
+            }
+
+            if (this.thread.content.length > this.settings.maxPostLength) {
+                // TODO: Alert user of maximum post char count
+                return;
+            }
+
+            if (this.thread.title.length < this.settings.minTitleLength) {
+                // TODO: Alert user of minimum title char count
+                return;
+            }
+
+            if (this.thread.title.length < this.settings.maxTitleLength) {
+                // TODO: Alert user of maximum title char count
+                return;
+            }
+
             let data = { forum: this.forum._id, ...this.thread };
             this.$axios.post('/thread', data).then((res) => res.data)
             .then((data) => {

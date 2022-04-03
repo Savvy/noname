@@ -18,7 +18,9 @@
 <script>
 import Vue from 'vue';
 import User from '@/mixins/User';
+import Settings from '@/mixins/Settings';
 Vue.mixin(User);
+Vue.mixin(Settings);
 export default {
     data() {
         return {
