@@ -1,12 +1,5 @@
 # NoName v1
 
-[![](https://i.imgur.com/gp00w0H.png)](https://i.imgur.com/gp00w0H.png)
-[![](https://i.imgur.com/2Y7IGvB.png)](https://i.imgur.com/2Y7IGvB.png)
-[![](https://i.imgur.com/5aoywlZ.png)](https://i.imgur.com/5aoywlZ.png)
-[![](https://i.imgur.com/EeI5ufW.png)](https://i.imgur.com/EeI5ufW.png)
-
----
-
 
 ### Table Of Contents
 - [Description](#description)
@@ -39,3 +32,8 @@ View [Demo here](https://thenoname.herokuapp.com)
 ## More Information
 - [Demo](https://thenoname.herokuapp.com)
 - [Backend](https://github.com/Savvy/noname-backend)
+
+[![](https://i.imgur.com/gp00w0H.png)](https://i.imgur.com/gp00w0H.png)
+[![](https://i.imgur.com/2Y7IGvB.png)](https://i.imgur.com/2Y7IGvB.png)
+[![](https://i.imgur.com/5aoywlZ.png)](https://i.imgur.com/5aoywlZ.png)
+[![](https://i.imgur.com/EeI5ufW.png)](https://i.imgur.com/EeI5ufW.png)
