@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default async () => {
-  const { data } = await axios.get(process.env.BACK_HOST + 'settings/config');
+  const { data } = await axios.get(process.env.API_URL + 'settings/config');
   return {
     head: {
       titleTemplate: data.result.titleTemplate,
@@ -49,7 +49,7 @@ export default async () => {
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
     axios: {
       // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-      baseURL: process.env.BACK_HOST || 'http://localhost:5000/',
+      baseURL: process.env.API_URL || 'http://localhost:5000/',
       credentials: true,
     },
   

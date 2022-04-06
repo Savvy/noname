@@ -27,6 +27,11 @@ View [Demo here](https://thenoname.herokuapp.com)
 > It is recommended to install and configure the backend first. [Backend](https://github.com/Savvy/noname-backend)
 
 ### Installation
+Installing the frontend is as simple as following the official deployment guide for Nuxt.JS [here](https://nuxtjs.org/deployments/) and ensuring proper setup of environment variable(s) below.
+
+``
+API_URL=http://localhost:5000/
+``
 
 
 ## More Information
