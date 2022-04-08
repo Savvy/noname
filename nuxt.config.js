@@ -67,6 +67,7 @@ export default async () => {
     },
     publicRuntimeConfig: {
       SITE_NAME: process.env.SITE_NAME || 'NoName',
+      API_URL: process.env.API_URL || 'http://localhost:5000/',
       googleAnalytics: {
         id: process.env.GOOGLE_ANALYTICS_ID
       }

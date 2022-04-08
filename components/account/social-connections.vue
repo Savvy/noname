@@ -5,39 +5,34 @@
             <div class="connection">
                 <i class="bi bi-discord"></i>
                 <span>Discord</span>
-                <div class="btn btn-default">Disconnect</div>
+                <div class="btn btn-default" v-if="user.socials && user.socials.discord">Disconnect</div>
+                <div class="btn" v-else @click="redirectSocial('discord')">Connect</div>
             </div>
             <div class="connection">
                 <i class="bi bi-twitter"></i>
                 <span>Twitter</span>
-                <div class="btn">Connect</div>
+                <div class="btn btn-default" v-if="user.socials && user.socials.twitter">Disconnect</div>
+                <div class="btn" v-else @click="redirectSocial('twitter')">Connect</div>
             </div>
             <div class="connection">
                 <i class="bi bi-facebook"></i>
                 <span>Facebook</span>
-                <div class="btn">Connect</div>
-            </div>
-            <div class="connection">
-                <i class="bi bi-youtube"></i>
-                <span>Youtube</span>
-                <div class="btn">Connect</div>
-            </div>
-            <div class="connection">
-                <i class="bi bi-twitch"></i>
-                <span>Twitch</span>
-                <div class="btn">Connect</div>
+                <div class="btn btn-default" v-if="user.socials && user.socials.facebook">Disconnect</div>
+                <div class="btn" v-else>Connect</div>
             </div>
         </div>
-
-        <!--
-            - Discord
-            - Twitter
-            - Facebook
-            - Youtube
-            - Twitch
-        -->
     </div>
 </template>
+
+<script>
+export default {
+    methods: {
+        redirectSocial(destination) {
+            location = `${this.$config.API_URL}auth/${destination}`;
+        },
+    }
+}
+</script>
 
 <style scoped>
 .title {
