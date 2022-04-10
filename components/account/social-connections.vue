@@ -14,7 +14,7 @@
                 <div class="btn btn-default" v-if="user.socials && user.socials.twitter">Disconnect</div>
                 <div class="btn" v-else @click="redirectSocial('twitter')">Connect</div>
             </div>
-            <div class="connection">
+            <div class="connection" v-if="settings.socialAuth.facebook">
                 <i class="bi bi-facebook"></i>
                 <span>Facebook</span>
                 <div class="btn btn-default" v-if="user.socials && user.socials.facebook">Disconnect</div>
