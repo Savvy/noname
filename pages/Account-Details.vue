@@ -22,7 +22,7 @@
                             <div class="sidenav-btn" v-for="(tab, index) in tabs" :key="index" 
                             :class="{ active: activeTab === tab.name }" 
                             @click="activeTab = tab.name">{{ tab.display }}</div>
-                            <div class="sidenav-btn danger">Log out</div>
+                            <div class="sidenav-btn danger" @click="logout">Log out</div>
                         </div>
                     </div>
                 </div>

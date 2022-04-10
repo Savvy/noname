@@ -8,5 +8,13 @@ export default {
     }
   },
   methods: {
+    async logout() {
+      try {
+          await this.$store.dispatch('auth/logout');
+          this.$router.push('/login');
+      } catch(error) {
+          console.log(error);
+      }
+    },
   }
 }

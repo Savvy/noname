@@ -2,13 +2,13 @@
     <div class="account-details">
         <div class="title">Social Connections</div>
         <div class="social-connections">
-            <div class="connection">
+            <div class="connection" v-if="settings.socialAuth.discord">
                 <i class="bi bi-discord"></i>
                 <span>Discord</span>
                 <div class="btn btn-default" v-if="user.socials && user.socials.discord">Disconnect</div>
                 <div class="btn" v-else @click="redirectSocial('discord')">Connect</div>
             </div>
-            <div class="connection">
+            <div class="connection" v-if="settings.socialAuth.twitter">
                 <i class="bi bi-twitter"></i>
                 <span>Twitter</span>
                 <div class="btn btn-default" v-if="user.socials && user.socials.twitter">Disconnect</div>
