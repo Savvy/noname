@@ -2,12 +2,12 @@
     <CommonSideWidget>
         <template v-slot:widget-header>Statistics</template>
         <template v-slot:widget-body>
-           <div class="stats w-100 d-flex flex-column">
-               <div class="stat">Threads: <span>{{ stats.threadCount }}</span></div>
-               <div class="stat">Posts: <span>{{ stats.postCount }}</span></div>
-               <div class="stat">Members: <span>{{ stats.memberCount }}</span></div>
-               <div class="stat">Newest Member: <nuxt-link :to='"/profile/" + stats.latestName'>{{ stats.latestName }}</nuxt-link></div>
-           </div>
+            <div class="stats w-100 d-flex flex-column">
+                <div class="stat">Threads: <span>{{ stats.threadCount }}</span></div>
+                <div class="stat">Posts: <span>{{ stats.postCount }}</span></div>
+                <div class="stat">Members: <span>{{ stats.memberCount }}</span></div>
+                <div class="stat">Newest Member: <nuxt-link :to='"/profile/" + stats.latestName'>{{ stats.latestName }}</nuxt-link></div>
+            </div>
         </template>
     </CommonSideWidget>
 </template>

@@ -24,7 +24,15 @@
                 <CommonPost :post='initialPost' :index='1' />
                 <CommonPost v-for="(post, index) in thread.posts" :key="post.postId" :post='post' :index='(index + 2)' />
             </div>
-            <client-only>
+            <div class="block">
+                <div class="pagination">
+                    <div class="btn btn-default btn-prev"><i class="bi bi-chevron-double-left"></i></div>
+                    <div class="btn btn-default btn-page">1</div>
+                    <div class="btn btn-default btn-next"><i class="bi bi-chevron-double-right"></i></div>
+                </div>
+                <nuxt-link to="/login" class="btn btn-primary" v-if="!user">Log in to post</nuxt-link>
+            </div>
+            <client-only v-if="user">
                 <CommonRichEditor v-model="post.content" />
                 <div id="submit" class="btn btn-primary" @click="create">Post Reply</div>
             </client-only>
@@ -131,5 +139,11 @@ export default {
 
 #submit {
     float: right;
+}
+
+.block {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 </style>
