@@ -17,7 +17,7 @@
                 <div class="social-login">
                     <div class="social-header">Log in with:</div>
                     <div class="btns d-flex flex-row justify-center w-100">
-                        <div class="btn facebook" v-if="settings.socialAuth.facebook" @click="redirectSocial('facebook')"><i class="bi bi-facebook"></i> Facebook</div>
+                        <!-- <div class="btn facebook" v-if="settings.socialAuth.facebook" @click="redirectSocial('facebook')"><i class="bi bi-facebook"></i> Facebook</div> -->
                         <div class="btn twitter" v-if="settings.socialAuth.twitter" @click="redirectSocial('twitter')"><i class="bi bi-twitter"></i> Twitter</div>
                         <div class="btn discord" v-if="settings.socialAuth.discord" @click="redirectSocial('discord')"><i class="bi bi-discord"></i> Discord</div>
                     </div>
