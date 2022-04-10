@@ -17,8 +17,8 @@
                 <div class="social-header">Log in with:</div>
                 <div class="btns d-flex flex-row justify-center w-100">
                     <div class="btn facebook"><i class="bi bi-facebook"></i> Facebook</div>
-                    <div class="btn twitter"><i class="bi bi-twitter"></i> Twitter</div>
-                    <div class="btn discord"><i class="bi bi-discord"></i> Discord</div>
+                    <div class="btn twitter" @click="redirectSocial('twitter')"><i class="bi bi-twitter"></i> Twitter</div>
+                    <div class="btn discord" @click="redirectSocial('discord')"><i class="bi bi-discord"></i> Discord</div>
                 </div>
             </div>
         </template>
@@ -36,6 +36,9 @@ export default {
         }
     },
     methods: {
+        redirectSocial(destination) {
+            location = `${this.$config.API_URL}auth/${destination}`;
+        },
         closeModal() {
             this.$emit('close-modal-login');
             this.$router.push('/forgot-password')
