@@ -1,17 +1,9 @@
 <template>
-    <nav class="w-100">
+    <nav>
         <div class="navigation container d-flex justify-between align-center">
             <nuxt-link to="/" class="brand">{{ $config.SITE_NAME }}</nuxt-link>
             <div class="nav">
                 <CommonSearch />
-                <!-- <ul>
-                    <li>
-                        <nuxt-link to="/">Home</nuxt-link>
-                    </li>
-                    <li>
-                        <nuxt-link to="/">Members <i class="bi bi-caret-down-fill"></i></nuxt-link>
-                    </li>
-                </ul> -->
                 <div class="user-nav d-flex flex-row align-center">
                     <div class="alerts d-flex flex-row" v-if="user">
                         <div class="dropdown-container">
@@ -64,6 +56,19 @@
                 </div>
             </div>
         </div>
+        <div class="bottom-nav container d-flex align-center justify-center">
+            <ul>
+                <li>
+                    <nuxt-link to="/"><i class="bi bi-list-ul"></i><span>Home</span></nuxt-link>
+                </li>
+                <li>
+                    <nuxt-link to="/"><i class="bi bi-clock"></i><span>Recent Posts</span></nuxt-link>
+                </li>
+                <li>
+                    <nuxt-link to="/members"><i class="bi bi-people-fill"></i><span>Members</span><!-- <i class="bi bi-caret-down-fill"></i> --></nuxt-link>
+                </li>
+            </ul>
+        </div>
     </nav>
 </template>
 
@@ -111,6 +116,9 @@ export default {
 <style scoped>
 nav {
     background-color: var(--bg-dark-color);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     margin-bottom: 30px;
 }
 
@@ -174,11 +182,18 @@ nav, .navigation {
     gap: 12px;
 }
 
+.bottom-nav {
+    background-color: var(--bg-dark-color);
+    padding: 8px 20px;
+    position: relative;
+}
+
 ul {
     list-style: none;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     flex: 1;
 }
 
@@ -187,23 +202,83 @@ ul > li > a {
     font-weight: bold;
     text-decoration: none;
     text-transform: uppercase;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+    line-height: 20px;
+}
+
+ul > li > a > span {
+    display: none;
 }
 
 ul > li > a > i {
+    font-size: 1.25em;
+    line-height: 1;
+    position: relative;
+}
+
+ul > li > a > i:not(.bi-caret-down-fill)::before {
+    position: relative;
+    z-index: 1;
+    opacity: 0.65;
+    transition: opacity 0.25s ease-in-out;
+}
+
+ul > li:hover > a > i:not(.bi-caret-down-fill)::before {
+    opacity: 1;
+}
+
+ul > li:hover > a > i:not(.bi-caret-down-fill)::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+ul > li > a > i:not(.bi-caret-down-fill)::after {
+    content: '';
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: var(--bg-color);
+    border-radius: 100px;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.25s ease-in-out;
+}
+
+ul > li > a > i.bi-caret-down-fill {
+    margin-left: 5px;
     font-size: 13px;
 }
 
 @media screen and (max-width: 720px) {
-    /* .nav {
-        position: absolute;
-        inset: 120px;
-    } */
+    .bottom-nav {
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    button {
+        position: relative;
+        z-index: 5;
+    }
+
+    ul > li > a > span {
+        display: initial;
+        margin-left: 12px;
+    }
+    
     .nav {
         justify-content: flex-end;
     }
 
     .login-btns .btn {
         font-size: 14px;
+    }
+
+    .navigation {
+        gap: 20px;
     }
 }
 </style>

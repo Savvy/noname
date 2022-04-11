@@ -69,7 +69,6 @@ i.hidden {
 .body {
     background-color: var(--body-color);
     height: 100%;
-    max-height: 10000px;
     transition: max-height 0.85s ease-in-out;
 }
 

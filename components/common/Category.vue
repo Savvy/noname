@@ -117,6 +117,7 @@ export default {
   .category {
     flex-direction: column;
     gap: 5px;
+    align-items: flex-start;
   }
 
   .category-meta {
