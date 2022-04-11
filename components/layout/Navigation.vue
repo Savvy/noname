@@ -59,13 +59,13 @@
         <div class="bottom-nav container d-flex align-center justify-center">
             <ul>
                 <li>
-                    <nuxt-link to="/"><i class="bi bi-list-ul"></i><span>Home</span></nuxt-link>
+                    <nuxt-link to="/" v-tooltip="'Home'"><i class="bi bi-list-ul"></i><span>Home</span></nuxt-link>
                 </li>
                 <li>
-                    <nuxt-link to="/"><i class="bi bi-clock"></i><span>Recent Posts</span></nuxt-link>
+                    <nuxt-link to="/" v-tooltip="'Recent Posts'"><i class="bi bi-clock"></i><span>Recent Posts</span></nuxt-link>
                 </li>
                 <li>
-                    <nuxt-link to="/members"><i class="bi bi-people-fill"></i><span>Members</span><!-- <i class="bi bi-caret-down-fill"></i> --></nuxt-link>
+                    <nuxt-link to="/members" v-tooltip="'Members'"><i class="bi bi-people-fill"></i><span>Members</span><!-- <i class="bi bi-caret-down-fill"></i> --></nuxt-link>
                 </li>
             </ul>
         </div>

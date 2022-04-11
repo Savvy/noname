@@ -3,10 +3,10 @@
     <div class="icon"><i :class="forum.icon ? forum.icon : 'bi bi-chat-dots'"></i></div>
     <div class="category align-center">
       <div class="category-info w-auto">
-        <nuxt-link :to="`/forum/${forum.slug}`" class="category-title">{{ forum.name }}</nuxt-link>
-        <!-- <div class="category-meta">
-          Topics: <span>481</span> Posts: <span>1028</span>
-        </div> -->
+        <nuxt-link :to="`/forum/${forum.slug}`" class="category-title" v-tooltip="forum.description ? forum.description : forum.name">{{ forum.name }}</nuxt-link>
+        <div class="category-meta">
+          Topics: <span>{{ topics }}</span> Posts: <span>{{ posts }}</span>
+        </div>
       </div>
       <div class="recent-thread d-flex flex-row" v-if="forum.recent_thread">
         <nuxt-link :to="'/profile/' + forum.recent_thread.user.username">
@@ -42,6 +42,14 @@ export default {
     forum: {
       type: Object,
       required: true,
+    }
+  },
+  computed: {
+    topics() {
+      return this.forum.threads.length;
+    },
+    posts() {
+      return this.forum.threads.length + this.forum.threads.reduce((prev, curr) => prev + curr.posts.length, 0);
     }
   }
 }

@@ -29,7 +29,8 @@ export default async () => {
   
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins: [
-      { src: '~/plugins/vue2-timeago' }
+      { src: '~/plugins/vue2-timeago' },
+      { src: '~/plugins/floating-vue' }
     ],
   
     // Auto import components: https://go.nuxtjs.dev/config-components

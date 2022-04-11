@@ -3,7 +3,8 @@
         <template v-slot:widget-header>Online Members <span>({{ onlineUsers.length }})</span></template>
         <template v-slot:widget-body>
             <div class="online-users d-flex" v-if="onlineUsers.length > 0">
-                <nuxt-link :to="`/profile/${online.username}`" v-for="(online, index) in onlineUsers" :key="index">
+                <nuxt-link :to="`/profile/${online.username}`" v-tooltip="online.username"
+                v-for="(online, index) in onlineUsers" :key="index">
                     <CommonAvatar :src="online.details.avatar" borderRadius="100px" height="40px" width="40px" 
                     :pointer=true :shrinkOnHover=true />
                 </nuxt-link>
