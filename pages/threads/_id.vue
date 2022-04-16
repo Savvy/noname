@@ -10,6 +10,7 @@
                 </div>
                 <div class="right d-flex flex-row">
                     <div class="btn">Share <i class="bi bi-caret-down-fill"></i></div>
+                    <div class="btn">Watch</div>
                 </div>
             </div>
             <div class="sub-header d-flex w-100" v-if="showPagination">
