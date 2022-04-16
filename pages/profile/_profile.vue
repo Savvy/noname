@@ -13,7 +13,7 @@
                         <div class="left">
                             <div class="user-name">{{ profile.username }}</div>
                             <div class="badges">
-                                <div class="badge">Admin</div>
+                                <CommonBadge :role="profile.role" />
                             </div>
                         </div>
                         <div class="right">
