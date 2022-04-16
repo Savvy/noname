@@ -5,7 +5,7 @@
       <div class="home-header d-flex flex-row justify-between align-center">
         <h1>Forum</h1>
         <div class="header-btns d-flex flex-row align-center">
-          <div class="btn btn-primary"><i class="bi bi-eye"></i> New Posts</div>
+          <nuxt-link to="/posts" class="btn btn-primary"><i class="bi bi-eye"></i> New Posts</nuxt-link>
         </div>
       </div>
       <div class="page-container">
