@@ -8,7 +8,7 @@ export default {
   computed: {
     styleObject() {
       return {
-        'background-color': this.role.badge_color,
+        'background': this.role.badge_color,
         'color': this.role.text_color,
       }
     }

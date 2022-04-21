@@ -1,6 +1,7 @@
 <template>
     <nav>
         <div class="navigation container d-flex justify-between align-center">
+            <IconBars class="menu-trigger" @click.native="toggleNav" />
             <nuxt-link to="/" class="brand">{{ $config.SITE_NAME }}</nuxt-link>
             <div class="nav">
                 <CommonSearch />
@@ -56,18 +57,25 @@
                 </div>
             </div>
         </div>
-        <div class="bottom-nav container d-flex align-center justify-center">
-            <ul>
-                <li>
-                    <nuxt-link to="/" v-tooltip="'Home'"><i class="bi bi-list-ul"></i><span>Home</span></nuxt-link>
-                </li>
-                <li>
-                    <nuxt-link to="/posts" v-tooltip="'Recent Posts'"><i class="bi bi-clock"></i><span>Recent Posts</span></nuxt-link>
-                </li>
-                <li>
-                    <nuxt-link to="/members" v-tooltip="'Members'"><i class="bi bi-people-fill"></i><span>Members</span><!-- <i class="bi bi-caret-down-fill"></i> --></nuxt-link>
-                </li>
-            </ul>
+        <div class="nav-container" :class="{ 'open': showNavigation }">
+            <div class="nav-backdrop" @click="toggleNav"></div>
+            <div class="bottom-nav container d-flex align-center justify-center">
+                <div class="menu-header">
+                    <div class="title">Navigation</div>
+                    <IconClose class="menu-close" @click.native="toggleNav" />
+                </div>
+                <ul>
+                    <li>
+                        <nuxt-link to="/" v-tooltip="'Home'"><i class="bi bi-list-ul"></i><span>Home</span></nuxt-link>
+                    </li>
+                    <li>
+                        <nuxt-link to="/posts" v-tooltip="'Recent Posts'"><i class="bi bi-clock"></i><span>Recent Posts</span></nuxt-link>
+                    </li>
+                    <li>
+                        <nuxt-link to="/members" v-tooltip="'Members'"><i class="bi bi-people-fill"></i><span>Members</span><!-- <i class="bi bi-caret-down-fill"></i> --></nuxt-link>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 </template>
@@ -81,6 +89,7 @@ export default {
             showAlerts: false,
             showConversations: false,
             showUser: false,
+            showNavigation: false,
         }
     },
     methods: {
@@ -104,6 +113,9 @@ export default {
             this.showAlerts = false;
             this.showConversations = !this.showConversations;
         },
+        toggleNav() {
+            this.showNavigation = !this.showNavigation;
+        }
     },
     computed: {
         /* user() {
@@ -114,6 +126,11 @@ export default {
 </script>
 
 <style scoped>
+
+.menu-trigger {
+    display: none;
+}
+
 nav {
     background-color: var(--bg-dark-color);
     display: flex;
@@ -209,9 +226,9 @@ ul > li > a {
     line-height: 20px;
 }
 
-ul > li > a > span {
+/* ul > li > a > span {
     display: none;
-}
+} */
 
 ul > li > a > i {
     font-size: 1.25em;
@@ -252,16 +269,67 @@ ul > li > a > i.bi-caret-down-fill {
     font-size: 13px;
 }
 
+ul > li > a > span {
+    margin-left: 6px;
+    transition: margin 0.25s ease-in-out;
+}
+
+ul > li:hover > a > span {
+    margin-left: 12px;
+}
+
+.menu-header {
+    display: none;
+}
+
+.nav-backdrop {
+    display: none;
+}
+
 @media screen and (max-width: 720px) {
+
+    .nav-backdrop {
+        display: block;
+    }
+
     .bottom-nav {
-        justify-content: center;
-        align-items: center;
+        align-items: flex-start;
+        justify-content: flex-start;
         flex-direction: column;
+        height: 100%;
+        max-width: 85%;
+        width: 260px;
+        left: 0;
+        margin: 0;
+        z-index: 10;
+        box-shadow: 2px 0 5px 0 rgb(0 0 0 / 25%);
+        display: none;
+    }
+
+    .bottom-nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .nav-container.open {
+        position: fixed;
+        overflow: hidden;
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .nav-container.open .bottom-nav {
+        display: flex;
     }
 
     button {
         position: relative;
         z-index: 5;
+    }
+
+    ul > li > a {
+        padding: 12px 0;
     }
 
     ul > li > a > span {
@@ -279,6 +347,29 @@ ul > li > a > i.bi-caret-down-fill {
 
     .navigation {
         gap: 20px;
+    }
+
+    .menu-header {
+        color: var(--light-text);
+        padding: 15px 0;
+        font-weight: bold;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .menu-trigger, .menu-close {
+        display: block;
+        color: var(--light-text);
+        width: auto;
+        height: 50px;
+        cursor: pointer;
+    }
+
+    .menu-close {
+        height: 30px;
     }
 }
 </style>

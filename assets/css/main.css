@@ -344,7 +344,7 @@ span.time, span.time .v-timeago {
     gap: 5px;
 }  
 
-.modal-overlay {
+.modal-overlay, .nav-container.open > .nav-backdrop {
     position: fixed;
     height: 100vh;
     width: 100vw;
