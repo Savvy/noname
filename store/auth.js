@@ -85,6 +85,13 @@ export const actions = {
       commit('SET_ERROR', error.response.data.message);
     });
   },
+  resendConfirmation({ commit }) {
+    return this.$axios.get('/auth/confirm/resend');
+  },
+
+  confirmUser({ commit }, { token }) {
+    return this.$axios.get(`/auth/confirm/${token}`);
+  },
   logout({ commit }) {
     return this.$axios.get('/auth/logout')
     .then(() => {
