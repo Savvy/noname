@@ -44,6 +44,7 @@ export default {
       this.verified = true;
     }).catch((error) => {
       if (!error.response.data.status) {
+        console.log(error.response.data.message);
         this.loading = false;
         this.verified = false;
       }
