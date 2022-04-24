@@ -3,7 +3,7 @@
         <div class="container">
             <div class="content">
                 <h1 class="title">Forgot Your Password?</h1>
-                <div class="alert-message">{{ $store.state.auth.flash_message }}</div>
+                <div class="alert-message" v-if="request.success">{{ request.message }}</div>
                 <form ref="resetForm" class="login-form d-flex flex-column align-center" @submit.prevent="reset">
                     <div class="input-group d-flex flex-column justify-center align-center w-100">
                         <input type="email" v-model="credentials.email" name="Email Address" placeholder="Email Address" class="input-default">
@@ -25,6 +25,7 @@ export default {
     middleware: 'guestOnly',
     data() {
         return {
+            request: {},
             credentials: {
                 email: null
             }
@@ -32,12 +33,13 @@ export default {
     },
     methods: {
         reset() {
-            this.$store.dispatch('auth/resetPassword', this.credentials).then((res) => {
-                if (res) {
+            this.$store.dispatch('auth/requestReset', this.credentials).then(({ data }) => {
+                if (data.success) {
+                    this.request = data;
                     this.$refs.resetForm.reset();
-                    this.$emit('close-modal-login');
-                    /* this.$router.push('/'); */
                 }
+            }).catch((error) => {
+
             });
         }
     }
@@ -68,7 +70,7 @@ form {
 
 .alert-message {
     text-align: center;
-    color: var(--danger-color);
+    color: var(--success-color);
     margin: 5px 0;
 }
 .input-group {

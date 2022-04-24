@@ -98,6 +98,9 @@ export const actions = {
       commit('SET_USER', null);
     });
   },
+  requestReset({ commit }, payload) {
+    return this.$axios.post(`/user/requestReset`, payload);
+  }
 };
 
 export const getters = {
