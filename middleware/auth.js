@@ -8,6 +8,11 @@ export default async function ({ route, store, redirect, $axios }) {
     let { data } = await $axios.get("/user", { withCredentials: true });
     // Commit change to page
     store.dispatch('auth/setUser', data.user);
+
+    // If page is confirmation and the user is verified, redirect to home
+    if (route.name === 'confirm-token' && data.user.status === 'Active') {
+      redirect('/');
+    }
   } catch(error) {
     if (error.response.data.message === 'not_authenticated') {
     // Redirect to login page. User needs to authenticate.

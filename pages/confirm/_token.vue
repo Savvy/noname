@@ -27,6 +27,11 @@
 <script>
 export default {
   layout: 'blank',
+  head() {
+        return {
+            title: 'Account Confirmation'
+        }
+    },
   data() {
     return {
       loading: true,
@@ -44,7 +49,6 @@ export default {
       this.verified = true;
     }).catch((error) => {
       if (!error.response.data.status) {
-        console.log(error.response.data.message);
         this.loading = false;
         this.verified = false;
       }

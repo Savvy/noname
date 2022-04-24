@@ -39,10 +39,10 @@ export default {
     data() {
         return {
             credentials: {
-                username: null,
-                email: null,
-                password: null,
-                confirmPass: null
+                username: '',
+                email: '',
+                password: '',
+                confirmPass: ''
             },
         }
     },

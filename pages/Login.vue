@@ -38,8 +38,8 @@ export default {
     data() {
         return {
             credentials: {
-                email: null,
-                password: null
+                email: '',
+                password: ''
             }
         }
     },
