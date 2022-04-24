@@ -6,7 +6,7 @@
                 <span>Your existing password:</span>
                 <div class="default-box">
                     <div class="password-box">
-                        <input :type="hide.existingPass ? 'password' : 'text'" v-model="user.existingPass" name="password" class="input-default">
+                        <input :type="hide.existingPass ? 'password' : 'text'" v-model="credentials.existingPass" name="password" class="input-default">
                         <span @click="hide.existingPass = !hide.existingPass">
                             <i class="bi" :class="getClass(hide.existingPass)"></i>
                             {{ hide.existingPass ? 'Show' : 'Hide' }}
@@ -19,7 +19,7 @@
                 <span>New password:</span>
                 <div class="default-box">
                     <div class="password-box">
-                        <input :type="hide.password ? 'password' : 'text'" v-model="user.password" name="password" class="input-default">
+                        <input :type="hide.password ? 'password' : 'text'" v-model="credentials.password" name="password" class="input-default">
                         <span @click="hide.password = !hide.password">
                             <i class="bi" :class="getClass(hide.password)"></i>
                             {{ hide.password ? 'Show' : 'Hide' }}
@@ -31,7 +31,7 @@
                 <span>Confirm new password:</span>
                 <div class="default-box">
                     <div class="password-box">
-                        <input :type="hide.confirmPass ? 'password' : 'text'" v-model="user.confirmPass" name="password" class="input-default">
+                        <input :type="hide.confirmPass ? 'password' : 'text'" v-model="credentials.confirmPass" name="password" class="input-default">
                         <span @click="hide.confirmPass = !hide.confirmPass">
                             <i class="bi" :class="getClass(hide.confirmPass)"></i>
                             {{ hide.confirmPass ? 'Show' : 'Hide' }}
@@ -58,7 +58,7 @@ export default {
                 password: true,
                 confirmPass: true,
             },
-            user: {
+            credentials: {
                 existingPass: null,
                 password: null,
                 confirmPass: null,
