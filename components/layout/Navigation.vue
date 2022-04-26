@@ -51,8 +51,8 @@
                         v-on:close-user-menu="closeUser" />
                     </div>
                     <div class="login-btns d-flex flex-row" v-else>
-                        <div class="btn" @click="$emit('show-login')">Log in</div>
-                        <div class="btn btn-primary" @click="$emit('show-register')">Register</div>
+                        <nuxt-link to="/login" class="btn">Log in</nuxt-link>
+                        <nuxt-link to="/register" class="btn btn-primary">Register</nuxt-link>
                     </div>
                 </div>
             </div>
@@ -317,6 +317,7 @@ ul > li:hover > a > span {
         overflow: hidden;
         height: 100vh;
         width: 100vw;
+        z-index: 50;
     }
 
     .nav-container.open .bottom-nav {
@@ -342,7 +343,8 @@ ul > li:hover > a > span {
     }
 
     .login-btns .btn {
-        font-size: 14px;
+        font-size: 12px;
+        padding: 10px 12px;
     }
 
     .navigation {

@@ -115,4 +115,12 @@ form {
     gap: 15px;
     margin-bottom: 15px;
 }
+
+@media screen and (max-width: 720px) {
+    .btns {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
 </style>

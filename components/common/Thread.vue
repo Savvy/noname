@@ -29,12 +29,12 @@
                 Views
             </div>
         </div> -->
-        <div class="thread-recent d-flex align-center justify-end">
+        <div class="thread-recent d-flex align-center">
             <div class="recent-info d-flex flex-column justify-end">
                 <nuxt-link :to="`/profile/${recentUser.username}`" class="user">{{ recentUser.username }}</nuxt-link>
                 <nuxt-link :to="`/profile/${recentUser.username}`" class="time"><time-ago refresh :long=true :datetime="recentPost.updatedAt"/></nuxt-link>
             </div>
-            <nuxt-link :to="`/profile/${recentUser.username}`">
+            <nuxt-link class="recent-avatar" :to="`/profile/${recentUser.username}`">
                 <CommonAvatar :src="recentUser.details.avatar" borderRadius="100px" height="40px" width="40px" :pointer=true />
             </nuxt-link>
         </div>
@@ -97,6 +97,7 @@ span.time, span.time span {
 .thread-recent {
     width: 250px;
     gap: 12px;
+    justify-content: flex-end;
 }
 
 .recent-border {
@@ -113,8 +114,21 @@ span.time, span.time span {
     text-align: right;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 720px) {
     .thread-stats {
+        display: none;
+    }
+
+    .thread-creator {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .thread-creator > .sep {
+        display: none;
+    }
+
+    .thread-recent {
         display: none;
     }
 }

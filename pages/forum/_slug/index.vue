@@ -64,6 +64,7 @@ export default {
 }
 
 .header .right {
+    font-size: 14px;
     gap: 10px;
 }
 
@@ -94,5 +95,21 @@ export default {
 
 .thread:nth-child(even) {
     background-color: var(--bg-light-1);
+}
+
+@media screen and (max-width: 720px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .header .right {
+        font-size: 14px;
+    }
+
+    .header .right .btn {
+        padding: 8px 12px;
+    }
 }
 </style>

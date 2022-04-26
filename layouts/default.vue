@@ -1,6 +1,6 @@
 <template>
     <div id="default">
-        <LayoutNavigation v-on:show-login="loginModal = !loginModal" v-on:show-register="registerModal = !registerModal" />
+        <LayoutNavigation />
         <div class="container" v-if="showConfirmationAlert">
             <div id="alert" v-if="!confirmationSent">
                 <div class="icon" :class="{ 'rotate': sendingConfirmation }">
@@ -18,15 +18,6 @@
         </div>
         <Nuxt />
         <LayoutFooter />
-        <transition name="fade">
-            <div class="modal-overlay" v-if="loginModal || registerModal" @click="closeModals"></div>
-        </transition>
-        <transition name="slide-fade">
-            <LayoutLoginModal v-show="loginModal" v-on:close-modal-login="loginModal = !loginModal"/>
-        </transition>
-        <transition name="slide-fade">
-            <LayoutRegisterModal v-show="registerModal" v-on:close-modal-register="registerModal = !registerModal"/>
-        </transition>
     </div>
 </template>
 
@@ -38,16 +29,9 @@ Vue.mixin(User);
 Vue.mixin(Settings);
 export default {
     data() {
-        return {
-            loginModal: false,
-            registerModal: false,
-        }
+        return {}
     },
     methods: {
-        closeModals() {
-            this.loginModal = false;
-            this.registerModal = false;
-        }
     },
     computed: {
         showConfirmationAlert() {

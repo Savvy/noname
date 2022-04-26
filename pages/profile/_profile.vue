@@ -46,10 +46,10 @@
                     </div>
                     <div class="tab-body">
                         <div class="tab-content" v-if="activeTab === 'latest-activity'">
-                            User has had no activity recently.
+                            <span>Latest activity feed is currently empty.</span>
                         </div>
                         <div class="tab-content" v-else-if="activeTab === 'info'">
-                            No information to display.
+                            <span>No information to provide.</span>
                         </div>
                         <div class="tab-content" v-else-if="activeTab === 'wall-posts'">
                             <div class="new-post d-flex flex-row" v-if="isAuthenticated">
@@ -62,7 +62,8 @@
                                 </div>
                             </div>
                             <div class="posts">
-                                <CommonWallPost v-for="(post, index) in wallPosts" :post=post :key="index" v-on:updateWall="updateWallPosts" />
+                                <span v-if="wallPosts">There are no messages on {{ profile.username }}'s wall yet.</span>
+                                <CommonWallPost v-for="(post, index) in wallPosts" :post=post :key="index" v-on:updateWall="updateWallPosts" v-else />
                             </div>
                         </div>
                     </div>
@@ -299,5 +300,15 @@ export default {
 
 .profile-socials a:hover > i {
     transform: translateY(-3px);
+}
+
+@media screen and (max-width: 720px) {
+    .tab-nav {
+        font-size: 14px;
+        align-items: center;
+    }
+    .tab-btn {
+        padding: 15px 20px;
+    }
 }
 </style>
