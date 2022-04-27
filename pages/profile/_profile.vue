@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                             <div class="posts">
-                                <span v-if="wallPosts">There are no messages on {{ profile.username }}'s wall yet.</span>
+                                <span v-if="wallPosts.length == 0">There are no messages on {{ profile.username }}'s wall yet.</span>
                                 <CommonWallPost v-for="(post, index) in wallPosts" :post=post :key="index" v-on:updateWall="updateWallPosts" v-else />
                             </div>
                         </div>
