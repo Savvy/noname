@@ -5,5 +5,8 @@ export default {
     },
   },
   methods: {
+    redirectSocial(destination) {
+      location = `${this.$config.API_URL}auth/${destination}`;
+    },
   }
 }

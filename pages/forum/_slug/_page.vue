@@ -15,9 +15,16 @@
                 </div>
                 <div class="sub-header d-flex w-100" v-if="showPagination">
                     <div class="pagination">
-                        <div class="btn btn-default btn-prev"><i class="bi bi-chevron-double-left"></i></div>
-                        <div class="btn btn-default btn-page">1</div>
-                        <div class="btn btn-default btn-next"><i class="bi bi-chevron-double-right"></i></div>
+                        <nuxt-link :to="`/forum/${getSlug}/${pagination.currentPage - 1}`" class="btn btn-default btn-prev"><i class="bi bi-chevron-double-left"></i></nuxt-link>
+
+                        <nuxt-link :to="`/forum/${getSlug}/${pagination.currentPage - 1}`" class="btn btn-default btn-page" v-if="pagination.currentPage > 1">{{ pagination.currentPage - 1}}</nuxt-link>
+                        <div class="btn btn-default btn-page current">{{ pagination.currentPage }}</div>
+                        <nuxt-link :to="`/forum/${getSlug}/${pagination.currentPage + 1}`" class="btn btn-default btn-page" v-if="pagination.currentPage < pagination.totalPages">{{ pagination.currentPage + 1}}</nuxt-link>
+                        <nuxt-link :to="`/forum/${getSlug}/${pagination.totalPage}`" class="btn btn-default btn-page" v-if="pagination.currentPage < (pagination.totalPages - 1)">{{ pagination.totalPages }}</nuxt-link>
+
+                        <!-- <div class="btn btn-default btn-next"  v-if="pagination.currentPage < pagination.totalPages"><i class="bi bi-chevron-double-right"></i></div> -->
+                        <!-- Instead of hiding the button, show as disabled -->
+                        <nuxt-link :to="`/forum/${getSlug}/${pagination.currentPage + 1}`" class="btn btn-default btn-next"><i class="bi bi-chevron-double-right"></i></nuxt-link>
                     </div>
                 </div>
                 <div class="body w-100" v-if="forum">
@@ -40,9 +47,12 @@ export default {
             showPagination: true
         }
     },
-    async asyncData({ $axios, route }) {
-        let { data } = await $axios.get(`/forum/${route.params.slug}`);
-        return { forum: data.result };
+    async asyncData({ $axios, route, params }) {
+        const currentPage = parseInt(params.page) || 1;
+        let { data } = await $axios.get(`/forum/${route.params.slug}/${currentPage}`);
+        return { forum: data.result, pagination: data.pagination };
+    },
+    methods: {
     },
     computed: {
         getSlug() {

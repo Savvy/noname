@@ -8,8 +8,6 @@
           </div>
           <div class="right d-flex flex-row">
               <div class="btn sort">Filters <i class="bi bi-caret-down-fill"></i></div>
-              <nuxt-link :to="`/posts`" class="btn btn-primary" v-if="user">New Post</nuxt-link>
-              <nuxt-link to="/login" class="btn btn-primary" v-else>Log in to post</nuxt-link>
           </div>
         </div>
         <div class="sub-header d-flex w-100" v-if="showPagination">

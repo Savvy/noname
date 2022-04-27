@@ -19,9 +19,8 @@
                 <div class="social-login">
                     <div class="social-header">Register an account with:</div>
                     <div class="btns d-flex flex-row justify-center w-100">
-                        <div class="btn facebook"><i class="bi bi-facebook"></i> Facebook</div>
-                        <div class="btn twitter"><i class="bi bi-twitter"></i> Twitter</div>
-                        <div class="btn discord"><i class="bi bi-discord"></i> Discord</div>
+                        <div class="btn twitter" v-if="authEnabled('twitter')" @click="redirectSocial('twitter')"><i class="bi bi-twitter"></i> Twitter</div>
+                        <div class="btn discord" v-if="authEnabled('discord')" @click="redirectSocial('discord')"><i class="bi bi-discord"></i> Discord</div>
                     </div>
                 </div>
             </div>
@@ -47,6 +46,9 @@ export default {
         }
     },
     methods: {
+        authEnabled(auth) {
+            return this.settings?.socialAuth[auth];
+        },
         register() {
             if (this.credentials.username.length < this.settings.minUsernameLength) {
                 // TODO: Alert user of minimum username length

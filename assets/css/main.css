@@ -325,6 +325,10 @@ span.sep {
     border-radius: 0;
 }
 
+.pagination .btn-page.current {
+    background-color: var(--bg-light-10);
+}
+
 .pagination .btn-next {
     border-radius: 0 5px 5px 0;
 }
