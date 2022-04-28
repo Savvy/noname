@@ -93,7 +93,11 @@ export default {
 }
 
 .recent-thread {
+  width: 280px;
   gap: 12px;
+  white-space: nowrap;
+  word-wrap: normal;
+  text-overflow: ellipsis;
 }
 
 .thread-info {
@@ -102,11 +106,12 @@ export default {
 
 .thread-info > .thread-title {
   font-weight: 500;
+  font-size: 14px;
   color: var(--light-text);
 }
 
 .thread-meta {
-  font-size: 0.85rem;
+  font-size: 14px;
   display: flex;
   align-items: center;
 }
