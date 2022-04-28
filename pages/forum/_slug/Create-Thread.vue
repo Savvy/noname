@@ -4,7 +4,7 @@
             <div class="header d-flex justify-between align-center w-100">
                 <div class="left">
                     <div class="header-title">Create Thread</div>
-                    <div class="header-description">Thread in <nuxt-link to="/category">{{ forum.name }}</nuxt-link></div>
+                    <div class="header-description">Thread in <nuxt-link :to="`/forum/${forum.slug}`">{{ forum.name }}</nuxt-link></div>
                 </div>
                 <div class="right d-flex flex-row">
                 </div>

@@ -15,22 +15,16 @@
             </div>
             <div class="sub-header d-flex w-100" v-if="showPagination">
                 <div class="pagination">
-                    <div class="btn btn-default btn-prev"><i class="bi bi-chevron-double-left"></i></div>
-                    <div class="btn btn-default btn-page">1</div>
-                    <div class="btn btn-default btn-next"><i class="bi bi-chevron-double-right"></i></div>
+                    <CommonPagination :url="`/threads/${thread.threadId}/`" :pagination=pagination />
                 </div>
             </div>
             <div class="body w-100">
                 <!-- <CommonPost avatar="https://i.imgur.com/rzuOBa8.png" name="Cyber" role="Admin" :threadAuthor=true postIndex=1 /> -->
-                <CommonPost :post='initialPost' :index='1' />
+                <CommonPost :post='initialPost' :index='1' v-if="pagination.currentPage == 1" />
                 <CommonPost v-for="(post, index) in thread.posts" :key="post.postId" :post='post' :index='(index + 2)' />
             </div>
             <div class="block">
-                <div class="pagination">
-                    <div class="btn btn-default btn-prev"><i class="bi bi-chevron-double-left"></i></div>
-                    <div class="btn btn-default btn-page">1</div>
-                    <div class="btn btn-default btn-next"><i class="bi bi-chevron-double-right"></i></div>
-                </div>
+                <CommonPagination :url="`/threads/${thread.threadId}/`" :pagination=pagination />
                 <nuxt-link to="/login" class="btn btn-primary" v-if="!user">Log in to post</nuxt-link>
             </div>
             <client-only v-if="user">
@@ -45,15 +39,20 @@
 export default {
     head() {
         return {
-            title: this.thread.title
+            title: this.thread.title,
         }
     },
-    async asyncData({ $axios, route, redirect }) {
-        if (!route.params.id) {
+    async asyncData({ $axios, redirect, params }) {
+        if (!params.id) {
             redirect('/404')
         }
-        let { data } = await $axios.get(`/thread/${route.params.id}`);
-        return { thread: data.result };
+        const currentPage = parseInt(params.page) || 1;
+        let { data } = await $axios.get(`/thread/${params.id}/${currentPage}`);
+        if (params.page > data.pagination.totalPages) {
+            redirect(`/threads/${params.id}/${data.pagination.totalPages}`);
+            return;
+        }
+        return { thread: data.result, pagination: data.pagination };
     },
     data() {
         return {
