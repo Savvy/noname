@@ -7,12 +7,10 @@ export default {
     props: {
         height: {
             type: String,
-            default: '60px',
             required: false,
         },
         width: {
             type: String,
-            default: '60px',
             required: false,
         },
         src: {
@@ -37,9 +35,13 @@ export default {
     },
     computed: {
         styleBinding() {
+            let size = {};
+            if (this.height && this.width) {
+                size.height = this.height;
+                size.width = this.width;
+            }
             return {
-                height: this.height,
-                width: this.width,
+                ...size,
                 backgroundImage: `url(${this.src})`,
                 borderRadius: this.borderRadius,
                 cursor: this.pointer ? 'pointer' : 'auto'

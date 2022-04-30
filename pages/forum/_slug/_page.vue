@@ -8,13 +8,13 @@
                         <div class="header-description">{{ forum.description }}</div>
                     </div>
                     <div class="right d-flex flex-row">
-                        <div class="btn sort">Sort By <i class="bi bi-caret-down-fill"></i></div>
                         <nuxt-link :to="`/forum/${getSlug}/create-thread`" class="btn btn-primary" v-if="user">New Post</nuxt-link>
                         <nuxt-link to="/login" class="btn btn-primary" v-else>Log in to post</nuxt-link>
                     </div>
                 </div>
                 <div class="sub-header d-flex w-100" v-if="showPagination">
                     <CommonPagination :url="`/forum/${getSlug}/`" :pagination=pagination />
+                    <div class="btn sort">Sort By <i class="bi bi-caret-down-fill"></i></div>
                 </div>
                 <div class="body w-100" v-if="forum">
                     <CommonThread v-for="thread in forum.threads" :thread="thread" :recent_post="thread.posts[0]" :recent_thread="forum.recent_thread" :key="thread.slug" />
@@ -58,6 +58,7 @@ export default {
 
 <style scoped>
 .sub-header {
+    justify-content: space-between;
     margin: 10px 0;
 }
 

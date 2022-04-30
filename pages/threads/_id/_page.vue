@@ -4,19 +4,20 @@
             <div class="header d-flex justify-between align-center w-100">
                 <div class="left">
                     <div class="header-title">{{ thread.title }}</div>
-                    <div class="header-description">Thread in <nuxt-link :to="`/forum/${thread.forum.slug}`">{{ thread.forum.name }}</nuxt-link> started by 
-                    <nuxt-link :to="`/profile/${thread.user.username}`">{{ thread.user.username }}</nuxt-link>, 
-                    <span class="time"><time-ago refresh :long=true :datetime="thread.createdAt"/></span></div>
+                    <div class="header-description">
+                        <ul>
+                            <li v-tooltip="'Thread started in ' + thread.forum.name"><i class="bi bi-chat"></i> <nuxt-link :to="`/forum/${thread.forum.slug}`">{{ thread.forum.name }}</nuxt-link></li>
+                            <li v-tooltip="'Thread Starter'"><i class="bi bi-person"></i> <nuxt-link :to="`/profile/${thread.user.username}`">{{ thread.user.username }}</nuxt-link></li>
+                            <li v-tooltip="'Start Date'"><i class="bi bi-clock"></i> <span class="time"><time-ago refresh :long=true :datetime="thread.createdAt"/></span></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="right d-flex flex-row">
-                    <div class="btn">Share <i class="bi bi-caret-down-fill"></i></div>
-                    <div class="btn">Watch</div>
+                    <div class="btn btn-primary watch-btn" v-if="isAuthenticated">Watch</div>
                 </div>
             </div>
             <div class="sub-header d-flex w-100" v-if="showPagination">
-                <div class="pagination">
-                    <CommonPagination :url="`/threads/${thread.threadId}/`" :pagination=pagination />
-                </div>
+                <CommonPagination :url="`/threads/${thread.threadId}/`" :pagination=pagination />
             </div>
             <div class="body w-100">
                 <!-- <CommonPost avatar="https://i.imgur.com/rzuOBa8.png" name="Cyber" role="Admin" :threadAuthor=true postIndex=1 /> -->
@@ -125,12 +126,22 @@ export default {
     opacity: 0.75;
 }
 
+.header-description > ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
 .btn i {
     margin-right: 0;
 }
 
 .sub-header {
     margin: 10px 0;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .editor-container {
@@ -145,5 +156,9 @@ export default {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
+}
+
+span.time, span.time .v-timeago {
+    color: var(--light-text);
 }
 </style>
