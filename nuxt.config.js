@@ -45,6 +45,8 @@ export default async () => {
     modules: [
       // https://go.nuxtjs.dev/axios
       '@nuxtjs/axios',
+      // https://github.com/nicolasbeauvais/vue-social-sharing
+      'vue-social-sharing/nuxt',
     ],
   
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -69,6 +71,7 @@ export default async () => {
     publicRuntimeConfig: {
       SITE_NAME: process.env.SITE_NAME || 'NoName',
       API_URL: process.env.API_URL || 'http://localhost:5000/',
+      URL: process.env.URL || 'https://noname.red/',
       googleAnalytics: {
         id: process.env.GOOGLE_ANALYTICS_ID
       }

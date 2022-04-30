@@ -30,6 +30,8 @@ View [Demo here](https://noname.red)
 Installing the frontend is as simple as following the official deployment guide for Nuxt.JS [here](https://nuxtjs.org/deployments/) and ensuring proper setup of environment variable(s) below.
 
 ``
+SITE_NAME=NoName
+URL=https://localhost:3000/
 API_URL=http://localhost:5000/
 ``
 

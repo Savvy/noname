@@ -3,10 +3,19 @@
         <template v-slot:widget-header>Share this site</template>
         <template v-slot:widget-body>
             <div class="share-icons d-flex flex-row w-100">
-                <a class="icon" v-for="(social, index) in settings.socials" :key="index" 
-                :href="social.url" :target="social.target ? social.target : ''">
-                    <i :class="social.icon"></i>
-                </a>
+                <ShareNetwork
+                    v-for="network in settings.socials.networks"
+                    :network="network.network"
+                    :key="network.network"
+                    :style="{backgroundColor: network.bgColor, color: network.color}"
+                    :url="replaceAll(settings.socials.sharing.url)"
+                    :title="replaceAll(settings.socials.sharing.title)"
+                    :description="replaceAll(settings.socials.sharing.description)"
+                    :hashtags="settings.socials.sharing.hashtags"
+                    :twitterUser="settings.socials.sharing.twitterUser"
+                >
+                <i :class="network.icon"></i>
+                </ShareNetwork>
             </div>
         </template>
     </CommonSideWidget>
@@ -16,15 +25,12 @@
 export default {
     data() {
         return {
-            twitter: 'https://twitter.com/intent/tweet?text=',
-            facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
-            email: '',
         }
     },
     methods: {
-        openWindow(url, width, height) {
-            
-        }
+        replaceAll(stringName) {
+            return stringName.replace('$siteName', this.$config.SITE_NAME).replace('$siteUrl', this.$config.URL);
+        }  
     }
 }
 </script>
@@ -33,8 +39,11 @@ export default {
 
 .share-icons {
     gap: 10px;
+    width: 100%;
+    flex-wrap: wrap;
 }
-.icon {
+
+a[class^="share-network-"] {
     height: 20px;
     width: 20px;
     background-color: var(--bg-color);
@@ -45,12 +54,11 @@ export default {
     cursor: pointer;
 }
 
-.icon:hover {
+a[class^="share-network-"]:hover {
     opacity: 0.75;
 }
 
-.icon i {
-    color: var(--primary-color);
+a[class^="share-network-"] .bi {
     font-size: 16px;
     position: absolute;
     top: 50%;
