@@ -49,7 +49,7 @@ export default {
       return this.forum.threads.length;
     },
     posts() {
-      return this.forum.threads.length + this.forum.threads.reduce((prev, curr) => prev + curr.posts.length, 0);
+      return this.forum.threads.reduce((prev, curr) => prev + curr.posts.length, 0);
     }
   }
 }
