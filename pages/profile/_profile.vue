@@ -310,5 +310,21 @@ export default {
     .tab-btn {
         padding: 15px 20px;
     }
+
+    .profile-stats {
+        padding: 10px 40px 10px 150px;
+    }
+
+    .profile-stats .right {
+        display: none;
+    }
+
+    .profile-header .avatar {
+        left: 10px;
+    }
+
+    .new-post .avatar {
+        display: none;
+    }
 }
 </style>

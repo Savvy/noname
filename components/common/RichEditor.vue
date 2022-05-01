@@ -167,4 +167,10 @@ export default {
 .btn.btn-primary#submit {
     align-self: flex-end;
 }
+
+@media screen and (max-width: 720px) {
+    .editor-nav {
+        flex-wrap: wrap;
+    }
+}
 </style>
