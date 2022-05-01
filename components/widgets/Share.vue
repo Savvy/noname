@@ -2,7 +2,7 @@
     <CommonSideWidget>
         <template v-slot:widget-header>Share this site</template>
         <template v-slot:widget-body>
-            <div class="share-icons d-flex flex-row w-100">
+            <div class="share-icons d-flex flex-row w-100" v-if="settings.socials.networks">
                 <ShareNetwork
                     v-for="network in settings.socials.networks"
                     :network="network.network"
