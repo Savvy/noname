@@ -2,6 +2,8 @@
     <div class="password-security">
         <div class="title">Password & Security</div>
         <form ref="changePassword">
+            <div class="alert-message error" v-if="message.error">{{ message.error }}</div>
+            <div class="alert-message success" v-if="message.success">{{ message.success }}</div>
             <div class="input-group align-center">
                 <span>Your existing password:</span>
                 <div class="default-box">
@@ -25,8 +27,12 @@
                             {{ hide.password ? 'Show' : 'Hide' }}
                         </span>
                     </div>
+                    <!-- <password-meter :password="credentials.password" /> -->
                     <password
                         v-model="credentials.password"
+                        strengthMeterClass="strength-meter"
+                        :strengthMeterFillClass="`strength-meter-fill ${getStrengthClass}`"
+                        @score="updateScore"
                         :strength-meter-only="true"
                     />
                 </div>
@@ -54,11 +60,17 @@
 </template>
 
 <script>
+/* import passwordMeter from "vue-simple-password-meter"; */
 import Password from 'vue-password-strength-meter'
 export default {
-    components: { Password },
+    components: { Password, /* passwordMeter */ },
     data() {
         return {
+            score: 0,
+            message: {
+                error: '',
+                success: '',
+            },
             hide: {
                 currentPassword: true,
                 password: true,
@@ -74,21 +86,66 @@ export default {
     methods: {
         changePassword(event) {
             event.preventDefault();
-            const credentials = this.credentials;
-            if (credentials.password !== credentials.confirmPass) {
-                console.log('passwords do not match');
+
+            if (!this.passwordCheck()) {
                 return;
             }
-            this.$store.dispatch('auth/changePassword', credentials).then((res) => {
+
+            this.$store.dispatch('auth/changePassword', this.credentials).then((res) => {
                 if (res) {
                     this.$refs.changePassword.reset();
                 }
             }).catch((error) => {
-                console.log(error.response.data);
+                this.message.error = error.response.data.message;
             });
+        },
+        passwordCheck() {
+            let returnVal = true;
+            if (!this.credentials.currentPassword || !this.credentials.password || !this.credentials.confirmPass) {
+                this.message.error = 'password_fields_empty';
+                returnVal = false;
+            } else if (this.credentials.password !== this.credentials.confirmPass) {
+                this.message.error = 'passwords_must_match';
+                returnVal = false;
+            } else if (this.credentials.password.length < this.settings.minPasswordLength) {
+                // TODO: Alert user of minimum password length
+                this.message.error = 'password_too_short';
+                returnVal = false;
+            } else if (this.credentials.password.length > this.settings.maxPasswordLength) {
+                // TODO: Alert user of maximum password length
+                this.message.error = 'password_too_long';
+                returnVal = false;
+            }
+            if (!returnVal) {
+                setTimeout(() => {
+                    this.message.error = '';
+                }, 3000);
+            }
+            return returnVal;
+        },
+        updateScore(score) {
+            this.score = score;
         }
     },
     computed: {
+        getStrengthClass() {
+            let strengthClass = 'terrible';
+            switch(this.score) {
+                case 1:
+                    strengthClass = 'bad'
+                    break;
+                case 2: 
+                    strengthClass = 'weak'
+                    break;
+                case 3:
+                    strengthClass = 'good'
+                    break;
+                case 4:
+                    strengthClass = 'strong'
+                    break;
+            }
+            return strengthClass;
+        },
         getClass() {
             return (shouldHide) => {
                 return shouldHide ? 'bi-eye' : 'bi-eye-slash'

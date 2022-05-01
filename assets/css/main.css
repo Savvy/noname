@@ -380,6 +380,53 @@ span.time, span.time .v-timeago {
     color: var(--danger-color);
 }
 
+div > .Password {
+    max-width: 100%;
+    width: 100%;
+}
+
+div > .strength-meter {
+    background: #100e2d;
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+div > .strength-meter:after,
+div > .strength-meter:before {
+    border-color: #221f42;
+}
+
+.strength-meter-fill {
+    width: 0%;
+    height: 100%;
+    transition: width 0.5s ease-in-out;
+}
+
+.strength-meter-fill.terrible {
+    width: 0%;
+    background: var(--danger-color);
+}
+
+.strength-meter-fill.bad {
+    width: 25%;
+    background: var(--danger-color);
+}
+
+.strength-meter-fill.weak {
+    width: 50%;
+    background: #f9ca24;
+}
+
+.strength-meter-fill.good {
+    width: 75%;
+    background: #badc58;
+}
+.strength-meter-fill.strong {
+    width: 100%;
+    background: var(--success-color);
+}
+
 @media screen and (max-width: 720px) {
     .brand {
         font-size: 24px;
