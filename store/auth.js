@@ -101,6 +101,12 @@ export const actions = {
   changePassword({ commit }, payload) {
     return this.$axios.post(`/user/changePassword`, payload);
   },
+  changeUsername({ commit }, payload) {
+    return this.$axios.post(`/user/update/username`, payload);
+  },
+  changeEmail({ commit }, payload) {
+    return this.$axios.post(`/user/update/email`, payload);
+  },
   requestReset({ commit }, payload) {
     return this.$axios.post(`/user/requestReset`, payload);
   }

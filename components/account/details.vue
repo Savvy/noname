@@ -9,12 +9,14 @@
   <div class="account-details">
     <div class="title">Account Details</div>
     <form>
+      <div class="alert-message error" v-if="message.error">{{ message.error }}</div>
+      <div class="alert-message success" v-if="message.success">{{ message.success }}</div>
       <div class="input-group align-center">
         <span>Username:</span>
         <div class="default-box">
           <span v-if="!edit.username">{{ user.username }}</span>
           <input type="text" v-model="credentials.username" name="username" class="input-default" v-else>
-          <div class="btn btn-primary" v-if="edit.username">Save</div>
+          <div class="btn btn-primary" v-if="edit.username" @click="changeUsername">Save</div>
           <div class="btn btn-default" @click="edit.username = !edit.username">{{ edit.username ? 'Cancel' : 'Change' }}</div>
         </div>
       </div>
@@ -23,7 +25,7 @@
         <div class="default-box">
           <span v-if="!edit.email">{{ user.email }}</span>
           <input type="email" v-model="credentials.email" name="email" class="input-default" v-else>
-          <div class="btn btn-primary" v-if="edit.email">Save</div>
+          <div class="btn btn-primary" v-if="edit.email" @click="changeEmail">Save</div>
           <div class="btn btn-default" @click="edit.email = !edit.email">{{ edit.email ? 'Cancel' : 'Change' }}</div>
         </div>
       </div>
@@ -75,6 +77,10 @@
 export default {
   data() {
     return {
+      message: {
+        error: '',
+        success: '',
+      },
       credentials: {
         username: '',
         email: '',
@@ -85,7 +91,44 @@ export default {
       }
     };
   },
-  methods: {},
+  methods: {
+    changeUsername() {
+      if (this.credentials.username.length < this.settings.minUsernameLength) {
+        this.message.error = 'username_too_short';
+        return;
+      }
+      if (this.credentials.username.length > this.settings.maxUsernameLength) {
+          this.message.error = 'username_too_long';
+          return;
+      }
+      this.$store.dispatch('auth/changeUsername', { username: this.credentials.username }).then((res) => {
+        if (res) {
+          this.message.success = res.data.message;
+          this.credentials.username = '';
+          this.edit.username = false;
+        }
+      }).catch((error) => {
+        console.log(error.response.data.message);
+        this.message.error = error.response.data.message;
+      });
+    },
+    changeEmail() {
+      if (!this.credentials.email) {
+        this.message.error = 'email_field_empty';
+        return;
+      }
+      this.$store.dispatch('auth/changeEmail', { email: this.credentials.email }).then((res) => {
+        if (res) {
+          this.message.success = res.data.message;
+          this.credentials.email = '';
+          this.edit.email = false;
+        }
+      }).catch((error) => {
+        console.log(error.response.data.message);
+        this.message.error = error.response.data.message;
+      });
+    }
+  },
 };
 </script>
 
