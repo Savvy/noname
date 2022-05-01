@@ -12,15 +12,19 @@
       <div class="input-group align-center">
         <span>Username:</span>
         <div class="default-box">
-          {{ user.username }}
-          <div class="btn btn-default">Change</div>
+          <span v-if="!edit.username">{{ user.username }}</span>
+          <input type="text" v-model="credentials.username" name="username" class="input-default" v-else>
+          <div class="btn btn-primary" v-if="edit.username">Save</div>
+          <div class="btn btn-default" @click="edit.username = !edit.username">{{ edit.username ? 'Cancel' : 'Change' }}</div>
         </div>
       </div>
       <div class="input-group align-center">
         <span>Email:</span>
         <div class="default-box">
-          {{ user.email }}
-          <div class="btn btn-default">Change</div>
+          <span v-if="!edit.email">{{ user.email }}</span>
+          <input type="email" v-model="credentials.email" name="email" class="input-default" v-else>
+          <div class="btn btn-primary" v-if="edit.email">Save</div>
+          <div class="btn btn-default" @click="edit.email = !edit.email">{{ edit.email ? 'Cancel' : 'Change' }}</div>
         </div>
       </div>
       <div class="input-group disclaimer">
@@ -70,7 +74,16 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      credentials: {
+        username: '',
+        email: '',
+      },
+      edit: {
+        username: false,
+        email: false,
+      }
+    };
   },
   methods: {},
 };
@@ -110,6 +123,10 @@ form {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.default-box .btn {
+  flex: 1 0 auto;
 }
 
 label {
