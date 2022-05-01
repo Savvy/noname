@@ -1,15 +1,15 @@
 <template>
     <div class="password-security">
         <div class="title">Password & Security</div>
-        <form>
+        <form ref="changePassword">
             <div class="input-group align-center">
                 <span>Your existing password:</span>
                 <div class="default-box">
                     <div class="password-box">
-                        <input :type="hide.existingPass ? 'password' : 'text'" v-model="credentials.existingPass" name="password" class="input-default">
-                        <span @click="hide.existingPass = !hide.existingPass">
-                            <i class="bi" :class="getClass(hide.existingPass)"></i>
-                            {{ hide.existingPass ? 'Show' : 'Hide' }}
+                        <input :type="hide.currentPassword ? 'password' : 'text'" v-model="credentials.currentPassword" name="password" class="input-default">
+                        <span @click="hide.currentPassword = !hide.currentPassword">
+                            <i class="bi" :class="getClass(hide.currentPassword)"></i>
+                            {{ hide.currentPassword ? 'Show' : 'Hide' }}
                         </span>
                     </div>
                     <span>You must verify your identity before you can change your password.</span>
@@ -25,6 +25,10 @@
                             {{ hide.password ? 'Show' : 'Hide' }}
                         </span>
                     </div>
+                    <password
+                        v-model="credentials.password"
+                        :strength-meter-only="true"
+                    />
                 </div>
             </div>
             <div class="input-group align-center">
@@ -39,7 +43,7 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary align-self-center">Save</button>
+            <button class="btn btn-primary btn-submit align-self-center" @click="changePassword">Save</button>
         </form>
         <!--
             - Current Password
@@ -50,19 +54,38 @@
 </template>
 
 <script>
+import Password from 'vue-password-strength-meter'
 export default {
+    components: { Password },
     data() {
         return {
             hide: {
-                existingPass: true,
+                currentPassword: true,
                 password: true,
                 confirmPass: true,
             },
             credentials: {
-                existingPass: null,
+                currentPassword: null,
                 password: null,
                 confirmPass: null,
             }
+        }
+    },
+    methods: {
+        changePassword(event) {
+            event.preventDefault();
+            const credentials = this.credentials;
+            if (credentials.password !== credentials.confirmPass) {
+                console.log('passwords do not match');
+                return;
+            }
+            this.$store.dispatch('auth/changePassword', credentials).then((res) => {
+                if (res) {
+                    this.$refs.changePassword.reset();
+                }
+            }).catch((error) => {
+                console.log(error.response.data);
+            });
         }
     },
     computed: {
@@ -143,7 +166,7 @@ label {
     user-select: none;
 }
 
-button[type='submit'] {
+.btn-submit {
     font-size: 16px;
     min-width: 120px;
 }

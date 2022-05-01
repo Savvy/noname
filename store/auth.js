@@ -98,6 +98,9 @@ export const actions = {
       commit('SET_USER', null);
     });
   },
+  changePassword({ commit }, payload) {
+    return this.$axios.post(`/user/changePassword`, payload);
+  },
   requestReset({ commit }, payload) {
     return this.$axios.post(`/user/requestReset`, payload);
   }
