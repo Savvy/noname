@@ -21,8 +21,8 @@
             </div>
             <div class="body w-100">
                 <!-- <CommonPost avatar="https://i.imgur.com/rzuOBa8.png" name="Cyber" role="Admin" :threadAuthor=true postIndex=1 /> -->
-                <CommonPost :post='initialPost' :index='1' v-if="pagination.currentPage == 1" />
-                <CommonPost v-for="(post, index) in thread.posts" :key="post.postId" :post='post' :index='(index + 2)' />
+                <!-- <CommonPost :post='initialPost' :index='1' v-if="pagination.currentPage == 1" /> -->
+                <CommonPost v-for="(post, index) in thread.posts" :key="post.postId" :post='post' :postNum='getPostNum(index)' />
             </div>
             <div class="block">
                 <CommonPagination :url="`/threads/${thread.threadId}/`" :pagination=pagination />
@@ -43,17 +43,21 @@ export default {
             title: this.thread.title,
         }
     },
-    async asyncData({ $axios, redirect, params }) {
+    async asyncData({ $axios, redirect, params, error }) {
         if (!params.id) {
-            redirect('/404')
+            return error({ statusCode: 404, message: 'thread_not_found' });
         }
         const currentPage = parseInt(params.page) || 1;
-        let { data } = await $axios.get(`/thread/${params.id}/${currentPage}`);
-        if (params.page > data.pagination.totalPages) {
-            redirect(`/threads/${params.id}/${data.pagination.totalPages}`);
-            return;
+        try {
+            let { data } = await $axios.get(`/thread/${params.id}/${currentPage}`);
+            if (params.page > data.pagination.totalPages) {
+                redirect(`/threads/${params.id}/${data.pagination.totalPages}`);
+                return;
+            }
+            return { thread: data.result, pagination: data.pagination };
+        } catch (err) {
+            return error({ statusCode: 404, message: err.response.data.message });
         }
-        return { thread: data.result, pagination: data.pagination };
     },
     data() {
         return {
@@ -80,6 +84,15 @@ export default {
         async populate() {
             let { data } = await this.$axios.get(`/thread/${this.$route.params.id}`);
             this.thread = data.result;
+        },
+        getPostNum(index) {
+            if (this.pagination.currentPage == 1) {
+                return (index + 1);
+            }
+
+            const current = this.pagination.currentPage;
+            const perPage = this.pagination.perPage;
+            return ((current -1) * perPage) + (index + 1);
         },
         create() {
             if (this.creation_success) return;

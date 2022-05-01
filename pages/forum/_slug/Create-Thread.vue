@@ -53,21 +53,25 @@ export default {
             if (this.creation_success) return;
             if (this.thread.content.length < this.settings.minPostLength) {
                 // TODO: Alert user of minimum post char count
+                console.log('min post not met')
                 return;
             }
 
             if (this.thread.content.length > this.settings.maxPostLength) {
                 // TODO: Alert user of maximum post char count
+                console.log('max post not met')
                 return;
             }
 
             if (this.thread.title.length < this.settings.minTitleLength) {
                 // TODO: Alert user of minimum title char count
+                console.log('min title not met')
                 return;
             }
 
-            if (this.thread.title.length < this.settings.maxTitleLength) {
+            if (this.thread.title.length > this.settings.maxTitleLength) {
                 // TODO: Alert user of maximum title char count
+                console.log('max title not met')
                 return;
             }
 

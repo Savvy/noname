@@ -15,7 +15,7 @@
                 <div class="actions">
                     <nuxt-link v-tooltip="'Share this thread'" to="/"><i class="bi bi-share"></i></nuxt-link>
                     <nuxt-link v-tooltip="'Bookmark thread'" to="/"><i class="bi bi-bookmark"></i></nuxt-link>
-                    <nuxt-link v-tooltip="'Jump to'" :to='`#post-${index}`' :id='`post-${index}`' class="post-num">#{{ index }}</nuxt-link>
+                    <nuxt-link v-tooltip="'Jump to'" :to='`#post-${post.postId}`' :id='`post-${post.postId}`' class="post-num">#{{ postNum }}</nuxt-link>
                 </div>
             </div>
             <div class="post-body" v-html="post.content">
@@ -32,10 +32,9 @@ export default {
             type: Object,
             required: true
         },
-        index: {
+        postNum: {
             type: Number,
             required: true,
-            default: 999
         }
     }
 }
