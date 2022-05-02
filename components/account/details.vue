@@ -133,6 +133,11 @@ export default {
 </script>
 
 <style scoped>
+.account-details {
+    width: 100%;
+    height: 100%;
+}
+
 .title {
   font-weight: 500;
   font-size: 1.2rem;
@@ -154,6 +159,10 @@ form {
 
 .input-group > span {
   min-width: 120px;
+}
+
+.input-group > .editor-container {
+  flex: 1;
 }
 
 .change-avatar span {

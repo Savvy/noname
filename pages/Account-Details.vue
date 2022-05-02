@@ -82,11 +82,11 @@ export default {
 
 .sidebar {
     background-color: var(--bg-dark-color);
-    /* padding: 15px; */
     border-radius: var(--border-radius);
     font-weight: 400;
     height: 100%;
-    min-width: 325px;
+    max-width: 325px;
+    width: 100%;
     overflow: hidden;
 }
 
@@ -104,7 +104,6 @@ export default {
 .sidenav-links {
     display: flex;
     flex-direction: column;
-    /* gap: 5px; */
 }
 
 .nav-title,
