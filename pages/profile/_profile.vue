@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                             <div class="posts">
-                                <span v-if="wallPosts.length == 0">There are no messages on {{ profile.username }}'s wall yet.</span>
+                                <span class="empty" v-if="wallPosts.length == 0">There are no messages on {{ profile.username }}'s wall yet.</span>
                                 <CommonWallPost v-for="(post, index) in wallPosts" :post=post :key="index" v-on:updateWall="updateWallPosts" v-else />
                             </div>
                         </div>
@@ -300,6 +300,12 @@ export default {
 
 .profile-socials a:hover > i {
     transform: translateY(-3px);
+}
+
+.posts .empty {
+    padding: 10px;
+    background-color: var(--body-color);
+    border-radius: var(--border-radius);
 }
 
 @media screen and (max-width: 720px) {
