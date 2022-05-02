@@ -21,20 +21,21 @@
                 <span>New password:</span>
                 <div class="default-box">
                     <div class="password-box">
-                        <input :type="hide.password ? 'password' : 'text'" v-model="credentials.password" name="password" class="input-default">
+                        <div class="password-group">
+                            <input :type="hide.password ? 'password' : 'text'" v-model="credentials.password" name="password" class="input-default">
+                            <password
+                                v-model="credentials.password"
+                                strengthMeterClass="strength-meter"
+                                strengthMeterFillClass="strength-meter-fill"
+                                @score="updateScore"
+                                :strength-meter-only="true"
+                            />
+                        </div>
                         <span @click="hide.password = !hide.password">
                             <i class="bi" :class="getClass(hide.password)"></i>
                             {{ hide.password ? 'Show' : 'Hide' }}
                         </span>
                     </div>
-                    <!-- <password-meter :password="credentials.password" /> -->
-                    <password
-                        v-model="credentials.password"
-                        strengthMeterClass="strength-meter"
-                        :strengthMeterFillClass="`strength-meter-fill ${getStrengthClass}`"
-                        @score="updateScore"
-                        :strength-meter-only="true"
-                    />
                 </div>
             </div>
             <div class="input-group align-center">
@@ -60,10 +61,9 @@
 </template>
 
 <script>
-/* import passwordMeter from "vue-simple-password-meter"; */
 import Password from 'vue-password-strength-meter'
 export default {
-    components: { Password, /* passwordMeter */ },
+    components: { Password },
     data() {
         return {
             score: 0,
@@ -128,24 +128,6 @@ export default {
         }
     },
     computed: {
-        getStrengthClass() {
-            let strengthClass = 'terrible';
-            switch(this.score) {
-                case 1:
-                    strengthClass = 'bad'
-                    break;
-                case 2: 
-                    strengthClass = 'weak'
-                    break;
-                case 3:
-                    strengthClass = 'good'
-                    break;
-                case 4:
-                    strengthClass = 'strong'
-                    break;
-            }
-            return strengthClass;
-        },
         getClass() {
             return (shouldHide) => {
                 return shouldHide ? 'bi-eye' : 'bi-eye-slash'
@@ -201,12 +183,11 @@ label {
 .password-box {
     width: 100%;
     display: flex;
+    gap: 5px;
 }
 
 .password-box > input {
     flex: 1;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
 }
 
 .password-box > span {
@@ -221,6 +202,7 @@ label {
     color: var(--primary-color);
     cursor: pointer;
     user-select: none;
+    border-radius: var(--border-radius);
 }
 
 .btn-submit {

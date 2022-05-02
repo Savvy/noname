@@ -403,28 +403,42 @@ div > .strength-meter:before {
     transition: width 0.5s ease-in-out;
 }
 
-.strength-meter-fill.terrible {
+.strength-meter-fill[data-score='0'] {
     width: 0%;
     background: var(--danger-color);
 }
 
-.strength-meter-fill.bad {
+.strength-meter-fill[data-score='1'] {
     width: 25%;
     background: var(--danger-color);
 }
 
-.strength-meter-fill.weak {
+.strength-meter-fill[data-score='2'] {
     width: 50%;
     background: #f9ca24;
 }
 
-.strength-meter-fill.good {
+.strength-meter-fill[data-score='3'] {
     width: 75%;
     background: #badc58;
 }
-.strength-meter-fill.strong {
+.strength-meter-fill[data-score='4'] {
     width: 100%;
     background: var(--success-color);
+}
+
+.password-group {
+    width: 100%;
+}
+
+.password-group > input {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.password-group .strength-meter {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
 @media screen and (max-width: 720px) {

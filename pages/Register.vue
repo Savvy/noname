@@ -9,7 +9,16 @@
                     <div class="input-group d-flex flex-column justify-center align-center w-100">
                         <input type="text" v-model="credentials.username" name="username" placeholder="Username" class="input-default">
                         <input type="email" v-model="credentials.email" name="email_address" placeholder="Email Address" class="input-default">
+                        <div class="password-group">
                         <input type="password" v-model="credentials.password" name="password" placeholder="Password" class="input-default">
+                        <password
+                            v-model="credentials.password"
+                            strengthMeterClass="strength-meter"
+                            strengthMeterFillClass="strength-meter-fill"
+                            @score="updateScore"
+                            :strength-meter-only="true"
+                        />
+                        </div>
                         <input type="password" v-model="credentials.confirmPass" name="confirm_password" placeholder="Confirm Password" class="input-default">
                         <nuxt-link to="/login" class="forgot-pass">Already have an account?</nuxt-link>
                     </div>
@@ -29,7 +38,9 @@
 </template>
 
 <script>
+import Password from 'vue-password-strength-meter'
 export default {
+    components: { Password },
     head() {
         return {
             title: 'Register'
@@ -37,6 +48,7 @@ export default {
     },
     data() {
         return {
+            score: 0,
             credentials: {
                 username: '',
                 email: '',
@@ -73,8 +85,11 @@ export default {
                     this.$emit('close-modal-login');
                 }
             });
+        },
+        updateScore(score) {
+            this.score = score;
         }
-    }
+    },
 }
 </script>
 
