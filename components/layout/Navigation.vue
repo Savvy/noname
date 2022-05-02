@@ -128,6 +128,7 @@ export default {
 <style scoped>
 
 .menu-trigger {
+    user-select: none;
     display: none;
 }
 
@@ -279,6 +280,7 @@ ul > li:hover > a > span {
 }
 
 .menu-header {
+    user-select: none;
     display: none;
 }
 
