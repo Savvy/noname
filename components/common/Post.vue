@@ -15,7 +15,7 @@
                 <div class="actions">
                     <span v-tooltip="'Share this thread'"><i class="bi bi-share"></i></span>
                     <span v-tooltip="'Remove bookmark'" @click="removeBookmark" v-if="isBookmarked"><i class="bi bi-bookmark-fill"></i></span>
-                    <span v-tooltip="'Add bookmark'" @click="addBookmark" v-else><i class="bi bi-bookmark"></i></span>
+                    <span v-tooltip="'Add bookmark'" @click="addBookmark" v-else-if="isAuthenticated && !isBookmarked"><i class="bi bi-bookmark"></i></span>
                     <nuxt-link v-tooltip="'Jump to'" :to='`#post-${post.postId}`' :id='`post-${post.postId}`' class="post-num">#{{ postNum }}</nuxt-link>
                 </div>
             </div>
@@ -58,7 +58,7 @@ export default {
     },
     computed: {
         isBookmarked() {
-            return this.user.bookmarks.find((el) => el.post === this.post._id);
+            return this.isAuthenticated && this.user.bookmarks.find((el) => el.post === this.post._id);
         }
     }
 }
