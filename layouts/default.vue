@@ -39,7 +39,8 @@ export default {
         }
     },
     created() {
-        this.$store.dispatch('categories/populate')
+        this.$store.dispatch('categories/populate');
+        this.$store.dispatch('settings/fetchData');
     }
 }
 </script>

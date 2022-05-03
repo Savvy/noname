@@ -8,7 +8,7 @@
           Topics: <span>{{ topics }}</span> Posts: <span>{{ posts }}</span>
         </div>
       </div>
-      <div class="recent-thread d-flex flex-row" v-if="forum.recent_thread">
+      <div class="recent-thread" v-if="forum.recent_thread">
         <nuxt-link :to="'/profile/' + forum.recent_thread.user.username">
           <CommonAvatar
             :src="forum.recent_thread.user.details.avatar"
@@ -98,6 +98,10 @@ export default {
   white-space: nowrap;
   word-wrap: normal;
   text-overflow: ellipsis;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .thread-info {
@@ -135,6 +139,10 @@ export default {
 
   .category-meta {
     display: none;
+  }
+
+  .recent-thread {
+    justify-content: initial;
   }
 
   .recent-thread > a {

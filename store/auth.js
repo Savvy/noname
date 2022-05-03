@@ -19,6 +19,12 @@ export const mutations = {
   },
   CLEAR_SUCCESS(state) {
     state.error_message = '';
+  },
+  ADD_BOOKMARK(state, bookmark) {
+    state.user.bookmarks.push(bookmark);
+  },
+  REMOVE_BOOKMARK(state, bookmark) {
+    state.user.bookmarks = state.user.bookmarks.filter((el) => el.post !== bookmark.post);
   }
 };
 
@@ -109,7 +115,13 @@ export const actions = {
   },
   requestReset({ commit }, payload) {
     return this.$axios.post(`/user/requestReset`, payload);
-  }
+  },
+  addBookmark({ commit }, payload) {
+    commit('ADD_BOOKMARK', payload);
+  },
+  removeBookmark({ commit }, payload) {
+    commit('REMOVE_BOOKMARK', payload);
+  },
 };
 
 export const getters = {

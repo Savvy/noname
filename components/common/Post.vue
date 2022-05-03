@@ -13,8 +13,9 @@
             <div class="post-header d-flex flex-row justify-between">
                 <span class="time"><time-ago refresh :long=true :datetime="post.updatedAt" /></span>
                 <div class="actions">
-                    <nuxt-link v-tooltip="'Share this thread'" to="/"><i class="bi bi-share"></i></nuxt-link>
-                    <nuxt-link v-tooltip="'Bookmark thread'" to="/"><i class="bi bi-bookmark"></i></nuxt-link>
+                    <span v-tooltip="'Share this thread'"><i class="bi bi-share"></i></span>
+                    <span v-tooltip="'Remove bookmark'" @click="removeBookmark" v-if="isBookmarked"><i class="bi bi-bookmark-fill"></i></span>
+                    <span v-tooltip="'Add bookmark'" @click="addBookmark" v-else><i class="bi bi-bookmark"></i></span>
                     <nuxt-link v-tooltip="'Jump to'" :to='`#post-${post.postId}`' :id='`post-${post.postId}`' class="post-num">#{{ postNum }}</nuxt-link>
                 </div>
             </div>
@@ -35,6 +36,29 @@ export default {
         postNum: {
             type: Number,
             required: true,
+        }
+    },
+    methods: {
+        addBookmark() {
+            this.$axios.post('/bookmark', {postId: this.post._id}).then(({data}) => {
+                console.log(data);
+                this.$store.dispatch('auth/addBookmark', data.bookmark);
+            }).catch((error) => {
+                console.log(error.response.data.message);
+            });
+        },
+        removeBookmark() {
+            this.$axios.delete('/bookmark', { data: {postId: this.post._id} }).then(({data}) => {
+                console.log(data);
+                this.$store.dispatch('auth/removeBookmark', data.bookmark);
+            }).catch((error) => {
+                console.log(error.response.data.message);
+            });
+        }
+    },
+    computed: {
+        isBookmarked() {
+            return this.user.bookmarks.find((el) => el.post === this.post._id);
         }
     }
 }
@@ -88,6 +112,10 @@ export default {
 .post-header .actions {
     display: flex;
     gap: 10px;
+}
+
+.post-header > .actions > span {
+    cursor: pointer;
 }
 
 .post-content .post-body {
