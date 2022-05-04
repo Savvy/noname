@@ -8,6 +8,7 @@ export default async function ({ route, store, redirect, $axios }) {
   }
   try {
     // If not logged in, attempt to grab user object.
+    console.log('CHECKING USER')
     let { data } = await $axios.get("/user", { withCredentials: true });
     // Commit change to page
     store.dispatch('auth/setUser', data.user);
@@ -17,6 +18,7 @@ export default async function ({ route, store, redirect, $axios }) {
       redirect('/');
     }
   } catch(error) {
+    console.error(error);
     if (error.response.data.message === 'not_authenticated') {
     // Redirect to login page. User needs to authenticate.
       console.log(error.response.data.message);
