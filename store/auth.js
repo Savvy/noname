@@ -36,6 +36,7 @@ export const actions = {
     return new Promise((res, reject) => {
       try {
         commit('SET_USER', user);
+        console.log('SETTING USER');
         res(user);
       } catch (error) {
         reject(error);

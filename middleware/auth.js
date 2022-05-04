@@ -8,6 +8,7 @@ export default async function ({ route, store, redirect, $axios }) {
     let { data } = await $axios.get("/user", { withCredentials: true });
     // Commit change to page
     store.dispatch('auth/setUser', data.user);
+    console.log('DISPATCHING');
 
     // If page is confirmation and the user is verified, redirect to home
     if (route.name === 'confirm-token' && data.user.status === 'Active') {
