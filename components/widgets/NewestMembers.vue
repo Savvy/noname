@@ -5,7 +5,7 @@
             <div class="recent-users d-flex" v-if="recentUsers.length > 0">
                 <nuxt-link :to="`/profile/${recent.username}`" v-tooltip="recent.username"
                 v-for="(recent, index) in recentUsers" :key="index">
-                    <CommonAvatar :src="recent.details.avatar" borderRadius="100px" height="40px" width="40px" 
+                    <CommonAvatar :src="userAvatar(recent.details)" borderRadius="100px" height="40px" width="40px" 
                     :pointer=true :shrinkOnHover=true />
                 </nuxt-link>
             </div>

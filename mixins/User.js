@@ -11,6 +11,10 @@ export default {
     },
     isAuthenticated() {
       return this.$store.state.auth.user;
+    },
+    userAvatar() { return (details) => {
+        return details.avatarType === 'Custom' ? (this.$config.API_URL + details.avatar) : details.avatar;
+      }
     }
   },
   methods: {

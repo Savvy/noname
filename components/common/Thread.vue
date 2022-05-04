@@ -3,7 +3,7 @@
         <div class="thread-head d-flex align-center w-auto">
             <div class="thread-avatar">
                 <nuxt-link to="/profile">
-                    <CommonAvatar :src="thread.user.details.avatar" borderRadius="100px" height="50px" width="50px" :pointer=true />
+                    <CommonAvatar :src="userAvatar(thread.user.details)" borderRadius="100px" height="50px" width="50px" :pointer=true />
                 </nuxt-link>
             </div>
             <div class="thread-meta d-flex flex-column">
@@ -35,7 +35,7 @@
                 <nuxt-link :to="`/profile/${recentUser.username}`" class="time"><time-ago refresh :long=true :datetime="recentPost.updatedAt"/></nuxt-link>
             </div>
             <nuxt-link class="recent-avatar" :to="`/profile/${recentUser.username}`">
-                <CommonAvatar :src="recentUser.details.avatar" borderRadius="100px" height="40px" width="40px" :pointer=true />
+                <CommonAvatar :src="userAvatar(recentUser.details)" borderRadius="100px" height="40px" width="40px" :pointer=true />
             </nuxt-link>
         </div>
     </div>

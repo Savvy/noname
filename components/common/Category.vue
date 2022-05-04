@@ -11,7 +11,7 @@
       <div class="recent-thread" v-if="forum.recent_thread">
         <nuxt-link :to="'/profile/' + forum.recent_thread.user.username">
           <CommonAvatar
-            :src="forum.recent_thread.user.details.avatar"
+            :src="userAvatar(forum.recent_thread.user.details)"
             borderRadius="100px"
             height="40px"
             width="40px"

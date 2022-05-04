@@ -5,7 +5,7 @@
             <div class="online-users d-flex" v-if="onlineUsers.length > 0">
                 <nuxt-link :to="`/profile/${online.username}`" v-tooltip="online.username"
                 v-for="(online, index) in onlineUsers" :key="index">
-                    <CommonAvatar :src="online.details.avatar" borderRadius="100px" height="40px" width="40px" 
+                    <CommonAvatar :src="userAvatar(online.details)" borderRadius="100px" height="40px" width="40px" 
                     :pointer=true :shrinkOnHover=true />
                 </nuxt-link>
             </div>

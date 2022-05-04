@@ -8,7 +8,7 @@
       -->
   <div class="account-details">
     <div class="title">Account Details</div>
-    <form>
+    <div class="form">
       <div class="alert-message error" v-if="message.error">{{ message.error }}</div>
       <div class="alert-message success" v-if="message.success">{{ message.success }}</div>
       <div class="input-group align-center">
@@ -33,16 +33,18 @@
         <span>Avatar:</span>
         <div class="change-avatar">
           <CommonAvatar
-            :src="user.details.avatar"
+            :src="userAvatar(user.details)"
             borderRadius="5px"
             height="80px"
             width="80px"
             :pointer="true"
-            @click.native="$refs.changeAvatar.click()"
+            @click.native="$refs.avatar.click()"
           />
           <input
             type="file"
-            ref="changeAvatar"
+            ref="avatar"
+            @change="uploadAvatar($event)"
+            name="avatar"
             style="display: none"
             accept=".gif,.jpeg,.jpg,.png"
           />
@@ -63,13 +65,13 @@
       <div class="input-group">
         <span>About Me:</span>
         <client-only>
-          <CommonRichEditor btn-text="Save" />
+          <CommonRichEditor />
         </client-only>
       </div>
       <button type="submit" class="btn btn-primary align-self-center">
         Save
       </button>
-    </form>
+    </div>
   </div>
 </template>
 
@@ -92,42 +94,65 @@ export default {
     };
   },
   methods: {
+    uploadAvatar(event) {
+      const formData = new FormData();
+      formData.append('avatar', event.target.files[0]);
+      this.$axios.post('/user/avatar', formData, {
+        headers: {
+          'Content-Type': `multipart/form-data`
+        }
+      }).then(({ data }) => {
+        this.updateSuccess(data.message);
+        setTimeout(() => {
+          this.message.success = '';
+          window.location.reload(true);
+        }, 3000);
+      }).catch((error) => {
+        this.updateError(error.response.data.message);
+      })
+    },
     changeUsername() {
       if (this.credentials.username.length < this.settings.minUsernameLength) {
-        this.message.error = 'username_too_short';
+        this.updateError('username_too_short');
         return;
       }
       if (this.credentials.username.length > this.settings.maxUsernameLength) {
-          this.message.error = 'username_too_long';
+          this.updateError('username_too_long');
           return;
       }
       this.$store.dispatch('auth/changeUsername', { username: this.credentials.username }).then((res) => {
         if (res) {
-          this.message.success = res.data.message;
+          this.updateSuccess(res.data.message);
           this.credentials.username = '';
           this.edit.username = false;
         }
       }).catch((error) => {
-        console.log(error.response.data.message);
-        this.message.error = error.response.data.message;
+        this.updateError(error.response.data.message);
       });
     },
     changeEmail() {
       if (!this.credentials.email) {
-        this.message.error = 'email_field_empty';
+        this.updateError('email_field_empty');
         return;
       }
       this.$store.dispatch('auth/changeEmail', { email: this.credentials.email }).then((res) => {
         if (res) {
-          this.message.success = res.data.message;
+          this.updateSuccess(res.data.message);
           this.credentials.email = '';
           this.edit.email = false;
         }
       }).catch((error) => {
-        console.log(error.response.data.message);
-        this.message.error = error.response.data.message;
+        this.updateError(error.response.data.message);
       });
-    }
+    },
+    updateSuccess(message) {
+      this.message.success = message;
+      setTimeout(() => this.message.success = '', 3000);
+    },
+    updateError(message) {
+      this.message.error = message;
+      setTimeout(() => this.message.error = '', 3000);
+    },
   },
 };
 </script>
@@ -144,7 +169,7 @@ export default {
   margin-bottom: 15px;
 }
 
-form {
+.form {
   display: flex;
   flex-direction: column;
   gap: 30px;
