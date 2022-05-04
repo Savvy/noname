@@ -47,7 +47,7 @@ export default {
     },
     methods: {
         authEnabled(auth) {
-            return this.settings?.socialAuth[auth];
+            return this.settings && this.settings.socialAuth && this.settings.socialAuth[auth];
         },
         login() {
             if (this.credentials.password.length < this.settings.minPasswordLength) {

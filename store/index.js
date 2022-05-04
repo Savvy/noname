@@ -1,3 +1,5 @@
 export const actions = {
-  async nuxtServerInit({ dispatch }) {}
+  async nuxtServerInit({ dispatch }) {
+    dispatch('settings/fetchData');
+  }
 };
