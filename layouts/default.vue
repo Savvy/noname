@@ -38,7 +38,8 @@ export default {
             return this.isAuthenticated && this.user?.status != 'Active';
         }
     },
-    created() {
+    async created() {
+        await this.$store.dispatch('settings/fetchData');
         this.$store.dispatch('categories/populate');
     }
 }

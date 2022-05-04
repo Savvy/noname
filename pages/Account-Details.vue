@@ -39,6 +39,7 @@
 
 <script>
 export default {
+    middleware: 'authRequired',
     head() {
         return {
             title: 'Account Details'
