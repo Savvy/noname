@@ -2,6 +2,8 @@ export default async function ({ route, store, redirect, $axios }) {
   // Check if user is logged in locally.
   console.log('DISPATCHING');
   if (store.state.auth.isAuthenticated) {
+    console.log('IS AUTHENTICATED');
+    console.log(store.state.auth.user);
     return;
   }
   try {
