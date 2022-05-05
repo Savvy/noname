@@ -3,6 +3,7 @@ import axios from 'axios';
 export default async () => {
   const { data } = await axios.get(process.env.API_URL + 'settings/config');
   return {
+    ssr: true,
     head: {
       titleTemplate: data.result.titleTemplate,
       htmlAttrs: {
