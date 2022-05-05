@@ -9,14 +9,15 @@ export default async function ({ route, store, redirect, $axios }) {
   try {
     // If not logged in, attempt to grab user object.
     console.log('CHECKING USER')
-    let { data } = await $axios.get("/user", { withCredentials: true });
+    /* const { data } = await $axios.get("/user", { withCredentials: true });
     // Commit change to page
-    store.dispatch('auth/setUser', data.user);
+    store.dispatch('auth/setUser', data.user); */
+    store.dispatch('auth/checkUser', data.user)
 
     // If page is confirmation and the user is verified, redirect to home
-    if (route.name === 'confirm-token' && data.user.status === 'Active') {
+    /* if (route.name === 'confirm-token' && data.user.status === 'Active') {
       redirect('/');
-    }
+    } */
   } catch(error) {
     console.error(error);
     if (error.response.data.message === 'not_authenticated') {
