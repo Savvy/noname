@@ -46,6 +46,7 @@ export const actions = {
   async checkUser({ commit, state }) {
     if (state.user) return;
     const { data } = await this.$axios.get("/user", { withCredentials: true });
+    console.log(data);
     if (data.success) {
       commit('SET_USER', data.user);
     }
