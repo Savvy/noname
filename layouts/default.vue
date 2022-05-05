@@ -39,6 +39,7 @@ export default {
         }
     },
     async created() {
+        await this.$store.dispatch('auth/checkUser');
         await this.$store.dispatch('settings/fetchData');
         this.$store.dispatch('categories/populate');
     }
