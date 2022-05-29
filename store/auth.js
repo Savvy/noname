@@ -44,10 +44,12 @@ export const actions = {
   },
   async checkUser({ commit, state }) {
     if (state.user) return;
-    const { data } = await this.$axios.get("/user", { withCredentials: true });
-    if (data.success) {
-      commit('SET_USER', data.user);
-    }
+    try {
+      const { data } = await this.$axios.get("/user", { withCredentials: true });
+      if (data.success) {
+        commit('SET_USER', data.user);
+      }
+    } catch(_) {}
   },
   login({ commit }, { email, password }) {
     let data = { email, password };
