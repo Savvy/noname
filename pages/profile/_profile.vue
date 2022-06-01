@@ -127,7 +127,10 @@ export default {
                 return;
             }
             let data = {
-                user: this.profile._id,
+                user: {
+                    _id: this.profile._id,
+                    username: this.profile.username
+                },
                 author: this.user._id,
                 content: this.postContent,
             };
