@@ -103,9 +103,9 @@ export default {
         }
       }).then(({ data }) => {
         this.updateSuccess(data.message);
+        this.$store.dispatch('auth/updateAvatar', data.avatar);
         setTimeout(() => {
           this.message.success = '';
-          window.location.reload(true);
         }, 3000);
       }).catch((error) => {
         this.updateError(error.response.data.message);

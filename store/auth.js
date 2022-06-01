@@ -25,6 +25,10 @@ export const mutations = {
   },
   REMOVE_BOOKMARK(state, bookmark) {
     state.user.bookmarks = state.user.bookmarks.filter((el) => el.post !== bookmark.post);
+  },
+  UPDATE_AVATAR(state, payload) {
+    const details = state.user.details;
+    details.avatar = details.avatarType === 'Custom' ? `${payload.avatar}?t=${new Date().getTime()}` : payload.avatar;
   }
 };
 
@@ -112,6 +116,9 @@ export const actions = {
     .then(() => {
       commit('SET_USER', null);
     });
+  },
+  updateAvatar({ commit }, payload) {
+    commit('UPDATE_AVATAR', payload);
   },
   changePassword({ commit }, payload) {
     return this.$axios.post(`/user/changePassword`, payload);
