@@ -59,7 +59,10 @@ export default {
     },
     methods: {
         authEnabled(auth) {
-            return this.settings?.socialAuth[auth];
+            if (!this.settings || !this.settings.socialAuth) {
+                return false;
+            }
+            return this.settings.socialAuth[auth];
         },
         register() {
             if (this.credentials.username.length < this.settings.minUsernameLength) {
