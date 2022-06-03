@@ -13,7 +13,6 @@ export const actions = {
     return this.$axios.get('/settings')
     .then(({ data }) => {
       commit('SET_SETTINGS', data.result);
-      console.log('SETTING SETTINGS');
     });
   },
 };
