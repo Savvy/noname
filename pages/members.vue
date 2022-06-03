@@ -13,6 +13,19 @@
                 </div>
             </div>
             <div class="members-content">
+                <div class="members-container">
+                    <h2>Staff Members</h2>
+                    <div class="members-block">
+                        <CommonMemberBlock v-for="(member, index) in staff" :member="member" :key="index" />
+                    </div>
+                </div>
+
+                <div class="members-container">
+                    <h2>Members</h2>
+                    <div class="members-block">
+                        <CommonMemberBlock v-for="(member, index) in members" :member="member" :key="index" />
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -24,6 +37,10 @@ export default {
         return {
             title: 'Members List'
         }
+    },
+    async asyncData({ $axios, }) {
+        let { data } = await $axios.get(`/user/members`);
+        return { staff: data.staff, members: data.members };
     },
 }
 </script>
@@ -48,9 +65,7 @@ export default {
 }
 
 .members-content {
-    background: rgba(0, 0, 0, 0.21);
-    height: 1024px;
-    flex: 1 0 auto;
+    flex: 1;
 }
 
 .members-nav {
@@ -76,5 +91,16 @@ export default {
 .nav-item {
     cursor: pointer;
     color: var(--light-text);
+}
+
+.members-container {
+    margin-bottom: 25px;
+}
+
+.members-block {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 15px;
+    margin-top: 15px;
 }
 </style>
