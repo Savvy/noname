@@ -8,7 +8,7 @@
         />
         <div class="user-data">
             <span class="name">{{ user.username }}</span>
-            <span class="role">Member</span>
+            <span class="role">{{ user.role.name }}</span>
         </div>
     </div>
     <ul>
